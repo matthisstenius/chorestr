@@ -6,7 +6,7 @@
 var express = require('express'),
     routes = require('./routes'),
     hbs = require('express-hbs'),
-    user = require('./routes/user'),
+    chores = require('./routes/chores'),
     http = require('http'),
     path = require('path');
 
@@ -31,8 +31,18 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
+// GET
 app.get('/', routes.index);
-app.get('/users', user.list);
+app.get('/:user/chores', chores.all);
+
+// POST
+app.post('/:user/chores/:id', chores.add);
+
+// PUT
+app.put('/:user/chores/:id');
+
+// DELETE
+app.delete('/:user/chores/:id');
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
