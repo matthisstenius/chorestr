@@ -1,3 +1,5 @@
+var db = require('../models/model');
+
 exports.all = function(req, res) {
 	res.send("Här kommer det stå" + req.params.user);
 };

@@ -31,18 +31,15 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
-// GET
+
+// Index
 app.get('/', routes.index);
+
+// Chores
 app.get('/:user/chores', chores.all);
-
-// POST
 app.post('/:user/chores/:id', chores.add);
-
-// PUT
-app.put('/:user/chores/:id');
-
-// DELETE
-app.delete('/:user/chores/:id');
+app.put('/:user/chores/:id', chores.edit);
+app.delete('/:user/chores/:id', chores.remove);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
