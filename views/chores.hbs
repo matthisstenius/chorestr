@@ -1,0 +1,55 @@
+{{!< layout}}
+<div class="grid">
+	<div class="module">
+		<a href="/{{ user }}/chores/new" class="btn new-chore">New Chore</a>
+
+		{{#each chores}}
+		<div class="col-1-4">
+			<div class="task module risk-{{prio}}">
+				<h3>{{ name }}</h3>
+
+				<p class="reward"><span class="icon-coin"></span>Reward: <span>{{ reward }}</span></p>
+				<p class="risk"><span class="icon-star"></span>Risk: {{prio}}</p>
+				<p class="due"></span>Complete this chore before:</br> <span class="date-stamp">{{ date.format }}</span></br> to recieve reward.</p>
+
+				<a href="/{{../user}}/completed/{{_id}}" class="btn task-done"><span class="icon-checkmark"></span>Mark as complete</a>
+
+				<div class="manage">
+					<form action="/{{../user}}/chores/{{_id}}" method="POST">
+						<a href="/{{../user}}/chores/{{_id}}" class="remove" title="Remove"><span class="icon-remove"></span></a>
+						<input type="hidden" name="_method" value="DELETE">
+						<input type="button" value="" class="icon-remove">
+					</form>
+
+					<a href="/{{../user}}/chores" class="edit" title="Edit"><span class="icon-pencil"></span></a>
+				</div>
+			</div>
+		</div>
+		{{/each}}
+
+	</div> {{! end .module }}
+</div> {{! end .grid }}
+
+<div class="new-chore-overlay hidden">
+	<header class="box-header">Add new chore</header>
+	<div class="module">
+		<form action="/{{user}}/chores/new" method="POST">
+			<label for="title">Title</label>
+			<input id="title" name="title" type="text">
+
+			<h3>Priority</h3>
+			<label class="radio-label" for="prio-low">Low</label>
+			<input type="radio" id="prio-low" name="prio" value="Low">
+
+			<label class="radio-label" for="prio-medium">Medium</label>
+			<input type="radio" id="prio-medium" name="prio" value="Medium">
+
+			<label class="radio-label" for="prio-high">High</label>
+			<input type="radio" id="prio-high" name="prio" value="High">
+
+			<input class="btn btn-add" type="submit" value="Add chore">
+		</form>
+	</div>
+
+</div>
+<div class="bg-overlay hidden"></div>

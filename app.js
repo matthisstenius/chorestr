@@ -37,7 +37,8 @@ app.get('/', routes.index);
 
 // Chores
 app.get('/:user/chores', chores.all);
-app.post('/:user/chores/:id', chores.add);
+app.get('/:user/chores/new', chores.new);
+app.post('/:user/chores/new', chores.add);
 app.put('/:user/chores/:id', chores.edit);
 app.delete('/:user/chores/:id', chores.remove);
 

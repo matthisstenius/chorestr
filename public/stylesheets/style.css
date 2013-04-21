@@ -1,3 +1,76 @@
+@font-face {
+  font-family: 'icomoon';
+  src: url("../fonts/icomoon.eot");
+  src: url("../fonts/icomoon.eot?#iefix") format("embedded-opentype"), url("../fonts/icomoon.woff") format("woff"), url("../fonts/icomoon.ttf") format("truetype"), url("../fonts/icomoon.svg#icomoon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Use the following CSS code if you want to use data attributes for inserting your icons */
+[data-icon]:before {
+  font-family: 'icomoon';
+  content: attr(data-icon);
+  speak: none;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Use the following CSS code if you want to have a class per icon */
+/*
+Instead of a list of all class selectors,
+you can use the generic selector below, but it's slower:
+[class*="icon-"] {
+*/
+.icon-checkmark, .icon-coin, .icon-calendar, .icon-remove, .icon-plus, .icon-numbered-list, .icon-star, .icon-signup, .icon-pencil {
+  font-family: 'icomoon';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+}
+
+.icon-checkmark:before {
+  content: "\e001";
+}
+
+.icon-coin:before {
+  content: "\e00a";
+}
+
+.icon-calendar:before {
+  content: "\e002";
+}
+
+.icon-remove:before {
+  content: "\e000";
+}
+
+.icon-plus:before {
+  content: "\e003";
+}
+
+.icon-numbered-list:before {
+  content: "\e004";
+}
+
+.icon-star:before {
+  content: "\e005";
+}
+
+.icon-signup:before {
+  content: "\e006";
+}
+
+.icon-pencil:before {
+  content: "\e007";
+}
+
 /* normalize.css v2.0.1 | MIT License | git.io/normalize */
 /* ==========================================================================
    HTML5 display definitions
@@ -369,10 +442,6 @@ body {
   padding-right: 20px;
 }
 
-[class*='col-']:last-of-type {
-  padding-right: 0px;
-}
-
 .grid {
   width: 100%;
   max-width: 1140px;
@@ -486,4 +555,324 @@ body {
 
 .col-7-12 {
   width: 58.33%;
+}
+
+/* ----------------------------------------------------------------
+ *  ￼ General
+ * ----------------------------------------------------------------
+*/
+html {
+  min-height: 100%;
+  position: relative;
+}
+
+body {
+  color: black;
+  font-size: 16px;
+  font-family: "FuturaPTBook-Reg", helvetica, sans-serif;
+  background-color: #F0F0ED;
+  padding-bottom: 100px;
+}
+
+.wrapper {
+  margin: 20px 0;
+  padding: 0 10px;
+}
+
+.main {
+  background-color: white;
+  border-radius: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.module {
+  padding: 10px;
+}
+
+.hidden {
+  display: none;
+  visibility: hidden;
+}
+
+.clearfix {
+  overflow: hidden;
+}
+
+.header, .footer {
+  background-color: white;
+}
+
+/* ----------------------------------------------------------------
+ *  ￼ Typo
+ * ----------------------------------------------------------------
+*/
+h1, h3, h4 {
+  font-family: "RooneyWeb-Regular", helvetica, sans-serif;
+}
+
+h2 {
+  font-family: "FuturaPTBook-Reg", helvetica, sans-serif;
+}
+
+h3 {
+  font-size: 1.3em;
+}
+
+a {
+  text-decoration: none;
+}
+
+[class*='icon-'] {
+  padding-right: 5px;
+}
+
+/* ----------------------------------------------------------------
+ *  ￼ Buttons
+ * ----------------------------------------------------------------
+*/
+.btn {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 3px;
+  color: white;
+  text-align: center;
+}
+
+.task-done {
+  background: #ff6600;
+  background: -webkit-linear-gradient(top, #ff6600, #e73525);
+  background: -moz-linear-gradient(top, #ff6600, #e73525);
+  background: -o-linear-gradient(top, #ff6600, #e73525);
+  background: -ms-linear-gradient(top, #ff6600, #e73525);
+  background: linear-gradient(top, #ff6600, #e73525);
+}
+
+.new-chore, .btn-add {
+  background: #21acb8;
+  background: -webkit-linear-gradient(top, #25bac4, #21acb8);
+  background: -moz-linear-gradient(top, #25bac4, #21acb8);
+  background: -o-linear-gradient(top, #25bac4, #21acb8);
+  background: -ms-linear-gradient(top, #25bac4, #21acb8);
+  background: linear-gradient(top, #25bac4, #21acb8);
+  display: block;
+}
+
+.new-chore {
+  width: 200px;
+  margin: 20px auto;
+}
+
+.login {
+  background: #429212;
+  background: -webkit-linear-gradient(bottom, #429212, #5cc51d);
+  background: -moz-linear-gradient(bottom, #429212, #5cc51d);
+  background: -o-linear-gradient(bottom, #429212, #5cc51d);
+  background: -ms-linear-gradient(bottom, #429212, #5cc51d);
+  background: linear-gradient(bottom, #429212, #5cc51d);
+}
+
+.register, .logout {
+  background: #b72d16;
+  background: -webkit-linear-gradient(bottom, #b72d16, #cd3217);
+  background: -moz-linear-gradient(bottom, #b72d16, #cd3217);
+  background: -o-linear-gradient(bottom, #b72d16, #cd3217);
+  background: -ms-linear-gradient(bottom, #b72d16, #cd3217);
+  background: linear-gradient(bottom, #b72d16, #cd3217);
+}
+
+/* ----------------------------------------------------------------
+ *  ￼ Forms
+ * ----------------------------------------------------------------
+*/
+form {
+  margin-bottom: 20px;
+}
+
+fieldset {
+  margin-bottom: 20px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+textarea,
+select {
+  border: 1px solid #ccc;
+  padding: 6px 4px;
+  outline: none;
+  border-radius: 5px;
+  font: 13px "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #777;
+  margin: 0;
+  width: 100%;
+  height: 40px;
+  max-width: 100%;
+  display: block;
+  margin: 10px 0 20px 0;
+  background: #fff;
+}
+
+select {
+  padding: 0;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+  border: 1px solid #aaa;
+  color: #444;
+  -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+}
+
+textarea {
+  min-height: 60px;
+}
+
+label,
+legend {
+  font-size: 1.3em;
+  margin-bottom: 10px;
+  font-family: "RooneyWeb-Regular", helvetica, sans-serif;
+}
+
+.radio-label {
+  font-size: inherit;
+  font-family: inherit;
+}
+
+input[type="radio"] {
+  display: inline;
+  margin-right: 20px;
+}
+
+input[type="submit"] {
+  border: none;
+  margin-top: 20px;
+}
+
+/* ----------------------------------------------------------------
+ *  ￼ Header
+ * ----------------------------------------------------------------
+*/
+.header {
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
+}
+
+.logo {
+  color: black;
+  font-size: 2em;
+}
+
+.main-nav {
+  float: right;
+}
+.main-nav li {
+  list-style: none;
+  float: left;
+  margin-right: 10px;
+}
+
+/* ----------------------------------------------------------------
+ *  ￼ Task
+ * ----------------------------------------------------------------
+*/
+[class*='risk-'] {
+  border: 1px solid #ccc;
+}
+
+.risk-Low {
+  border-top: 3px solid #429212;
+}
+
+.risk-Medium {
+  border-top: 3px solid #2a8fbd;
+}
+
+.risk-High {
+  border-top: 3px solid #b72d16;
+}
+
+.task {
+  background-color: white;
+  margin-bottom: 20px;
+  height: 300px;
+  box-shadow: 0 0 6px 3px rgba(225, 225, 225, 0.6);
+}
+
+.due {
+  margin-bottom: 25px;
+}
+
+.date-stamp {
+  color: #b72d16;
+  font-size: 1.1em;
+}
+
+.manage {
+  margin-top: 5px;
+  float: right;
+  font-size: 1.1em;
+}
+.manage a {
+  color: #556270;
+}
+.manage .remove:hover {
+  color: #b72d16;
+}
+.manage .edit:hover {
+  color: #2a8fbd;
+}
+
+/* ----------------------------------------------------------------
+ *  ￼ New task
+ * ----------------------------------------------------------------
+*/
+.add-chore {
+  background-color: #F0F7FA;
+}
+
+.main-header {
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 20px;
+}
+
+.instructions {
+  counter-reset: li;
+  list-style: none;
+  margin-top: 0;
+}
+.instructions li {
+  margin-bottom: 10px;
+  position: relative;
+  font-size: 1.2em;
+  padding: 20px 30px 28px 32px;
+  display: block;
+}
+.instructions li:before {
+  content: counter(li);
+  counter-increment: li;
+  position: absolute;
+  left: -30px;
+  top: 50%;
+  margin-top: -60px;
+  font-size: 3em;
+  color: #b72d16;
+  line-height: 2em;
+}
+
+/* ----------------------------------------------------------------
+ *  ￼ Footer
+ * ----------------------------------------------------------------
+*/
+.footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  border-top: 1px solid #ccc;
+  width: 100%;
+  height: 100px;
 }

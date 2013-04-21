@@ -5,30 +5,39 @@
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
     <head>
         <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title>{{ title }}</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
-
-        <link rel="stylesheet" href="stylesheets/style.css">
+        <link href="http://fnt.webink.com/wfs/webink.css/?project=E64DD2E9-085E-4403-ADBE-1EB47BFEF3D0&fonts=99B90B52-FC86-D532-91E2-93D2FC4AE03D:f=FuturaPTBook-Reg,0D47B8E9-3C6E-CE3D-89C8-57E788336980:f=RooneyWeb-Regular" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="/stylesheets/style.css">
     </head>
     <body>
     	<header class="header">
-    		<a href="/" class="logo">Chorestr</a>
+        <div class="header-inner grid">
+          <a href="/" class="logo">Chorestr</a>
 
-    		<nav class="man-nav">
-    			<ul>
-    				<li><a href="#" class="btn login">Log in</a></li>
-    				<li><a href="#" class="btn register">Sign up</a></li>
-    			</ul>
-    		</nav>
+          <nav class="main-nav">
+            <ul>
+              {{#if user}}
+                <li><a href="#">Matthis Stenius</a></li>
+                <li><a href="#" class="btn logout">Log out</a></li>
+              {{else}}
+                <li><a href="#" class="btn login">Log in</a></li>
+                <li><a href="#" class="btn register">Sign up</a></li>
+              {{/if}}
+            </ul>
+          </nav>
+        </div>
+
     	</header>
-       <div class="main">
+       <div class="wrapper">
        		{{{ body }}}
 
-       		<footer class="footer">
-
-       		</footer>
        </div>
+       <footer class="footer">
+
+        </footer>
+       <script src="/js/jquery-min.js"></script>
+       <script src="/js/chorestr.js"></script>
     </body>
 </html>
