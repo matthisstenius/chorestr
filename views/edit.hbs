@@ -1,19 +1,19 @@
 {{!< layout}}
 
 <div class="main module grid">
-	<header class="main-header">
-		<h2>Add new chore</h2>
-	</header>
+	<header class="main-header"><h2>Edit chore</h2></header>
 	<div class="col-1-2">
 		<div class="add-chore">
 			<div class="module">
-				<form action="/{{user}}/chores/new" method="POST">
+				<form action="/{{user}}/chores/{{chore._id}}" method="POST">
+					<input type="hidden" name="_method" value="PUT">
 					<label for="title">Title</label>
-					<input id="title" name="title" type="text">
+					<input id="title" name="title" type="text" value="{{chore.name}}">
 
 					<label>Risk</label>
 
 					<label class="radio-label" for="prio-low">Low</label>
+
 					<input type="radio" id="prio-low" name="prio" value="Low">
 
 					<label class="radio-label" for="prio-medium">Medium</label>
@@ -22,7 +22,7 @@
 					<label class="radio-label" for="prio-high">High</label>
 					<input type="radio" id="prio-high" name="prio" value="High">
 
-					<input class="btn btn-add" type="submit" value="Add chore">
+					<input class="btn btn-add" type="submit" value="Save changes">
 				</form>
 			</div>
 		</div>

@@ -12,18 +12,41 @@
         <link rel="stylesheet" href="/stylesheets/style.css">
     </head>
     <body>
+      <span class="border-strip stripe-1"></span>
+      <span class="border-strip stripe-2"></span>
+      <span class="border-strip stripe-3"></span>
+      <span class="border-strip stripe-4"></span>
+      <span class="border-strip stripe-5"></span>
     	<header class="header">
-        <div class="header-inner grid">
-          <a href="/" class="logo">Chorestr</a>
 
+        <div class="header-inner grid">
+          {{#if user}}
+            <a href="/{{user}}/chores" class="logo">Chorestr</a>
+          {{else}}
+            <a href="/" class="logo">Chorestr</a>
+          {{/if}}
           <nav class="main-nav">
             <ul>
               {{#if user}}
-                <li><a href="#">Matthis Stenius</a></li>
+                <li><a  class="username" href="#">{{user}}</a></li>
                 <li><a href="#" class="btn logout">Log out</a></li>
               {{else}}
-                <li><a href="#" class="btn login">Log in</a></li>
-                <li><a href="#" class="btn register">Sign up</a></li>
+                <li><a href="/login" class="btn login">Log in</a></li>
+                <li><a href="/register" class="btn register">Sign up</a></li>
+                <li>
+                  <div class="login-box module hidden">
+                    <form action="/login" method="POST">
+                      <p>Enter your login details</p>
+
+                      <input type="text" id="username" placeholder="Username" name="username">
+
+                      <input type="password" id="password" placeholder="Password" name="password">
+                      <button class="btn login">Log in</button>
+                    </form>
+                    <a href="/forgot">forgot you password?</a>
+                  </div>
+                </li>
+
               {{/if}}
             </ul>
           </nav>
@@ -37,6 +60,7 @@
        <footer class="footer">
 
         </footer>
+
        <script src="/js/jquery-min.js"></script>
        <script src="/js/chorestr.js"></script>
     </body>

@@ -1,0 +1,54 @@
+{{!< layout}}
+
+<div class="grid">
+	<div class="module">
+		<section class="toolbar grid">
+			<div class="col-1-3">
+				<nav class="sorting-options">
+					<ul>
+						<li><a href="#"><span class="icon-calendar"></span>Sort: Created</a></li>
+						<li><a href="#"><span class="icon-star"></span>Sort: Risk</a></li>
+						<li><a href="#"><span class="icon-coin"></span>Sort: Reward</a></li>
+					</ul>
+				</nav>
+			</div>
+
+
+			<div class="col-1-3">
+				<nav class="chore-nav">
+					<ul>
+						<li class="current"><a href="/{{user}}/chores">Current</a></li>
+						<li class="completed"><a class="active" href="/{{user}}/chores/completed">Completed</a></li>
+						<li class="failed"><a href="/{{user}}/chores/failed">Failed</a></li>
+					</ul>
+				</nav>
+			</div>
+
+
+			<div class="col-1-3">
+				<a href="/{{ user }}/chores/new" class="btn new-chore"><span class="icon-plus"></span>New Chore</a>
+			</div>
+
+		</section>
+
+		{{#each chores}}
+		<div class="col-1-4">
+			<div class="task module risk-{{prio}}">
+				<h3>{{ name }}</h3>
+
+				<p class="reward"><span class="icon-coin"></span>Reward: <span>{{ reward }}</span></p>
+				<p class="risk"><span class="icon-star"></span>Risk: {{prio}}</p>
+				<p class="due"></span>This chore was completed on:</br> <span class="date-stamp">{{ complete.date }}</span></p>
+
+				<form class="complete-chore" action="/{{../user}}/chores/{{_id}}" method="POST">
+					<input type="hidden" name="_method" value="DELETE">
+					<button class="btn task-done"><span class="icon-remove"></span>Remove for good</button>
+				</form>
+
+
+			</div>
+		</div>
+		{{/each}}
+
+	</div> {{! end .module }}
+</div> {{! end .grid }}

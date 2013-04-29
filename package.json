@@ -7,9 +7,13 @@
   },
   "dependencies": {
     "express": "3.1.0",
-    "hjs": "*",
     "express-hbs": "*",
-    "mongoose": "*"
+    "mongoose": "*",
+    "bcrypt-nodejs": "*",
+    "express-validator": "*",
+    "connect-mongo": "*",
+    "emailjs": "*"
+
   },
 
   "devDependencies": {

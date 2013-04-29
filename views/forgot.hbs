@@ -1,0 +1,17 @@
+{{!< layout}}
+
+<div class="main module single-col">
+	<h1>Forgot your password?</h1>
+
+	<p>Enter your email below and a mail with instructions on how you reset your password will be sent to you</p>
+
+	<form action="/forgot" method="POST">
+		<label for="email">Email</label>
+		<span class="error">{{messages.email.msg}}</span>
+		<span class="error">{{messages.exists}}</span>
+		<span class="success">{{messages.success}}</span>
+		<input type="email" id="email" name="email">
+		<button class="btn btn-reset">Submit</button>
+	</form>
+
+</div>

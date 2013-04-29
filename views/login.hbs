@@ -1,0 +1,16 @@
+{{!< layout}}
+
+<div class="main module single-col login-wrap">
+	<h1>Log in</h1>
+	<p class="error">{{error}}</p>
+	<form action="/login" method="POST">
+		<label for="username">Username</label>
+		<input type="text" id="username" value="{{username}}" name="username">
+
+		<label for="password">Password</label>
+		<input type="password" id="password" name="password">
+
+		<button class="btn login">Log in</button>
+	</form>
+	<a href="/forgot">Forgot your password?</a>
+</div>

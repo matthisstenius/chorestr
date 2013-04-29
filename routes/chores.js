@@ -1,75 +1,139 @@
 var db = require('../models/model');
 
-exports.all = function(req, res) {
-	db.Chores.find({}).sort({_id: -1}).exec(function(err, docs) {
+exports.all = function(req, res, next) {
+
+	db.Chores.find({user: req.user._id, completed: false}).sort({_id: -1}).exec(function(err, chores) {
 		if (err) {
-			console.log(err);
+			var report = new Error('Unable to find chores');
+			report.inner = err;
+			next(report);
 			return;
 		}
 
 		res.render('chores', {
 			title: 'All chores',
-			user: req.params.user,
-			chores: docs
+			user: req.user.username,
+			chores: chores
 		});
 	});
+
 };
 
-exports.new = function(req, res) {
+exports.new = function(req, res, next) {
 	res.render('new', {
 		title: 'New chore',
-		user: req.params.user
+		user: req.user.username
 	});
 };
 
-exports.add = function(req, res) {
+exports.add = function(req, res, next) {
+	var body = req.body;
+
+	var data = riskCalc(body.prio);
+
+	new db.Chores({
+		name: body.title,
+			reward: data.reward,
+			due: data.dueDate,
+			prio: body.prio,
+			user: req.user._id
+	}).save(function(err) {
+		if (err) {
+				var report = new Error('Unable to save chore');
+				report.inner = err;
+
+				next(report);
+				return;
+			}
+
+			res.redirect('/' + req.user.username + '/chores');
+	});
+
+};
+
+exports.edit = function(req, res, next) {
+	var id = req.params.id;
+
+	db.Chores.findById(id, function(err, chore) {
+		if (err) {
+			var report = new Error('Unable to find chore');
+			report.inner = err;
+			next(report);
+			return;
+		}
+
+		res.render('edit', {
+			title: chore.name,
+			user: req.user.username,
+			chore: chore
+		});
+
+	});
+
+};
+
+exports.update = function(req, res, next) {
 	var body = req.body,
-		reward, dueDate, today;
+		id = req.params.id;
+
+	var data = riskCalc(body.prio);
+
+	db.Chores.findByIdAndUpdate(id, {
+		name: body.title,
+		reward: data.reward,
+		due: data.dueDate,
+		prio: body.prio
+	}, function(err) {
+		if (err) {
+				var report = new Error('Unable to update chore');
+				report.inner = err;
+				next(report);
+				return;
+			}
+
+		res.redirect('/' + req.user.username + '/chores');
+	});
+
+};
+
+exports.remove = function(req, res, next) {
+	var id = req.params.id;
+
+	db.Chores.findByIdAndRemove(id, function(err) {
+		if (err) {
+				var report = new Error('Unable to delete chore');
+				report.inner = err;
+				next(report);
+				return;
+			}
+			res.redirect('/' + req.user.username + '/chores');
+	});
+
+};
+
+
+
+function riskCalc(prio) {
+	var reward, dueDate, today;
+	var riskCalc = {};
 
 	today = new Date();
 	dueDate = new Date();
 
-	switch (body.prio) {
+	switch (prio) {
 		case 'Low':
-			reward = 500;
-			dueDate = dueDate.setDate(today.getDate() + 5);
+			riskCalc.reward = 500;
+			riskCalc.dueDate = dueDate.setDate(today.getDate() + 5);
 			break;
 		case 'Medium':
-			reward = 1500;
-			dueDate = dueDate.setDate(today.getDate() + 3);
+			riskCalc.reward = 1500;
+			riskCalc.dueDate = dueDate.setDate(today.getDate() + 3);
 			break;
 		case 'High':
-			reward = 3000;
-			dueDate = dueDate.setDate(today.getDate() + 1);
+			riskCalc.reward = 3000;
+			riskCalc.dueDate = dueDate.setDate(today.getDate() + 1);
 			break;
 	}
 
-	new db.Chores({
-		name: body.title,
-		reward: reward,
-		due: dueDate,
-		prio: body.prio
-	}).save(function(err) {
-		if (err) {
-			console.log(err);
-			return;
-		}
-
-		res.redirect('/' + req.params.user + '/chores');
-	})
-};
-
-exports.edit = function(req, res) {
-
-};
-
-exports.remove = function(req, res) {
-	db.Chores.remove({_id: req.params.id}, function(err) {
-		if (err) {
-			console.log(err);
-			return;
-		}
-
-		res.redirect('/' + req.params.user + '/chores');
-	});
+	return riskCalc;
 };

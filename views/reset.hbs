@@ -1,0 +1,22 @@
+{{!< layout}}
+
+<div class="main module single-col">
+	<h1>Chooce new password</h1>
+
+	<p>Enter your new password below</p>
+	<span class="success">{{messages.success}}</span>
+
+	<form action="/reset/{{userID}}/{{resetToken}}" method="POST">
+		<label for="password">Password</label>
+
+		<span class="error">{{messages.password.msg}}</span>
+		<span class="error">{{messages.equals}}</span>
+
+		<input type="password" id="password" name="password">
+
+		<label for="password-again">Password again</label>
+		<input type="password" id="password-again" name="passwordAgain">
+		<button class="btn btn-reset">Save new password</button>
+	</form>
+
+</div>

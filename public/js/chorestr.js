@@ -2,6 +2,18 @@ var CHORESTR = CHORESTR || {};
 
 CHORESTR.init = function() {
 
+	var newChoreInput = document.querySelector('#title'),
+		loginBtn = document.querySelector('.main-nav .login'),
+		loginBox = document.querySelector('.login-box');
+
+	if (typeof(newChoreInput) !== 'undefined' && newChoreInput !== null) {
+		newChoreInput.focus();
+	}
+
+	loginBtn.addEventListener('click', function(e) {
+		e.preventDefault();
+		$(loginBox).toggleClass('hidden');
+	}, false);
 
 	// $('.new-chore').on('click', function(e) {
 	// 	CHORESTR.newChore(e);
