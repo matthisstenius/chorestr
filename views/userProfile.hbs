@@ -1,0 +1,41 @@
+{{!< layout}}
+
+<div class="main module grid">
+	{{#if messages}}
+		<span class="info-message">{{messages}} <a class="close-message" href="#"><span class="icon-close"></span></a></span>
+	{{/if}}
+
+	<header class="main-header">
+		<h1>Hello {{userDetails.username}}</h1>
+	</header>
+
+	<div class="col-1-2">
+		<div class="account-details module">
+			<h2>Account details</h2>
+			<p>Username: {{userDetails.username}}</p>
+			<p>Email: {{userDetails.email}}</p>
+		</div>
+	</div>
+
+	<div class="col-1-2">
+		<div class="stats module">
+			<h2>Stats</h2>
+
+			<p>Points: {{userDetails.meta.points}}</p>
+			<p>Completed chores: {{userDetails.meta.completedTotal}}</p>
+			<p>Multiplier: {{userDetails.meta.multiplier}}x</p>
+		</div>
+	</div>
+
+	<div class="col-1-1">
+		<form class="edit-account" action="/account/{{userDetails.username}}" method="POST">
+			<input type="hidden" name="_method" value="DELETE">
+			<button class="btn btn-remove"><span class="icon-remove"></span>Delete account</button>
+		</form>
+
+		<form class="edit-account" action="/account/{{userDetails.username}}/edit" method="GET">
+			<button class="btn btn-edit"><span class="icon-pencil"></span>Edit account</button>
+		</form>
+	</div>
+
+</div>

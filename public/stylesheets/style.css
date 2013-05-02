@@ -24,7 +24,7 @@ Instead of a list of all class selectors,
 you can use the generic selector below, but it's slower:
 [class*="icon-"] {
 */
-.icon-checkmark, .icon-coin, .icon-calendar, .icon-remove, .icon-plus, .icon-numbered-list, .icon-star, .icon-signup, .icon-pencil {
+.icon-checkmark, .icon-coin, .icon-calendar, .icon-remove, .icon-plus, .icon-numbered-list, .icon-star, .icon-signup, .icon-pencil, .icon-close, .icon-cancel-circle, .icon-stopwatch, .icon-notification, .icon-clock, .icon-award-fill, .icon-pushpin, .icon-calendar-2, .icon-fire, .icon-meter, .icon-warning, .icon-forward {
   font-family: 'icomoon';
   speak: none;
   font-style: normal;
@@ -69,6 +69,54 @@ you can use the generic selector below, but it's slower:
 
 .icon-pencil:before {
   content: "\e007";
+}
+
+.icon-close:before {
+  content: "\e008";
+}
+
+.icon-cancel-circle:before {
+  content: "\e009";
+}
+
+.icon-stopwatch:before {
+  content: "\e00b";
+}
+
+.icon-notification:before {
+  content: "\e00c";
+}
+
+.icon-clock:before {
+  content: "\e00d";
+}
+
+.icon-award-fill:before {
+  content: "\e00e";
+}
+
+.icon-pushpin:before {
+  content: "\e00f";
+}
+
+.icon-calendar-2:before {
+  content: "\e010";
+}
+
+.icon-fire:before {
+  content: "\e011";
+}
+
+.icon-meter:before {
+  content: "\e012";
+}
+
+.icon-warning:before {
+  content: "\e013";
+}
+
+.icon-forward:before {
+  content: "\e014";
 }
 
 /* normalize.css v2.0.1 | MIT License | git.io/normalize */
@@ -598,6 +646,21 @@ body {
   color: #429212;
 }
 
+.info-message {
+  position: absolute;
+  background: #F99183;
+  padding: 3px;
+  border-radius: 3px;
+  left: 500px;
+  top: 70px;
+  color: white;
+}
+.info-message a {
+  color: white;
+  font-size: .9em;
+  padding-left: 5px;
+}
+
 ul {
   list-style: none;
   padding: 0;
@@ -659,6 +722,8 @@ h1, h3, h4 {
 
 h2 {
   font-family: "FuturaPTBook-Reg", helvetica, sans-serif;
+  margin-top: 0;
+  color: #337394;
 }
 
 h3 {
@@ -701,7 +766,7 @@ a:hover {
   background: linear-gradient(top, #ff6600, #e73525);
 }
 
-.new-chore, .btn-add {
+.new-chore, .btn-add, .btn-edit {
   background: #21acb8;
   background: -webkit-linear-gradient(top, #25bac4, #21acb8);
   background: -moz-linear-gradient(top, #25bac4, #21acb8);
@@ -710,7 +775,7 @@ a:hover {
   background: linear-gradient(top, #25bac4, #21acb8);
 }
 
-.login, .chore-nav .active {
+.login, .btn-save {
   background: #429212;
   background: -webkit-linear-gradient(bottom, #429212, #5cc51d);
   background: -moz-linear-gradient(bottom, #429212, #5cc51d);
@@ -719,7 +784,7 @@ a:hover {
   background: linear-gradient(bottom, #429212, #5cc51d);
 }
 
-.register, .logout, .btn-reset {
+.register, .logout, .btn-reset, .btn-remove, .btn-cancel {
   background: #b72d16;
   background: -webkit-linear-gradient(bottom, #b72d16, #cd3217);
   background: -moz-linear-gradient(bottom, #b72d16, #cd3217);
@@ -827,17 +892,6 @@ input[type="submit"] {
   right: 50px;
   box-shadow: 0 0 12px 0px rgba(0, 0, 0, 0.2);
 }
-.login-box:before {
-  content: '';
-  border-bottom: 10px solid #f9f9f9;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  height: 0;
-  width: 0;
-  position: absolute;
-  top: -10px;
-  right: 140px;
-}
 .login-box p {
   margin-top: 0;
 }
@@ -890,70 +944,62 @@ input[type="submit"] {
 */
 .toolbar {
   margin-bottom: 30px;
+  padding-top: 18px;
 }
 
 .new-chore {
   float: right;
 }
 
-.chore-nav {
-  background: #8394a7;
-  background: -webkit-linear-gradient(top, #ededed, #cfcfcf);
-  background: -moz-linear-gradient(top, #ededed, #cfcfcf);
-  background: -o-linear-gradient(top, #ededed, #cfcfcf);
-  background: -ms-linear-gradient(top, #ededed, #cfcfcf);
-  background: linear-gradient(top, #ededed, #cfcfcf);
-  margin: 0 auto;
-  width: 283px;
-  border-radius: 20px;
-  border: 3px solid white;
-  overflow: auto;
-}
-.chore-nav a {
-  color: #556270;
-  display: block;
-  padding: 8px 20px;
-}
-.chore-nav li {
-  float: left;
-  border-right: 1px solid #F9F9F9;
-}
-.chore-nav li:last-child {
-  padding-right: 0;
-  border-right: none;
-}
-.chore-nav .active {
+.completed:after {
+  content: attr(data-count);
+  position: absolute;
+  top: -19px;
+  right: 0;
+  background: #b72d16;
+  padding: 3px;
   color: white;
-}
-.chore-nav .current .active {
-  border-radius: 20px 0 0 20px;
-}
-.chore-nav .completed .active {
-  border-radius: 0;
-}
-.chore-nav .failed .active {
-  border-radius: 0 20px 20px 0;
+  border-radius: 50%;
 }
 
-.sorting-options {
-  background-color: #Fff;
-  border-radius: 3px;
-  border: 1px solid #ddd;
+.points {
   display: inline-block;
-  padding: 5px;
+  background: white;
+  padding: 4px;
+  font-size: 1.1em;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  color: #b72d16;
 }
-.sorting-options a {
+
+.toolbar-menu {
+  background: #fefefe;
+  background: -webkit-linear-gradient(top, #fefefe, whitesmoke);
+  background: -moz-linear-gradient(top, #fefefe, whitesmoke);
+  background: -o-linear-gradient(top, #fefefe, whitesmoke);
+  background: -ms-linear-gradient(top, #fefefe, whitesmoke);
+  background: linear-gradient(top, #fefefe, whitesmoke);
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  display: inline-block;
+}
+.toolbar-menu a {
   color: #556270;
 }
-.sorting-options a:hover {
+.toolbar-menu a:hover {
   color: #2a8fbd;
 }
-.sorting-options li {
+.toolbar-menu li {
   float: left;
-  padding-right: 10px;
+  padding: 5px 10px;
+  border-right: 1px solid #ccc;
+  position: relative;
 }
-.sorting-options li:last-child {
-  padding-right: 0;
+.toolbar-menu li:last-child {
+  border-right: none;
+}
+.toolbar-menu .active {
+  color: #b72d16;
 }
 
 /* ----------------------------------------------------------------
@@ -1053,6 +1099,19 @@ input[type="submit"] {
   font-size: 3em;
   color: #b72d16;
   line-height: 2em;
+}
+
+/* ----------------------------------------------------------------
+ *  ￼ Account
+ * ----------------------------------------------------------------
+*/
+.edit-account {
+  float: left;
+  margin-right: 10px;
+}
+
+.account-details, .stats {
+  background-color: #f0f7fa;
 }
 
 /* ----------------------------------------------------------------

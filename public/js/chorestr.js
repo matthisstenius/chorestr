@@ -10,14 +10,13 @@ CHORESTR.init = function() {
 		newChoreInput.focus();
 	}
 
-	loginBtn.addEventListener('click', function(e) {
-		e.preventDefault();
-		$(loginBox).toggleClass('hidden');
-	}, false);
+	if (typeof(loginBtn) !== 'undefined' && loginBtn !== null) {
 
-	// $('.new-chore').on('click', function(e) {
-	// 	CHORESTR.newChore(e);
-	// });
+		loginBtn.addEventListener('click', function(e) {
+			CHORESTR.loginBox(e);
+		}, false);
+	}
+
 };
 
 CHORESTR.newChore = function(e) {
@@ -45,6 +44,16 @@ CHORESTR.newChore = function(e) {
 		$(overlay).addClass('hidden');
 	});
 	e.preventDefault();
+};
+
+CHORESTR.loginBox = function(e) {
+	e.preventDefault();
+	var input = document.getElementById('username');
+	input.focus();
+	//var pos = $(loginBtn).offset();
+	//loginBox.setAttribute('style', 'left:' + (pos.left -  $(loginBox).width() / 2) + 'px');
+	$('.login-box').toggleClass('hidden');
+
 };
 
 (function() {

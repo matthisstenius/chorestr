@@ -7,7 +7,7 @@ var ChoresSchema = new mongoose.Schema({
 	reward: {type: Number, default: 1000},
 	due: Date,
 	prio: String,
-	completed: {type: Boolean, default: false},
+	status: {type: String, default: 'active'},
 	completedDate: {type: Date, default: '2013-01-01'},
 	user: {type: mongoose.Schema.ObjectId, index: true}
 });

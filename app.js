@@ -10,6 +10,7 @@ var express = require('express'),
     chores = require('./routes/chores'),
     register = require('./routes/register'),
     completed = require('./routes/completed'),
+    users = require('./routes/users'),
     login = require('./routes/login'),
     http = require('http'),
     db = require('./models/model'),
@@ -71,9 +72,15 @@ app.configure('development', function(){
 app.param('user', function(req, res, next, id) {
   var session = req.session.user;
 
-  if (session.username === id) {
-     req.user = session;
-     next();
+  if (session) {
+    if (session.username === id) {
+       req.user = session;
+       next();
+    }
+
+    else {
+      res.redirect('/login');
+    }
   }
 
   else {
@@ -108,8 +115,14 @@ app.post('/forgot', login.forgot);
 app.get('/forgot', login.showForgot);
 app.get('/reset/:userId/:token', login.showReset);
 app.post('/reset/:userId/:token', login.reset);
+app.get('/logout', login.logout);
 
-app.post
+//User
+app.get('/account/:user', users.details);
+app.get('/account/:user/edit', users.edit);
+app.put('/account/:user/edit', users.save);
+app.delete('/account/:user', users.remove);
+
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 });

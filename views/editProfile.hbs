@@ -1,0 +1,26 @@
+{{!< layout}}
+
+<div class="main module single-col">
+	<header class="main-heder">
+		<h1>Edit your profile</h1>
+	</header>
+	<form action="/account/{{userProfile.username}}/edit" method="POST">
+		<input type="hidden" name="_method" value="PUT">
+		<label for="email">Update email adress</label>
+		<span class="error">{{messages.email.msg}}</span>
+
+		<input type="email" id="email" name="email" value="{{userProfile.email}}">
+
+		<h2>Change password</h2>
+
+		<label for="password">New password</label>
+		<span class="error">{{messages.password.msg}}</span>
+		<span class="error">{{messages.equals}}</span>
+		<input type="password" id="password" name="password">
+		<label for="passwordAgain">New password again</label>
+		<input type="password" id="passwordAgain" name="passwordAgain">
+
+		<button class="btn btn-save">Save changes</button>
+		<a class="btn btn-cancel" href="/account/{{userProfile.username}}">Cancel</a>
+	</form>
+</div>

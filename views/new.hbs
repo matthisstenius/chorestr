@@ -2,13 +2,14 @@
 
 <div class="main module grid">
 	<header class="main-header">
-		<h2>Add new chore</h2>
+		<h1>Add new chore</h1>
 	</header>
 	<div class="col-1-2">
 		<div class="add-chore">
 			<div class="module">
 				<form action="/{{user}}/chores/new" method="POST">
 					<label for="title">Title</label>
+					<span class="error">{{messages.title.msg}}</span>
 					<input id="title" name="title" type="text">
 
 					<label>Risk</label>

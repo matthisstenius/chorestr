@@ -1,6 +1,9 @@
 {{!< layout}}
 
 <div class="main module single-col">
+	{{#if messages.expired}}
+		<span class="info-message">{{messages.expired}}</span>
+	{{/if}}
 	<h1>Forgot your password?</h1>
 
 	<p>Enter your email below and a mail with instructions on how you reset your password will be sent to you</p>

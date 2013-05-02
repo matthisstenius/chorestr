@@ -73,6 +73,7 @@ exports.add = function(req, res, next) {
 						next(report);
 					}
 
+					req.session.user = docs;
 					res.redirect('/' + docs.username + '/chores');
 
 				});

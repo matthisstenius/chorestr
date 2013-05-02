@@ -2,7 +2,7 @@ var db = require('../models/model');
 
 exports.all = function(req, res, next) {
 
-	db.Chores.find({user: req.user._id, completed: false}).sort({_id: -1}).exec(function(err, chores) {
+	db.Chores.find({user: req.user._id, status: 'active'}).sort({_id: -1}).exec(function(err, chores) {
 		if (err) {
 			var report = new Error('Unable to find chores');
 			report.inner = err;
@@ -10,33 +10,51 @@ exports.all = function(req, res, next) {
 			return;
 		}
 
-		res.render('chores', {
-			title: 'All chores',
-			user: req.user.username,
-			chores: chores
+		db.User.findById(req.user._id, function(err, userDetails) {
+			res.render('chores', {
+				title: 'All chores',
+				user: userDetails.username,
+				chores: chores,
+				meta: userDetails.meta
+			});
 		});
+
 	});
 
 };
 
 exports.new = function(req, res, next) {
+
 	res.render('new', {
 		title: 'New chore',
-		user: req.user.username
+		user: req.user.username,
+		messages: req.session.messages
 	});
+
+	req.session.messages = null;
 };
 
 exports.add = function(req, res, next) {
 	var body = req.body;
 
+	req.assert('title', 'Enter a title').notEmpty();
+
+	var errors = req.validationErrors(true);
+
+	if (errors) {
+		req.session.messages = errors;
+		res.redirect(req.path);
+		return;
+	}
+
 	var data = riskCalc(body.prio);
 
 	new db.Chores({
 		name: body.title,
-			reward: data.reward,
-			due: data.dueDate,
-			prio: body.prio,
-			user: req.user._id
+		reward: data.reward,
+		due: data.dueDate,
+		prio: body.prio,
+		user: req.user._id
 	}).save(function(err) {
 		if (err) {
 				var report = new Error('Unable to save chore');
@@ -106,12 +124,10 @@ exports.remove = function(req, res, next) {
 				next(report);
 				return;
 			}
-			res.redirect('/' + req.user.username + '/chores');
+			res.redirect('/' + req.user.username + '/chores/completed');
 	});
 
 };
-
-
 
 function riskCalc(prio) {
 	var reward, dueDate, today;
@@ -122,15 +138,15 @@ function riskCalc(prio) {
 
 	switch (prio) {
 		case 'Low':
-			riskCalc.reward = 500;
+			riskCalc.reward = 150;
 			riskCalc.dueDate = dueDate.setDate(today.getDate() + 5);
 			break;
 		case 'Medium':
-			riskCalc.reward = 1500;
+			riskCalc.reward = 250;
 			riskCalc.dueDate = dueDate.setDate(today.getDate() + 3);
 			break;
 		case 'High':
-			riskCalc.reward = 3000;
+			riskCalc.reward = 500;
 			riskCalc.dueDate = dueDate.setDate(today.getDate() + 1);
 			break;
 	}

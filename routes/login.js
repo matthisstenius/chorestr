@@ -67,7 +67,9 @@ exports.showForgot = function(req, res, next) {
 };
 
 exports.forgot = function(req, res, next) {
-	var body = req.body;
+	var body = req.body,
+		today = new Date(),
+		resetDue = new Date();
 
 	req.assert('email', 'Invalid email').isEmail();
 	var errors = req.validationErrors(true);
@@ -96,7 +98,7 @@ exports.forgot = function(req, res, next) {
 					}
 
 					user.resetToken = hash;
-					user.resetDue = new Date();
+					user.resetDue = resetDue.setDate(today.getDate() + 1);
 					user.save();
 
 				});
@@ -135,11 +137,7 @@ exports.forgot = function(req, res, next) {
 };
 
 exports.showReset = function(req, res, next) {
-	var body = req.body,
-		today = new Date(),
-		resetDue = new Date();
-
-
+	var body = req.body;
 
 	db.User.findOne({_id: req.params.userId}, function(err, user) {
 		if (err) {
@@ -151,8 +149,8 @@ exports.showReset = function(req, res, next) {
 				if (err) {
 					next(err);
 				}
-
-				if (result && user.resetDue <= new Date(resetDue.setDate(today.getDate() + 1))) {
+				console.log(result);
+				if (result && new Date(Date.now()) <= user.resetDue) {
 					res.render('reset', {
 						title: 'Reset password',
 						userID: user._id,
@@ -164,14 +162,12 @@ exports.showReset = function(req, res, next) {
 				}
 
 				else {
+					req.session.messages = {expired: 'This reset token has expired. You can request a new one below'};
 					res.redirect('/forgot');
 				}
 			})
 		}
 
-		else {
-			// Sätt session med felmeddelande
-		}
 	});
 
 };
@@ -213,4 +209,9 @@ exports.reset = function(req, res, next) {
 		})
 	});
 
+};
+
+exports.logout = function(req, res, next) {
+	req.session.destroy()
+	res.redirect('/');
 };
