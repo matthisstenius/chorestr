@@ -643,17 +643,18 @@ body {
 }
 
 .success {
-  color: #429212;
+  color: #40b81a;
 }
 
 .info-message {
   position: absolute;
-  background: #F99183;
+  background: #F8ECC9;
   padding: 3px;
   border-radius: 3px;
-  left: 500px;
-  top: 70px;
-  color: white;
+  border: 2px solid #556270;
+  left: 40%;
+  top: 45px;
+  color: #556270;
 }
 .info-message a {
   color: white;
@@ -696,11 +697,11 @@ ul {
 }
 
 .stripe-2 {
-  background-color: #429212;
+  background-color: #40b81a;
 }
 
 .stripe-3 {
-  background-color: #2a8fbd;
+  background-color: #4da9cd;
 }
 
 .stripe-4 {
@@ -715,15 +716,13 @@ ul {
  *  ￼ Typo
  * ----------------------------------------------------------------
 */
-h1, h3, h4 {
+h1, h2, h3, h4 {
   font-family: "RooneyWeb-Regular", helvetica, sans-serif;
   margin-top: 0;
 }
 
 h2 {
-  font-family: "FuturaPTBook-Reg", helvetica, sans-serif;
-  margin-top: 0;
-  color: #337394;
+  font-size: 1.5em;
 }
 
 h3 {
@@ -732,7 +731,7 @@ h3 {
 
 a {
   text-decoration: none;
-  color: #2a8fbd;
+  color: #4da9cd;
 }
 a:hover {
   color: #b72d16;
@@ -758,30 +757,24 @@ a:hover {
 }
 
 .task-done {
-  background: #ff6600;
-  background: -webkit-linear-gradient(top, #ff6600, #e73525);
-  background: -moz-linear-gradient(top, #ff6600, #e73525);
-  background: -o-linear-gradient(top, #ff6600, #e73525);
-  background: -ms-linear-gradient(top, #ff6600, #e73525);
-  background: linear-gradient(top, #ff6600, #e73525);
+  background-color: #E73525;
+}
+.task-done:hover {
+  background-color: #FF4F3F;
 }
 
 .new-chore, .btn-add, .btn-edit {
-  background: #21acb8;
-  background: -webkit-linear-gradient(top, #25bac4, #21acb8);
-  background: -moz-linear-gradient(top, #25bac4, #21acb8);
-  background: -o-linear-gradient(top, #25bac4, #21acb8);
-  background: -ms-linear-gradient(top, #25bac4, #21acb8);
-  background: linear-gradient(top, #25bac4, #21acb8);
+  background-color: #4da9cd;
+}
+.new-chore:hover, .btn-add:hover, .btn-edit:hover {
+  background-color: #67c3e7;
 }
 
-.login, .btn-save {
-  background: #429212;
-  background: -webkit-linear-gradient(bottom, #429212, #5cc51d);
-  background: -moz-linear-gradient(bottom, #429212, #5cc51d);
-  background: -o-linear-gradient(bottom, #429212, #5cc51d);
-  background: -ms-linear-gradient(bottom, #429212, #5cc51d);
-  background: linear-gradient(bottom, #429212, #5cc51d);
+.login, .btn-save, .btn-chores {
+  background-color: #40b81a;
+}
+.login:hover, .btn-save:hover, .btn-chores:hover {
+  background-color: #5ad234;
 }
 
 .register, .logout, .btn-reset, .btn-remove, .btn-cancel {
@@ -944,22 +937,10 @@ input[type="submit"] {
 */
 .toolbar {
   margin-bottom: 30px;
-  padding-top: 18px;
 }
 
 .new-chore {
   float: right;
-}
-
-.completed:after {
-  content: attr(data-count);
-  position: absolute;
-  top: -19px;
-  right: 0;
-  background: #b72d16;
-  padding: 3px;
-  color: white;
-  border-radius: 50%;
 }
 
 .points {
@@ -987,7 +968,7 @@ input[type="submit"] {
   color: #556270;
 }
 .toolbar-menu a:hover {
-  color: #2a8fbd;
+  color: #4da9cd;
 }
 .toolbar-menu li {
   float: left;
@@ -1001,6 +982,9 @@ input[type="submit"] {
 .toolbar-menu .active {
   color: #b72d16;
 }
+.toolbar-menu .active:hover {
+  color: #b72d16;
+}
 
 /* ----------------------------------------------------------------
  *  ￼ Chore
@@ -1010,15 +994,23 @@ input[type="submit"] {
   border: 1px solid #ccc;
 }
 
-.risk-Low {
-  border-top: 3px solid #429212;
+.risk-1 {
+  border-top: 3px solid #40b81a;
 }
 
-.risk-Medium {
-  border-top: 3px solid #2a8fbd;
+.risk-2 {
+  border-top: 3px solid #4da9cd;
 }
 
-.risk-High {
+.risk-3 {
+  border-top: 3px solid #556270;
+}
+
+.risk-4 {
+  border-top: 3px solid #D8937D;
+}
+
+.risk-5 {
   border-top: 3px solid #b72d16;
 }
 
@@ -1052,7 +1044,7 @@ input[type="submit"] {
   color: #b72d16;
 }
 .manage .edit:hover {
-  color: #2a8fbd;
+  color: #4da9cd;
 }
 
 .complete-chore {
@@ -1112,6 +1104,11 @@ input[type="submit"] {
 
 .account-details, .stats {
   background-color: #f0f7fa;
+}
+
+.stats-item {
+  background-color: #4da9cd;
+  font-size: 1.1em;
 }
 
 /* ----------------------------------------------------------------

@@ -30,10 +30,12 @@ var UserSchema = new mongoose.Schema({
 	resetDue: {type: Date, default: '2013-01-01'},
 	meta: {
 		completedTotal: {type: Number, default: 0},
-		completedType: {
-			low: {type: Number, default: 0},
-			medium: {type: Number, default: 0},
-			high: {type: Number, default: 0}
+		completedPrio: {
+			One: {type: Number, default: 0},
+			Two: {type: Number, default: 0},
+			Three: {type: Number, default: 0},
+			For: {type: Number, default: 0},
+			Five: {type: Number, default: 0}
 		},
 
 		points: {type: Number, default: 0},

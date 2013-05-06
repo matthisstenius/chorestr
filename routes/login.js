@@ -11,10 +11,17 @@ var server  = email.server.connect({
 });
 
 exports.show = function(req, res, next) {
+	var username;
+
+	if (req.session.user) {
+		username = req.session.user.username;
+	}
+
 	res.render('login', {
 		title: 'Log in',
 		error: req.session.loginError,
-		username: req.session.username
+		username: req.session.username,
+		user: username
 	});
 
 	req.session.loginError = null;

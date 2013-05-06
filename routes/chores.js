@@ -1,8 +1,17 @@
 var db = require('../models/model');
 
 exports.all = function(req, res, next) {
+	// Take querystring and put it into an object
+	var sort = {};
+	var queryString = req.query.sort;
 
-	db.Chores.find({user: req.user._id, status: 'active'}).sort({_id: -1}).exec(function(err, chores) {
+	if (!queryString) {
+		queryString = '_id';
+	}
+	sort[queryString] = -1;
+
+
+	db.Chores.find({user: req.user._id, status: 'active'}).sort(sort).exec(function(err, chores) {
 		if (err) {
 			var report = new Error('Unable to find chores');
 			report.inner = err;
@@ -124,7 +133,7 @@ exports.remove = function(req, res, next) {
 				next(report);
 				return;
 			}
-			res.redirect('/' + req.user.username + '/chores/completed');
+			res.redirect('/' + req.user.username + '/chores');
 	});
 
 };
@@ -137,16 +146,24 @@ function riskCalc(prio) {
 	dueDate = new Date();
 
 	switch (prio) {
-		case 'Low':
-			riskCalc.reward = 150;
+		case '1':
+			riskCalc.reward = 50;
+			riskCalc.dueDate = dueDate.setDate(today.getDate() + 10);
+			break;
+		case '2':
+			riskCalc.reward = 75;
+			riskCalc.dueDate = dueDate.setDate(today.getDate() + 7);
+			break;
+		case '3':
+			riskCalc.reward = 100;
 			riskCalc.dueDate = dueDate.setDate(today.getDate() + 5);
 			break;
-		case 'Medium':
-			riskCalc.reward = 250;
-			riskCalc.dueDate = dueDate.setDate(today.getDate() + 3);
+		case '4':
+			riskCalc.reward = 150;
+			riskCalc.dueDate = dueDate.setDate(today.getDate() + 2);
 			break;
-		case 'High':
-			riskCalc.reward = 500;
+		case '5':
+			riskCalc.reward = 250;
 			riskCalc.dueDate = dueDate.setDate(today.getDate() + 1);
 			break;
 	}

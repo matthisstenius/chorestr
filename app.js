@@ -10,6 +10,7 @@ var express = require('express'),
     chores = require('./routes/chores'),
     register = require('./routes/register'),
     completed = require('./routes/completed'),
+    failed = require('./routes/failed'),
     users = require('./routes/users'),
     login = require('./routes/login'),
     http = require('http'),
@@ -22,6 +23,7 @@ var app = express();
 
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);
+  app.use(express.compress());
   app.engine('hbs', hbs.express3({partialsDir: __dirname + '/views'}));
   app.set('view engine', 'hbs');
   app.set('views', __dirname + '/views');
@@ -47,19 +49,34 @@ app.configure(function(){
 
   // 404
   app.use(function(req, res) {
+    var username;
+
+    if (req.session.user) {
+      username = req.session.user.username;
+    }
+
     res.status = 404;
     res.render('404', {
-      title: '404'
+      title: '404',
+      user: username
     });
   });
 
   // Error handeler
   app.use(function(err, req, res, next) {
+    var username;
+
+    if (req.session.user) {
+      username = req.session.user.username;
+    }
+
     console.log(err);
     res.status = 500;
+
     res.render('500', {
       title: 'Error: 500',
-      message: err.message
+      message: err.message,
+      user: username
     });
   });
 });
@@ -104,6 +121,8 @@ app.delete('/:user/chores/:id', chores.remove);
 app.get('/:user/chores/completed', completed.showCompleted);
 app.post('/:user/chores/completed/:id', completed.completed);
 
+// Failed
+app.get('/:user/chores/failed', failed.showFailed);
 // Register
 app.get('/register', register.register);
 app.post('/register', register.add);

@@ -21,9 +21,17 @@
 		<div class="stats module">
 			<h2>Stats</h2>
 
-			<p>Points: {{userDetails.meta.points}}</p>
-			<p>Completed chores: {{userDetails.meta.completedTotal}}</p>
-			<p>Multiplier: {{userDetails.meta.multiplier}}x</p>
+			<p class="btn stats-item">Points: {{userDetails.meta.points}}</p>
+			<p class="btn stats-item">Completed chores: {{userDetails.meta.completedTotal}}</p>
+			<p class="btn stats-item">Multiplier: {{userDetails.meta.multiplier}}x</p>
+
+			<h2>Completed by priority</h2>
+
+			<p class="btn stats-item">Priority One: {{userDetails.meta.completedPrio.One}}</p>
+			<p class="btn stats-item">Priority Two: {{userDetails.meta.completedPrio.Two}}</p>
+			<p class="btn stats-item">Priority Three: {{userDetails.meta.completedPrio.Three}}</p>
+			<p class="btn stats-item">Priority For: {{userDetails.meta.completedPrio.For}}</p>
+			<p class="btn stats-item">Priority Five: {{userDetails.meta.completedPrio.Five}}</p>
 		</div>
 	</div>
 
