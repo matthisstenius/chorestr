@@ -1,0 +1,49 @@
+@mixin triangle($direction, $color, $size) {
+
+        @if $direction == "left" {
+                border-bottom: $size solid transparent;
+                border-right: $size solid $color;
+                border-top: $size solid transparent;
+        }
+        @else if $direction == "right" {
+                border-bottom: $size solid transparent;
+                border-left: $size solid $color;
+                border-top: $size solid transparent;
+        }
+        @else if $direction == "up" {
+                border-bottom: $size solid $color;
+                border-left: $size solid transparent;
+                border-right: $size solid transparent;
+        }
+        @else if $direction == "down" {
+                border-right: $size solid transparent;
+                border-left: $size solid transparent;
+                border-top: $size solid $color;
+        }
+
+        height: 0;
+        width: 0;
+}
+
+
+@mixin gradient($solid, $direction, $from, $to) {
+	background: $solid;
+	background: -webkit-linear-gradient($direction, $from, $to);
+	background: -moz-linear-gradient($direction, $from, $to);
+	background: -o-linear-gradient($direction, $from, $to);
+	background: -ms-linear-gradient($direction, $from, $to);
+	background: linear-gradient($direction, $from, $to);
+}
+
+@mixin transition($property, $duration, $style, $delay) {
+	-webkit-transition: $property $duration $style $delay;
+	-moz-transition: $property $duration $style $delay;
+	-o-transition: $property $duration $style $delay;
+	-ms-transition: $property $duration $style $delay;
+	transition: $property $duration $style $delay;
+
+}
+
+@mixin breakpoint($point) {
+        @media(max-width: $point) {@content}
+}

@@ -1,0 +1,607 @@
+// Partials
+@import "mixins";
+@import "fonts";
+@import "normalize";
+@import "simplegrid";
+
+// Colors
+$red: #B72D16;
+$grey: #556270;
+$blueGrey: #395875;
+$blue: #4DA9CD;
+$lightBlue: #F0F7FA;
+$green: #74B152;
+$lightGreen: #8ECB6C;
+$orange: #D24D33;
+/* ----------------------------------------------------------------
+ *  ￼ General
+ * ----------------------------------------------------------------
+*/
+	html {
+		min-height: 100%;
+		position: relative;
+	}
+
+	body {
+		color: black;
+		font-size: 16px;
+		font-family: $body;
+		background-color: #F0F0ED;
+		padding-bottom: 100px;
+
+	}
+
+	.wrapper {
+		margin: 20px 0;
+		padding: 0 10px;
+	}
+
+	.main {
+		background-color: white;
+		border-radius: 3px;
+		border: 1px solid rgba(0, 0, 0, .1);
+	}
+
+	.left {
+		float: left;
+	}
+
+	.error {
+		color: $red;
+	}
+
+	.success {
+		color: $green;
+	}
+
+	.info-message {
+	    display: block;
+	    background: #F8ECC9;
+	    margin: 10px 0;
+	    padding: 3px;
+	    border-radius: 3px;
+	    border: 1px solid $grey;
+	    color: $grey;
+
+	    a {
+	    	color: $grey;
+	    	padding-top: 3px;
+	    	font-size: .9em;
+	    	padding-left: 5px;
+	    	float: right;
+	    }
+	}
+
+	ul {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	.module {
+		padding: 10px;
+	}
+
+	.hidden {
+		display: none;
+		visibility: hidden;
+	}
+
+
+	.clearfix {
+		overflow: hidden; // Add better clearfix
+	}
+
+	.header, .footer {
+		background-color: white;
+	}
+
+	// .bg-overlay {
+ //    	width: 100%;
+ //    	height: 100%;
+ //    	position: absolute;
+ //    	top: 0;
+ //    	background-color: rgba(0,0,0,.7);
+ //    	z-index: 1;
+	// }
+	.border-strip {
+	    height: 3px;
+	    width: 20%;
+	    float: left;
+	    display: inline-block;
+	}
+
+	.stripe-1 {
+		background-color: $red;
+	}
+
+	.stripe-2 {
+		background-color: $green;
+	}
+
+	.stripe-3 {
+		background-color: $blue;
+	}
+
+	.stripe-4 {
+		background-color: $grey;
+	}
+
+	.stripe-5 {
+		background-color: #E08E79;
+	}
+
+/* ----------------------------------------------------------------
+ *  ￼ Typo
+ * ----------------------------------------------------------------
+*/
+	h1, h2, h3, h4 {
+		font-family: $headings;
+		margin-top: 0;
+	}
+
+	h2 {
+		font-size: 1.5em;
+	}
+
+	h3 {
+		font-size: 1.3em;
+	}
+
+	a {
+		text-decoration: none;
+		color: $blue;
+
+		&:hover {
+			color: $red;
+		}
+	}
+
+	.active {
+	   	color: $red !important;
+
+	   	&:hover {
+	   		color: $red;
+	   	}
+	}
+
+	[class*='icon-'] {
+		padding-right: 5px;
+	}
+/* ----------------------------------------------------------------
+ *  ￼ Buttons
+ * ----------------------------------------------------------------
+*/
+	.btn {
+		display: inline-block;
+		padding: 5px 10px;
+		border-radius: 3px;
+		color: white;
+		text-align: center;
+
+		&:hover {
+			color: white;
+		}
+	}
+
+	.task-done, .register, .logout, .btn-reset, .btn-remove, .btn-cancel {
+		background-color: $orange;
+
+		&:hover {
+			background-color: #E45F45;
+		}
+	}
+
+	.btn-add, .btn-edit, .new-chore  {
+		background-color: $blue;
+
+		&:hover {
+			background-color: #67C3E7
+		}
+	}
+
+	.btn-chores {
+		background-color: $grey;
+
+		&:hover {
+			background-color: $blueGrey;
+		}
+	}
+
+	.login, .btn-save {
+		background-color: $green;
+
+		&:hover {
+			background-color: $lightGreen;
+		}
+	}
+
+/* ----------------------------------------------------------------
+ *  ￼ Forms
+ * ----------------------------------------------------------------
+*/
+	form {
+		margin-bottom: 20px;
+	}
+
+	fieldset {
+		margin-bottom: 20px;
+	}
+
+	input[type="text"],
+	input[type="password"],
+	input[type="email"],
+	textarea,
+	select {
+		border: 1px solid #ccc;
+		padding: 6px 4px;
+		outline: none;
+		border-radius: 5px;
+		margin: 0;
+		width: 100%;
+		height: 40px;
+		max-width: 100%;
+		display: block;
+		margin: 10px 0 20px 0;
+		background: #fff;
+	}
+
+	input[type="password"] {
+		letter-spacing: normal;
+	}
+
+	select {
+		padding: 0;
+	}
+
+	input[type="text"]:focus,
+	input[type="password"]:focus,
+	input[type="email"]:focus,
+	textarea:focus {
+		border: 1px solid #aaa;
+ 		color: #444;
+ 		-moz-box-shadow: 0 0 3px rgba(0,0,0,.2);
+		-webkit-box-shadow: 0 0 3px rgba(0,0,0,.2);
+		box-shadow:  0 0 3px rgba(0,0,0,.2);
+	}
+
+	button {
+		background: none;
+		border:  none;
+	}
+
+	label,
+	legend {
+		font-size: 1.3em;
+		margin-bottom: 10px;
+		display: block;
+		color: #337394;
+		//font-family: $headings;
+	}
+
+	.radio-label {
+		font-size: inherit;
+		font-family: inherit;
+		display: inline;
+	}
+
+	input[type="radio"] {
+		display: inline;
+		margin-right: 20px;
+	}
+
+	input[type="submit"] {
+		border: none;
+		margin-top: 20px;
+	}
+
+
+/* ----------------------------------------------------------------
+ *  ￼ Register
+ * ----------------------------------------------------------------
+*/
+	.register-form, .login-wrap {
+		label {
+			font-size: 1.1em;
+		}
+	}
+
+/* ----------------------------------------------------------------
+ *  ￼ Log in
+ * ----------------------------------------------------------------
+*/
+
+	.login-box {
+		position: absolute;
+		background-color: #F9F9F9;
+		border-radius: 3px;
+		border: 1px solid #ccc;
+		top: 70px;
+		right: 50px;
+		box-shadow: 0 0 12px 0px rgba(0, 0,0, 0.2);
+
+		// &:before {
+		// 	content: '';
+		// 	@include triangle(up, #F9F9F9, 10px);
+		// 	position: absolute;
+		// 	top: -10px;
+		// 	right: 140px;
+		// }
+
+		p {
+			margin-top: 0;
+		}
+
+		form {
+			margin: 0;
+		}
+
+		label {
+			font-size: .9em;
+			display: inline-block;
+		}
+
+		input {
+			display: inline-block;
+			height: 25px;
+			border-radius: 3px;
+			width: 150px;
+			font-size: .8em;
+		}
+	}
+/* ----------------------------------------------------------------
+ *  ￼ Header
+ * ----------------------------------------------------------------
+*/
+	.header {
+		border-bottom: 1px solid #ccc;
+		padding: 10px 0;
+	}
+
+	.logo {
+		color: black;
+		float: left;
+		font-size: 2em;
+	}
+
+	.nav {
+		float: right;
+
+		li {
+			list-style: none;
+			float: left;
+			margin-right: 10px;
+		}
+	}
+
+	.main-nav {
+		padding-top: 7px;
+
+		.username {
+			vertical-align: middle;
+			font-size: 1.1em;
+		}
+	}
+
+
+/* ----------------------------------------------------------------
+ *  ￼ Toolbar
+ * ----------------------------------------------------------------
+*/
+	.toolbar {
+		margin-bottom: 30px;
+	}
+
+	.new-chore {
+		float: right;
+	}
+
+	.points {
+	  display: inline-block;
+	  background: white;
+	  padding: 4px;
+	  font-size: 1.1em;
+	  border-radius: 3px;
+	  border: 1px solid #ccc;
+	  color: $red;
+	}
+
+	.toolbar-menu {
+	    @include gradient(#FEFEFE, top, #FEFEFE, #F5F5F5);
+	    border-radius: 3px;
+	    border: 1px solid #ccc;
+	    display: inline-block;
+
+	    a {
+	    	color: $grey;
+
+	    	&:hover {
+	    		color: $blue;
+	    	}
+	    }
+
+	    li {
+	    	float: left;
+	    	padding: 5px 10px;
+	    	border-right: 1px solid #ccc;
+	    	position: relative;
+
+	    	&:last-child {
+	    		border-right: none;
+	    	}
+	    }
+	}
+
+
+/* ----------------------------------------------------------------
+ *  ￼ Chore
+ * ----------------------------------------------------------------
+*/
+
+	[class*='risk-'] {
+		border: 1px solid #ccc;
+	}
+
+	.risk-1 {
+		border-top: 3px solid $green;
+	}
+
+	.risk-2 {
+		border-top: 3px solid $blue;
+	}
+
+	.risk-3 {
+		border-top: 3px solid $grey;
+	}
+
+	.risk-4 {
+		border-top: 3px solid #D8937D;
+	}
+
+	.risk-5 {
+		border-top: 3px solid $red;
+	}
+
+	.task {
+		background-color: white;
+		margin-bottom: 20px;
+		height: 276px;
+		box-shadow: 0 0 6px 3px rgba(225, 225, 225, .6);
+	}
+
+	.due {
+		margin-bottom: 25px;
+	}
+
+	.date-stamp {
+		color: $red;
+	}
+
+	.manage {
+		margin-top: 5px;
+		float: right;
+		font-size: 1.1em;
+
+		form {
+			display: inline-block;
+		}
+
+		button {
+			color: $grey;
+		}
+
+		.remove:hover {
+			color: $red;
+		}
+
+		.edit:hover {
+			color: $blue;
+		}
+	}
+
+	.complete-chore {
+		display: inline-block;
+	}
+
+	.no-chore-message {
+		font-family: $handwritten;
+		font-size: 2.5em;
+		text-align: center;
+		margin-top: 100px;
+	}
+/* ----------------------------------------------------------------
+ *  ￼ New chore
+ * ----------------------------------------------------------------
+*/
+	// .new-chore-overlay {
+	// 	background-color: white;
+	// 	width: 500px;
+	// 	position: absolute;
+	// 	top: 150px;
+	// 	z-index: 2;
+	// }
+
+	.add-chore {
+		background-color: $lightBlue;
+		border-radius: 3px;
+	}
+
+	.main-header {
+		border-bottom: 1px solid #ddd;
+		margin-bottom: 20px;
+	}
+
+	.btn-add {
+		display: block;
+	}
+
+	.instructions {
+    	counter-reset: li;
+    	list-style: none;
+    	margin-top: 0;
+
+    	li {
+    		margin-bottom: 10px;
+    		position: relative;
+    		font-size: 1.2em;
+    		padding: 20px 30px 15px 32px;
+    		display: block;
+    	}
+
+    	li:before {
+    		content: counter(li);
+			counter-increment: li;
+			position: absolute;
+			left: -30px;
+			top: 50%;
+			margin-top: -60px;
+			font-size: 3em;
+			color: $red;
+			line-height: 2em;
+    	}
+	}
+
+/* ----------------------------------------------------------------
+ *  ￼ Account
+ * ----------------------------------------------------------------
+*/
+	.edit-account {
+		float: left;
+		margin-right: 10px;
+	}
+
+	.user-nav {
+		float: none;
+		margin-bottom: 10px;
+		font-size: 1.2em;
+	}
+
+	.account-details, .stats {
+		background-color: $lightBlue;
+	}
+
+	.stats-item {
+		background-color: $blue;
+		font-size: 1.1em;
+	}
+
+	.badges-wrapper h3 {
+		text-align: center;
+	}
+
+	.badge {
+		width: 200px;
+	}
+/* ----------------------------------------------------------------
+ *  ￼ Footer
+ * ----------------------------------------------------------------
+*/
+	.footer {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		border-top: 1px solid #ccc;
+		width: 100%;
+		height: 100px; // Ta bort senare
+	}
+
