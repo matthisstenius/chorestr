@@ -4,16 +4,26 @@ CHORESTR.init = function() {
 
 	var newChoreInput = document.querySelector('#title'),
 		loginBtn = document.querySelector('.main-nav .login'),
+		alertMessageClose = document.querySelector('.close-message'),
 		loginBox = document.querySelector('.login-box');
 
 	if (typeof(newChoreInput) !== 'undefined' && newChoreInput !== null) {
 		newChoreInput.focus();
 	}
 
+	if (typeof(alertMessageClose) !== 'undefined' && alertMessageClose !== null) {
+		alertMessageClose.addEventListener('click', function (e) {
+
+			CHORESTR.closeMessage('.info-message');
+
+			e.preventDefault();
+		}, false);
+	}
+
 	if (typeof(loginBtn) !== 'undefined' && loginBtn !== null) {
 
 		loginBtn.addEventListener('click', function(e) {
-			CHORESTR.loginBox(e);
+			CHORESTR.loginBox();
 		}, false);
 	}
 
@@ -44,6 +54,12 @@ CHORESTR.newChore = function(e) {
 		$(overlay).addClass('hidden');
 	});
 	e.preventDefault();
+};
+
+CHORESTR.closeMessage = function(el) {
+	var node = document.querySelector(el);
+
+	node.parentNode.removeChild(node);
 };
 
 CHORESTR.loginBox = function(e) {

@@ -1,0 +1,22 @@
+{{!< layout}}
+
+<div class="main module grid">
+	<header class="main-header clearfix">
+		<h1>Badges</h1>
+		<nav class="nav user-nav clearfix">
+			<ul>
+				<li><a href="/account/{{userDetails.username}}">Account</a></li>
+				<li><a class="active" href="/account/{{userDetails.username}}/badges">Badges</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<div class="badges-wrapper">
+		{{#each awards}}
+			<div class="col-1-5">
+				<img class="badge" src="{{src}}" alt="{{name}}">
+				<h3>{{name}}</h3>
+			</div>
+		{{/each}}
+	</div>
+</div>

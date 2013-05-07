@@ -12,6 +12,7 @@ var express = require('express'),
     completed = require('./routes/completed'),
     failed = require('./routes/failed'),
     users = require('./routes/users'),
+    badges = require('./routes/badges'),
     login = require('./routes/login'),
     http = require('http'),
     db = require('./models/model'),
@@ -35,8 +36,8 @@ app.configure(function(){
   app.use(express.cookieParser('your secret here'));
 
   app.use(express.session({
-    secret: '17895jgksdhdfhjg8589jdfhdgh',
-    expires: new Date(Date.now() + 30 * 86400 * 1000), // 1 month
+    secret: '_:2a.c/BpD?!=C7AQzZzC+Mx1Rj)l%4$SG<)I<ven~aqX`>#S>Zs]o0qj|6mj7-|',
+    expires: new Date(Date.now() + 5 * 86400 * 1000), // 5 days
 
     store: new MongoStore({
       db: 'Chorestr'
@@ -123,6 +124,7 @@ app.post('/:user/chores/completed/:id', completed.completed);
 
 // Failed
 app.get('/:user/chores/failed', failed.showFailed);
+
 // Register
 app.get('/register', register.register);
 app.post('/register', register.add);
@@ -139,6 +141,7 @@ app.get('/logout', login.logout);
 //User
 app.get('/account/:user', users.details);
 app.get('/account/:user/edit', users.edit);
+app.get('/account/:user/badges', badges.showBadges);
 app.put('/account/:user/edit', users.save);
 app.delete('/account/:user', users.remove);
 

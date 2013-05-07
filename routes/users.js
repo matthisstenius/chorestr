@@ -11,7 +11,8 @@ exports.details = function(req, res, next) {
 			title: "Profile",
 			userDetails: docs,
 			user: docs.username,
-			messages: req.session.messages
+			messages: req.session.messages,
+			awards: docs.meta.awards
 		});
 
 		req.session.messages = null;

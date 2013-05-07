@@ -145,7 +145,7 @@ exports.forgot = function(req, res, next) {
 
 exports.showReset = function(req, res, next) {
 	var body = req.body;
-
+	console.log("kommer jag hit");
 	db.User.findOne({_id: req.params.userId}, function(err, user) {
 		if (err) {
 			next(err);
@@ -173,6 +173,11 @@ exports.showReset = function(req, res, next) {
 					res.redirect('/forgot');
 				}
 			})
+		}
+
+		else {
+			req.session.messages = {expired: 'This reset token has expired. You can request a new one below'};
+			res.redirect('/forgot');
 		}
 
 	});

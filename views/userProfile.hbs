@@ -5,8 +5,14 @@
 		<span class="info-message">{{messages}} <a class="close-message" href="#"><span class="icon-close"></span></a></span>
 	{{/if}}
 
-	<header class="main-header">
+	<header class="main-header clearfix">
 		<h1>Hello {{userDetails.username}}</h1>
+		<nav class="nav user-nav clearfix">
+			<ul>
+				<li><a class="active" href="/account/{{userDetails.username}}">Account</a></li>
+				<li><a href="/account/{{userDetails.username}}/badges">Badges</a></li>
+			</ul>
+		</nav>
 	</header>
 
 	<div class="col-1-2">
@@ -23,6 +29,7 @@
 
 			<p class="btn stats-item">Points: {{userDetails.meta.points}}</p>
 			<p class="btn stats-item">Completed chores: {{userDetails.meta.completedTotal}}</p>
+			<p class="btn stats-item">Failed chores: {{userDetails.meta.failedTotal}}</p>
 			<p class="btn stats-item">Multiplier: {{userDetails.meta.multiplier}}x</p>
 
 			<h2>Completed by priority</h2>

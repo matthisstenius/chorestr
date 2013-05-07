@@ -46,7 +46,8 @@ exports.new = function(req, res, next) {
 exports.add = function(req, res, next) {
 	var body = req.body;
 
-	req.assert('title', 'Enter a title').notEmpty();
+	req.assert('title', 'Enter a title').notEmpty().is(/[A-ZÅÄÖa-zåäö0-9]/);
+
 
 	var errors = req.validationErrors(true);
 

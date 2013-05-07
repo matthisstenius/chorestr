@@ -22,6 +22,14 @@ ChoresSchema.virtual('complete.date').get(function() {
 
 var ChoresModel = mongoose.model('Chores', ChoresSchema);
 
+var BadgeSchema = new mongoose.Schema({
+	name: String,
+	src: String,
+	date: {type: Date, default: new Date()}
+});
+
+var BadgeModel = mongoose.model('Badges', BadgeSchema);
+
 var UserSchema = new mongoose.Schema({
 	username: {type: String, trim: true, index: true},
 	email: String,
@@ -30,6 +38,8 @@ var UserSchema = new mongoose.Schema({
 	resetDue: {type: Date, default: '2013-01-01'},
 	meta: {
 		completedTotal: {type: Number, default: 0},
+		failedTotal: {type: Number, default: 0},
+
 		completedPrio: {
 			One: {type: Number, default: 0},
 			Two: {type: Number, default: 0},
@@ -39,7 +49,7 @@ var UserSchema = new mongoose.Schema({
 		},
 
 		points: {type: Number, default: 0},
-		awards: [],
+		awards: [BadgeSchema],
 		multiplier: {type: Number, default: 0}
 	}
 });
@@ -48,3 +58,4 @@ var UserModel = mongoose.model("Users", UserSchema);
 
 module.exports.Chores = ChoresModel;
 module.exports.User = UserModel;
+module.exports.Badges = BadgeModel;
