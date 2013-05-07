@@ -1,7 +1,6 @@
 .DS_Store
 .sublime-project
 .sublime-workflow
-Sass/
 node_modules
 svn
 

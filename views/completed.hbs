@@ -31,24 +31,28 @@
 
 		</section>
 
-		{{#each chores}}
-		<div class="col-1-4">
-			<div class="task module risk-{{prio}}">
-				<h3>{{ name }}</h3>
+		{{#if chores}}
+			{{#each chores}}
+			<div class="col-1-4">
+				<div class="task module risk-{{prio}}">
+					<h3>{{ name }}</h3>
 
-				<p class="reward"><span class="icon-coin"></span>Reward: <span>{{ reward }}</span></p>
-				<p class="risk"><span class="icon-fire"></span>Priority: {{prio}}</p>
-				<p class="due"></span>This chore was completed on:</br> <span class="date-stamp">{{ complete.date }}</span></p>
+					<p class="reward"><span class="icon-coin"></span>Reward: <span>{{ reward }}</span></p>
+					<p class="risk"><span class="icon-fire"></span>Priority: {{prio}}</p>
+					<p class="due"></span>This chore was completed on:</br> <span class="date-stamp">{{ complete.date }}</span></p>
 
-				<form class="complete-chore" action="/{{../user}}/chores/{{_id}}" method="POST">
-					<input type="hidden" name="_method" value="DELETE">
-					<button class="btn task-done"><span class="icon-remove"></span>Remove for good</button>
-				</form>
+					<form class="complete-chore" action="/{{../user}}/chores/{{_id}}" method="POST">
+						<input type="hidden" name="_method" value="DELETE">
+						<button class="btn task-done"><span class="icon-remove"></span>Remove for good</button>
+					</form>
 
 
+				</div>
 			</div>
-		</div>
-		{{/each}}
+			{{/each}}
+		{{else}}
+			<p class="no-chore-message">You have not completed any chores</p>
+		{{/if}}
 
 	</div> {{! end .module }}
 </div> {{! end .grid }}

@@ -23,7 +23,9 @@ CHORESTR.init = function() {
 	if (typeof(loginBtn) !== 'undefined' && loginBtn !== null) {
 
 		loginBtn.addEventListener('click', function(e) {
+
 			CHORESTR.loginBox();
+			e.preventDefault();
 		}, false);
 	}
 
@@ -62,8 +64,7 @@ CHORESTR.closeMessage = function(el) {
 	node.parentNode.removeChild(node);
 };
 
-CHORESTR.loginBox = function(e) {
-	e.preventDefault();
+CHORESTR.loginBox = function() {
 	var input = document.getElementById('username');
 	input.focus();
 	//var pos = $(loginBtn).offset();

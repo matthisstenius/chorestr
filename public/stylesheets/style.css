@@ -647,7 +647,7 @@ body {
 }
 
 .success {
-  color: #40b81a;
+  color: #74b152;
 }
 
 .info-message {
@@ -702,7 +702,7 @@ ul {
 }
 
 .stripe-2 {
-  background-color: #40b81a;
+  background-color: #74b152;
 }
 
 .stripe-3 {
@@ -768,11 +768,11 @@ a:hover {
   color: white;
 }
 
-.task-done {
-  background-color: #E73525;
+.task-done, .register, .logout, .btn-reset, .btn-remove, .btn-cancel {
+  background-color: #d24d33;
 }
-.task-done:hover {
-  background-color: #FF4F3F;
+.task-done:hover, .register:hover, .logout:hover, .btn-reset:hover, .btn-remove:hover, .btn-cancel:hover {
+  background-color: #E45F45;
 }
 
 .btn-add, .btn-edit, .new-chore {
@@ -790,19 +790,10 @@ a:hover {
 }
 
 .login, .btn-save {
-  background-color: #40b81a;
+  background-color: #74b152;
 }
 .login:hover, .btn-save:hover {
-  background-color: #5ad234;
-}
-
-.register, .logout, .btn-reset, .btn-remove, .btn-cancel {
-  background: #b72d16;
-  background: -webkit-linear-gradient(bottom, #b72d16, #cd3217);
-  background: -moz-linear-gradient(bottom, #b72d16, #cd3217);
-  background: -o-linear-gradient(bottom, #b72d16, #cd3217);
-  background: -ms-linear-gradient(bottom, #b72d16, #cd3217);
-  background: linear-gradient(bottom, #b72d16, #cd3217);
+  background-color: #8ecb6c;
 }
 
 /* ----------------------------------------------------------------
@@ -1012,7 +1003,7 @@ input[type="submit"] {
 }
 
 .risk-1 {
-  border-top: 3px solid #40b81a;
+  border-top: 3px solid #74b152;
 }
 
 .risk-2 {
@@ -1066,6 +1057,13 @@ input[type="submit"] {
 
 .complete-chore {
   display: inline-block;
+}
+
+.no-chore-message {
+  font-family: "LonghandLPRegular", helvetica, sans-serif;
+  font-size: 2.5em;
+  text-align: center;
+  margin-top: 100px;
 }
 
 /* ----------------------------------------------------------------
