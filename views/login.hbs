@@ -1,8 +1,11 @@
 {{!< layout}}
 
 <div class="main module single-col login-wrap">
+	{{#if error}}
+		<span class="info-message">Username or password incorrect<a class="close-message" href="#"><span class="icon-close"></span></a></span>
+	{{/if}}
+
 	<h1>Log in</h1>
-	<p class="error">{{error}}</p>
 	<form action="/login" method="POST">
 		<label for="username">Username</label>
 		<input type="text" id="username" value="{{username}}" name="username">

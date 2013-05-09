@@ -5,11 +5,18 @@ exports.all = function(req, res, next) {
 	var sort = {};
 	var queryString = req.query.sort;
 
-	if (!queryString) {
-		queryString = '_id';
+	if (queryString) {
+		res.cookie('sort', queryString, {maxAge:  30 * 86400 * 1000});
+		sort[queryString] = -1;
 	}
-	sort[queryString] = -1;
 
+	if (req.cookies.sort) {
+		sort[req.cookies.sort] = -1;
+	}
+
+	else {
+		sort['_id'] = -1;
+	}
 
 	db.Chores.find({user: req.user._id, status: 'active'}).sort(sort).exec(function(err, chores) {
 		if (err) {

@@ -1,6 +1,15 @@
 var mongoose = require('mongoose');
+var env = process.env.NODE_ENV || 'development';
+module.exports.config = {};
 
-mongoose.connect("mongodb://localhost/Chorestr");
+switch (env) {
+	case 'development':
+		mongoose.connect("mongodb://localhost/Chorestr");
+		break;
+	case 'production':
+
+		break;
+};
 
 var ChoresSchema = new mongoose.Schema({
 	name: String,

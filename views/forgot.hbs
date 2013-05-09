@@ -10,10 +10,10 @@
 
 	<form action="/forgot" method="POST">
 		<label for="email">Email</label>
-		<span class="error">{{messages.email.msg}}</span>
+		<span class="email-error error">{{messages.email.msg}}</span>
 		<span class="error">{{messages.exists}}</span>
 		<span class="success">{{messages.success}}</span>
-		<input type="email" id="email" name="email">
+		<input type="email" class="validate" id="email" name="email">
 		<button class="btn btn-reset">Submit</button>
 	</form>
 

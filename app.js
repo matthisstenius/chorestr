@@ -86,6 +86,7 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
+
 // Kolla om användare finns i session
 app.param('user', function(req, res, next, id) {
   var session = req.session.user;
