@@ -2,20 +2,30 @@ var db = require('../models/model');
 
 exports.all = function(req, res, next) {
 	// Take querystring and put it into an object
-	var sort = {};
+	var sort = {}, sortId, sortPrio;
 	var queryString = req.query.sort;
 
 	if (queryString) {
-		res.cookie('sort', queryString, {maxAge:  30 * 86400 * 1000});
 		sort[queryString] = -1;
+		res.cookie('sortCurrent', queryString, {maxAge:  30 * 86400 * 1000});
 	}
 
-	if (req.cookies.sort) {
-		sort[req.cookies.sort] = -1;
+	if (req.cookies.sortCurrent && !queryString) {
+		sort[req.cookies.sortCurrent] = -1;
 	}
 
 	else {
 		sort['_id'] = -1;
+	}
+
+	if (sort._id) {
+		sortId = true;
+		sortPrio = false;
+	}
+
+	if (sort.prio) {
+		sortPrio = true;
+		sortId = false;
 	}
 
 	db.Chores.find({user: req.user._id, status: 'active'}).sort(sort).exec(function(err, chores) {
@@ -23,15 +33,20 @@ exports.all = function(req, res, next) {
 			var report = new Error('Unable to find chores');
 			report.inner = err;
 			next(report);
-			return;
 		}
 
 		db.User.findById(req.user._id, function(err, userDetails) {
+			if (err) {
+				next(err);
+			}
+
 			res.render('chores', {
 				title: 'All chores',
 				user: userDetails.username,
 				chores: chores,
-				meta: userDetails.meta
+				meta: userDetails.meta,
+				sortId: sortId,
+				sortPrio: sortPrio
 			});
 		});
 

@@ -13,6 +13,7 @@ $lightBlue: #F0F7FA;
 $green: #74B152;
 $lightGreen: #8ECB6C;
 $orange: #D24D33;
+
 /* ----------------------------------------------------------------
  *  ￼ General
  * ----------------------------------------------------------------
@@ -26,6 +27,7 @@ $orange: #D24D33;
 		color: black;
 		font-size: 16px;
 		font-family: $body;
+		font-weight: 400;
 		background-color: #F0F0ED;
 		padding-bottom: 100px;
 
@@ -87,6 +89,9 @@ $orange: #D24D33;
 		visibility: hidden;
 	}
 
+	img {
+		display: block;
+	}
 
 	.clearfix {
 		overflow: hidden; // Add better clearfix
@@ -138,6 +143,7 @@ $orange: #D24D33;
 	h1, h2, h3, h4 {
 		font-family: $headings;
 		margin-top: 0;
+		font-weight: normal;
 	}
 
 	h2 {
@@ -192,7 +198,7 @@ $orange: #D24D33;
 		}
 	}
 
-	.btn-add, .btn-edit, .new-chore  {
+	.btn-add, .btn-edit, .new-chore, .btn-menu  {
 		background-color: $blue;
 
 		&:hover {
@@ -247,7 +253,7 @@ $orange: #D24D33;
 	}
 
 	input[type="password"] {
-		letter-spacing: normal;
+		font-family: 'Helvetica', sans-serif;
 	}
 
 	select {
@@ -501,6 +507,7 @@ $orange: #D24D33;
 
 	.complete-chore {
 		display: inline-block;
+		float: left;
 	}
 
 	.no-chore-message {
@@ -565,6 +572,21 @@ $orange: #D24D33;
  *  ￼ Account
  * ----------------------------------------------------------------
 */
+	.awards-menu-item:after {
+	    content: attr(data-count);
+	    background-color: $orange;
+	    padding: 3px;
+	    width: 24px;
+	    height: 24px;
+	    border: 1px solid $grey;
+	    text-align: center;
+	    border-radius: 50%;
+	    color: white;
+	    font-size: .9em;
+	    position: absolute;
+	    top: 0;
+	}
+
 	.edit-account {
 		float: left;
 		margin-right: 10px;
@@ -573,7 +595,13 @@ $orange: #D24D33;
 	.user-nav {
 		float: none;
 		margin-bottom: 10px;
-		font-size: 1.2em;
+		position: relative;
+		padding-top: 7px;
+
+		.active {
+			background-color: #67C3E7;
+			color: white !important;
+		}
 	}
 
 	.account-details, .stats {
@@ -581,16 +609,93 @@ $orange: #D24D33;
 	}
 
 	.stats-item {
-		background-color: $blue;
+		background-color: $orange;
 		font-size: 1.1em;
+		margin-right: 10px;
+	    color: white;
+	    padding: 5px 0;
+	    position: relative;
+	    display: inline-block;
+	    width: 247px;
+
+	    span {
+	    	font-family: $bodyBold;
+	    }
+
+	    &:before, &:after {
+	    	content: '';
+	    	position: absolute;
+	    	top: 0;
+	    }
+
+	    &:before {
+	    	@include triangle(right, $lightBlue, 16px);
+	    	left: 0;
+	    }
+
+	    &:after {
+	    	@include triangle(left, $lightBlue, 16px);
+	    	right: 0;
+	    }
 	}
 
+	.prio-one {
+		background-color: $green;
+	}
+
+	.prio-two {
+		background-color: $blue;
+	}
+
+	.prio-three {
+		background-color: $blueGrey;
+	}
+
+	.prio-four {
+		background-color: #D8937D;
+	}
+
+	.prio-five {
+		background-color: $red;
+	}
 	.badges-wrapper h3 {
 		text-align: center;
+		margin-top: 10px;
+	}
+
+	.badge-item {
+		margin-bottom: 20px;
 	}
 
 	.badge {
-		width: 200px;
+		max-height: 170px;
+		margin: 0 auto;
+	}
+
+	.badge-date {
+	    text-align: center;
+	    background-color: #395875;
+	    width: 80%;
+	    margin: 10px auto;
+	    color: white;
+	    padding: 5px 0;
+	    position: relative;
+
+	    &:before, &:after {
+	    	content: '';
+	    	position: absolute;
+	    	top: 0;
+	    }
+
+	    &:before {
+	    	@include triangle(right, white, 14px);
+	    	left: 0;
+	    }
+
+	    &:after {
+	    	@include triangle(left, white, 14px);
+	    	right: 0;
+	    }
 	}
 /* ----------------------------------------------------------------
  *  ￼ Footer

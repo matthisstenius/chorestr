@@ -2,11 +2,13 @@
 
 <div class="main module single-col register-form">
 	<h1>Join Chorestr today</h1>
+	{{#if userExists}}
+		<span class="info-message">{{userExists}}<a class="close-message" href="#"><span class="icon-close"></span></a></span>
+	{{/if}}
 	<form action="/register" method="POST">
 
 		<label for="username">Choose your username</label>
 		<span class="username-error error">{{errors.username.msg}}</span>
-		<span class="error">{{userExists}}</span>
 		<input type="text" class="validate" id="username" name="username" value="{{userInput.username}}">
 
 		<label for="email">Email adress</label>

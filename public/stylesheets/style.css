@@ -1,5 +1,5 @@
 @font-face {
-  font-family: 'icomoon';
+  font-family: "icomoon";
   src: url("../fonts/icomoon.eot");
   src: url("../fonts/icomoon.eot?#iefix") format("embedded-opentype"), url("../fonts/icomoon.woff") format("woff"), url("../fonts/icomoon.ttf") format("truetype"), url("../fonts/icomoon.svg#icomoon") format("svg");
   font-weight: normal;
@@ -623,6 +623,7 @@ body {
   color: black;
   font-size: 16px;
   font-family: "FuturaPTBook-Reg", helvetica, sans-serif;
+  font-weight: 400;
   background-color: #F0F0ED;
   padding-bottom: 100px;
 }
@@ -682,6 +683,10 @@ ul {
   visibility: hidden;
 }
 
+img {
+  display: block;
+}
+
 .clearfix {
   overflow: hidden;
 }
@@ -724,6 +729,7 @@ ul {
 h1, h2, h3, h4 {
   font-family: "RooneyWeb-Regular", helvetica, sans-serif;
   margin-top: 0;
+  font-weight: normal;
 }
 
 h2 {
@@ -775,10 +781,10 @@ a:hover {
   background-color: #E45F45;
 }
 
-.btn-add, .btn-edit, .new-chore {
+.btn-add, .btn-edit, .new-chore, .btn-menu {
   background-color: #4da9cd;
 }
-.btn-add:hover, .btn-edit:hover, .new-chore:hover {
+.btn-add:hover, .btn-edit:hover, .new-chore:hover, .btn-menu:hover {
   background-color: #67c3e7;
 }
 
@@ -827,7 +833,7 @@ select {
 }
 
 input[type="password"] {
-  letter-spacing: normal;
+  font-family: 'Helvetica', sans-serif;
 }
 
 select {
@@ -1057,6 +1063,7 @@ input[type="submit"] {
 
 .complete-chore {
   display: inline-block;
+  float: left;
 }
 
 .no-chore-message {
@@ -1112,6 +1119,21 @@ input[type="submit"] {
  *  ￼ Account
  * ----------------------------------------------------------------
 */
+.awards-menu-item:after {
+  content: attr(data-count);
+  background-color: #d24d33;
+  padding: 3px;
+  width: 24px;
+  height: 24px;
+  border: 1px solid #556270;
+  text-align: center;
+  border-radius: 50%;
+  color: white;
+  font-size: .9em;
+  position: absolute;
+  top: 0;
+}
+
 .edit-account {
   float: left;
   margin-right: 10px;
@@ -1120,7 +1142,12 @@ input[type="submit"] {
 .user-nav {
   float: none;
   margin-bottom: 10px;
-  font-size: 1.2em;
+  position: relative;
+  padding-top: 7px;
+}
+.user-nav .active {
+  background-color: #67C3E7;
+  color: white !important;
 }
 
 .account-details, .stats {
@@ -1128,16 +1155,103 @@ input[type="submit"] {
 }
 
 .stats-item {
-  background-color: #4da9cd;
+  background-color: #d24d33;
   font-size: 1.1em;
+  margin-right: 10px;
+  color: white;
+  padding: 5px 0;
+  position: relative;
+  display: inline-block;
+  width: 247px;
+}
+.stats-item span {
+  font-family: "FuturaPTMedium-Reg", helvetica, sans-serif;
+}
+.stats-item:before, .stats-item:after {
+  content: '';
+  position: absolute;
+  top: 0;
+}
+.stats-item:before {
+  border-bottom: 16px solid transparent;
+  border-left: 16px solid #f0f7fa;
+  border-top: 16px solid transparent;
+  height: 0;
+  width: 0;
+  left: 0;
+}
+.stats-item:after {
+  border-bottom: 16px solid transparent;
+  border-right: 16px solid #f0f7fa;
+  border-top: 16px solid transparent;
+  height: 0;
+  width: 0;
+  right: 0;
+}
+
+.prio-one {
+  background-color: #74b152;
+}
+
+.prio-two {
+  background-color: #4da9cd;
+}
+
+.prio-three {
+  background-color: #395875;
+}
+
+.prio-four {
+  background-color: #D8937D;
+}
+
+.prio-five {
+  background-color: #b72d16;
 }
 
 .badges-wrapper h3 {
   text-align: center;
+  margin-top: 10px;
+}
+
+.badge-item {
+  margin-bottom: 20px;
 }
 
 .badge {
-  width: 200px;
+  max-height: 170px;
+  margin: 0 auto;
+}
+
+.badge-date {
+  text-align: center;
+  background-color: #395875;
+  width: 80%;
+  margin: 10px auto;
+  color: white;
+  padding: 5px 0;
+  position: relative;
+}
+.badge-date:before, .badge-date:after {
+  content: '';
+  position: absolute;
+  top: 0;
+}
+.badge-date:before {
+  border-bottom: 14px solid transparent;
+  border-left: 14px solid white;
+  border-top: 14px solid transparent;
+  height: 0;
+  width: 0;
+  left: 0;
+}
+.badge-date:after {
+  border-bottom: 14px solid transparent;
+  border-right: 14px solid white;
+  border-top: 14px solid transparent;
+  height: 0;
+  width: 0;
+  right: 0;
 }
 
 /* ----------------------------------------------------------------

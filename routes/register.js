@@ -51,7 +51,7 @@ exports.add = function(req, res, next) {
 		}
 
 		if (user) {
-			req.session.userExists = 'The username allready exists';
+			req.session.userExists = 'This username allready exists';
 			req.session.userInput = {
 				username: body.username,
 				email: body.email
@@ -60,30 +60,48 @@ exports.add = function(req, res, next) {
 		}
 
 		else {
-			bcrypt.hash(body.password, null, null, function(err, hash) {
-
+			db.User.findOne({email: body.email}, function(err, user) {
 				if (err) {
-					var report = new Error('Hash failed');
-					report.inner = err;
-					next(report);
+					next(err);
 				}
 
-				new db.User({
-					username: body.username,
-					email: body.email,
-					password: hash
-				}).save(function(err, docs) {
-					if (err) {
-						var report = new Error('Could not save user');
-						report.inner = err;
-						next(report);
-					}
+				if (user) {
+					req.session.userExists = 'This email allready exists';
+					req.session.userInput = {
+						username: body.username,
+						email: body.email
+					};
+					res.redirect('/register');
+				}
 
-					req.session.user = docs;
-					res.redirect('/' + docs.username + '/chores');
+				else {
+					bcrypt.hash(body.password, null, null, function(err, hash) {
 
-				});
+						if (err) {
+							var report = new Error('Hash failed');
+							report.inner = err;
+							next(report);
+						}
+
+						new db.User({
+							username: body.username,
+							email: body.email,
+							password: hash
+						}).save(function(err, docs) {
+							if (err) {
+								var report = new Error('Could not save user');
+								report.inner = err;
+								next(report);
+							}
+
+							req.session.user = docs;
+							res.redirect('/' + docs.username + '/chores');
+
+						});
+					});
+				}
 			});
+
 		}
 	});
 

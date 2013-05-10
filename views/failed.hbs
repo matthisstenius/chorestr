@@ -6,8 +6,17 @@
 			<div class="col-1-3">
 				<nav class="toolbar-menu">
 					<ul>
-						<li><a href="/{{user}}/chores/completed?sort=completedDate"><span class="icon-calendar"></span>Sort: Date Failed</a></li>
-						<li><a href="/{{user}}/chores/completed?sort=prio"><span class="icon-fire"></span>Sort: Prio</a></li>
+						{{#if sortFailedDate}}
+							<li><a class="active" href="/{{user}}/chores/failed?sort=completedDate"><span class="icon-calendar"></span>Sort: Date Failed</a></li>
+						{{else}}
+							<li><a href="/{{user}}/chores/failed?sort=failedDate"><span class="icon-calendar"></span>Sort: Date Failed</a></li>
+						{{/if}}
+
+						{{#if sortPrio}}
+							<li><a class="active" href="/{{user}}/chores/failed?sort=prio"><span class="icon-fire"></span>Sort: Prio</a></li>
+						{{else}}
+							<li><a href="/{{user}}/chores/failed?sort=prio"><span class="icon-fire"></span>Sort: Prio</a></li>
+						{{/if}}
 					</ul>
 				</nav>
 			</div>

@@ -9,8 +9,8 @@
 		<h1>Hello {{userDetails.username}}</h1>
 		<nav class="nav user-nav clearfix">
 			<ul>
-				<li><a class="active" href="/account/{{userDetails.username}}">Account</a></li>
-				<li><a href="/account/{{userDetails.username}}/badges">Badges</a></li>
+				<li><a class="active btn btn-menu" href="/account/{{userDetails.username}}">My Profile</a></li>
+				<li><a class="btn btn-menu awards-menu-item" data-count="{{awardsCount}}" href="/account/{{userDetails.username}}/badges">My Badges</a></li>
 			</ul>
 		</nav>
 	</header>
@@ -27,18 +27,18 @@
 		<div class="stats module">
 			<h2>Stats</h2>
 
-			<p class="btn stats-item">Points: {{userDetails.meta.points}}</p>
-			<p class="btn stats-item">Completed chores: {{userDetails.meta.completedTotal}}</p>
-			<p class="btn stats-item">Failed chores: {{userDetails.meta.failedTotal}}</p>
-			<p class="btn stats-item">Multiplier: {{userDetails.meta.multiplier}}x</p>
+			<p class="btn stats-item">Points: <span>{{userDetails.meta.points}}</span></p>
+			<p class="btn stats-item">Completed chores: <span>{{userDetails.meta.completedTotal}}</span></p>
+			<p class="btn stats-item">Failed chores: <span>{{userDetails.meta.failedTotal}}</span></p>
+			<p class="btn stats-item">Multiplier: <span>{{userDetails.meta.multiplier}}</span>x</p>
 
 			<h2>Completed by priority</h2>
 
-			<p class="btn stats-item">Priority One: {{userDetails.meta.completedPrio.One}}</p>
-			<p class="btn stats-item">Priority Two: {{userDetails.meta.completedPrio.Two}}</p>
-			<p class="btn stats-item">Priority Three: {{userDetails.meta.completedPrio.Three}}</p>
-			<p class="btn stats-item">Priority For: {{userDetails.meta.completedPrio.For}}</p>
-			<p class="btn stats-item">Priority Five: {{userDetails.meta.completedPrio.Five}}</p>
+			<p class="btn stats-item prio-one">Priority One: <span>{{userDetails.meta.completedPrio.One}}</span></p>
+			<p class="btn stats-item prio-two">Priority Two: <span>{{userDetails.meta.completedPrio.Two}}</span></p>
+			<p class="btn stats-item prio-three">Priority Three: <span>{{userDetails.meta.completedPrio.Three}}</span></p>
+			<p class="btn stats-item prio-four">Priority Four: <span>{{userDetails.meta.completedPrio.For}}</span></p>
+			<p class="btn stats-item prio-five">Priority Five: <span>{{userDetails.meta.completedPrio.Five}}</span></p>
 		</div>
 	</div>
 

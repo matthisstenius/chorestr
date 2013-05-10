@@ -12,7 +12,7 @@ exports.details = function(req, res, next) {
 			userDetails: docs,
 			user: docs.username,
 			messages: req.session.messages,
-			awards: docs.meta.awards
+			awardsCount: docs.meta.awards.length
 		});
 
 		req.session.messages = null;
@@ -20,7 +20,6 @@ exports.details = function(req, res, next) {
 };
 
 exports.edit = function(req, res, next) {
-	console.log(req.user);
 	db.User.findOne({username: req.user.username}, function(err, docs) {
 		if (err) {
 			next(err);
@@ -43,14 +42,15 @@ exports.save = function(req, res, next) {
 
 	req.assert('email', "Enter a valid email addres").notEmpty().isEmail();
 
-	if (body.password && body.passwordAgain) {
-		req.assert('password', 'Password do not match').equals('passwordAgain');
-		req.assert('password', 'Password must contain 6 characters or more').len(6);
+	if (body.password || body.passwordAgain) {
+		req.assert('passwordAgain', 'Password do not match.').equals(body.password);
+		req.assert('password', 'Password must contain 6 characters or more.').len(6);
 	}
 
 	var errors = req.validationErrors(true);
 
 	if (errors) {
+		console.log(errors);
 		req.session.messages = errors;
 		res.redirect(req.path);
 		return;

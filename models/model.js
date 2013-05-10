@@ -15,7 +15,7 @@ var ChoresSchema = new mongoose.Schema({
 	name: String,
 	reward: {type: Number, default: 1000},
 	due: Date,
-	prio: String,
+	prio: {type: String, index: true},
 	status: {type: String, default: 'active'},
 	completedDate: {type: Date, default: '2013-01-01'},
 	user: {type: mongoose.Schema.ObjectId, index: true}
@@ -35,6 +35,10 @@ var BadgeSchema = new mongoose.Schema({
 	name: String,
 	src: String,
 	date: {type: Date, default: new Date()}
+});
+
+BadgeSchema.virtual('badge.date').get(function() {
+	return this.date.toLocaleDateString();
 });
 
 var BadgeModel = mongoose.model('Badges', BadgeSchema);
@@ -62,6 +66,7 @@ var UserSchema = new mongoose.Schema({
 		multiplier: {type: Number, default: 0}
 	}
 });
+
 
 var UserModel = mongoose.model("Users", UserSchema);
 
