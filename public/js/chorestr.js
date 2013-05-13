@@ -6,6 +6,8 @@ CHORESTR.init = function() {
 		loginBtn = document.querySelector('.main-nav .login'),
 		alertMessageClose = document.querySelector('.close-message'),
 		validateInput = document.querySelectorAll('.validate'),
+		badgeModuleAlertBox = document.querySelector('.badge-module-alert'),
+		removeChore = document.querySelectorAll('.remove'),
 		loginBox = document.querySelector('.login-box');
 
 	if (typeof(newChoreInput) !== 'undefined' && newChoreInput !== null) {
@@ -22,11 +24,11 @@ CHORESTR.init = function() {
 	}
 
 	if (typeof(alertMessageClose) !== 'undefined' && alertMessageClose !== null) {
+		//var overlay = document.getElementById('badge-overlay');
+		var infoMessage = document.querySelector('.info-message');
 		alertMessageClose.addEventListener('click', function (e) {
-
-			CHORESTR.closeMessage('.info-message');
-
 			e.preventDefault();
+			CHORESTR.closeMessage([infoMessage]);
 		}, false);
 	}
 
@@ -39,6 +41,21 @@ CHORESTR.init = function() {
 		}, false);
 	}
 
+	if (typeof(removeChore) !== 'undefined' && removeChore !== null) {
+		for (var i = 0; i < removeChore.length; i += 1) {
+			(function(removeChore, i) {
+				removeChore[i].addEventListener('click', function(e) {
+					e.preventDefault();
+					CHORESTR.removeChore(removeChore, i);
+				}, false);
+			})(removeChore, i);
+
+		}
+	}
+
+	if (typeof(badgeModuleAlertBox) !== 'undefined' && badgeModuleAlertBox !== null) {
+		CHORESTR.moduleAlert(badgeModuleAlertBox);
+	}
 };
 
 CHORESTR.validate = function(type, value) {
@@ -92,37 +109,59 @@ CHORESTR.validate = function(type, value) {
 	}
 };
 
-CHORESTR.newChore = function(e) {
-	var newChore = document.querySelector('.new-chore-overlay'),
-		overlay = document.querySelector('.bg-overlay');
+CHORESTR.moduleAlert = function(el) {
+	var overlay = document.getElementById('badge-overlay');
 
-	// $.ajax({
-	// 	url: window.location.pathname + '/new',
-	// 	type: 'GET'
-	// }).done(function(data) {
-	// 	console.log(data);
-	// 	$('body').append(data);
-	// });
-	$(newChore).removeClass('hidden');
+	var pos = window.innerWidth / 2 - el.offsetWidth / 2;
+	el.setAttribute('style', 'left:' + pos + 'px');
 
-	var pos = window.innerWidth / 2 - newChore.offsetWidth / 2;
-	newChore.setAttribute('style', 'left:' + pos + 'px');
-
-
-	$(overlay).removeClass('hidden');
 	overlay.setAttribute('style', 'height:' + $(document).height() + 'px');
 
-	$(overlay).on('click', function() {
-		$(newChore).addClass('hidden');
-		$(overlay).addClass('hidden');
-	});
-	e.preventDefault();
+	overlay.addEventListener('click', function() {
+		CHORESTR.closeMessage([el, overlay]);
+	}, false);
+
 };
 
 CHORESTR.closeMessage = function(el) {
-	var node = document.querySelector(el);
+	for (var i = 0; i < el.length; i += 1) {
+		el[i].parentNode.removeChild(el[i]);
+	}
+};
 
-	node.parentNode.removeChild(node);
+CHORESTR.removeChore = function(el, i) {
+	var moduleAlert = document.querySelector('.module-alert'),
+		overlay = document.getElementById('overlay'),
+		closeButton = document.querySelector('.btn-cancel'),
+		removeButton = document.querySelector('.btn-remove');
+
+	$(moduleAlert).removeClass('hidden');
+	$(overlay).removeClass('hidden');
+
+	// Get the url from original form
+	var form = document.querySelector('.module-alert-footer form');
+	form.action = el[i].parentNode.action;
+
+	var pos = window.innerWidth / 2 - moduleAlert.offsetWidth / 2;
+	moduleAlert.setAttribute('style', 'left:' + pos + 'px');
+
+	overlay.setAttribute('style', 'height:' + $(document).height() + 'px');
+
+	closeButton.addEventListener('click', function(e) {
+		e.preventDefault();
+		$(moduleAlert).addClass('hidden');
+		$(overlay).addClass('hidden');
+	}, false);
+
+	overlay.addEventListener('click', function(e) {
+		e.preventDefault();
+		$(moduleAlert).addClass('hidden');
+		$(overlay).addClass('hidden');
+	}, false);
+
+	removeButton.addEventListener('click', function(e) {
+
+	}, false);
 };
 
 CHORESTR.loginBox = function() {

@@ -45,7 +45,7 @@
 	<div class="col-1-1">
 		<form class="edit-account" action="/account/{{userDetails.username}}" method="POST">
 			<input type="hidden" name="_method" value="DELETE">
-			<button class="btn btn-remove"><span class="icon-remove"></span>Delete account</button>
+			<button class="btn btn-remove remove"><span class="icon-remove"></span>Delete account</button>
 		</form>
 
 		<form class="edit-account" action="/account/{{userDetails.username}}/edit" method="GET">
@@ -53,4 +53,25 @@
 		</form>
 	</div>
 
+	<div class="module-alert hidden">
+		<div class="module-alert-inner">
+			<div class="module-alert-header module">
+			</div>
+
+			<div class="module-alert-main module">
+				<p>Are you sure you want to remove this chore? This action can not be undone.</p>
+
+			</div>
+
+			<div class="module-alert-footer module">
+				<a class="btn btn-cancel" href="#">Cancel</a>
+				<form action="#" method="POST">
+					<input type="hidden" name="_method" value="DELETE">
+					<button class="btn btn-menu btn-remove"><span class="icon-remove"></span>Remove</button>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<div id="overlay" class="bg-overlay hidden"></div>
 </div>

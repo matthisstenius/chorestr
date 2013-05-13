@@ -39,15 +39,18 @@ exports.all = function(req, res, next) {
 			if (err) {
 				next(err);
 			}
-
+			console.log(req.session.alertBadge);
 			res.render('chores', {
 				title: 'All chores',
 				user: userDetails.username,
 				chores: chores,
 				meta: userDetails.meta,
 				sortId: sortId,
-				sortPrio: sortPrio
+				sortPrio: sortPrio,
+				alertBadge: req.session.alertBadge
 			});
+
+			req.session.alertBadge = null;
 		});
 
 	});

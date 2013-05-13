@@ -46,9 +46,9 @@
 				<div class="task module risk-{{prio}}">
 					<h3>{{ name }}</h3>
 
-					<p class="reward"><span class="icon-coin"></span>Reward: <span>{{ reward }}</span></p>
+					<p class="reward"><span class="icon-coin"></span>Reward: <span class=" reward-failed">{{ reward }}</span></p>
 					<p class="risk"><span class="icon-fire"></span>Priority: {{prio}}</p>
-					<p class="due"></span>This chore was completed on:</br> <span class="date-stamp">{{ complete.date }}</span></p>
+					<p class="due"></span>This chore was failed on:</br> <span class="date-stamp">{{ complete.date }}</span></p>
 
 					<form class="complete-chore" action="/{{../user}}/chores/{{_id}}" method="POST">
 						<input type="hidden" name="_method" value="DELETE">

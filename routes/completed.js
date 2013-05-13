@@ -69,7 +69,7 @@ exports.completed = function(req, res, next) {
 						}
 
 						checkAwards(function(badge) {
-							// sätt session
+							req.session.alertBadge = badge;
 							res.redirect('/' + req.user.username + '/chores');
 						});
 					});
@@ -84,7 +84,7 @@ exports.completed = function(req, res, next) {
 						}
 
 						checkAwards(function(badge) {
-							// sätt session
+							req.session.alertBadge = badge;
 							res.redirect('/' + req.user.username + '/chores');
 						});
 					});
@@ -99,7 +99,7 @@ exports.completed = function(req, res, next) {
 						}
 
 						checkAwards(function(badge) {
-							// sätt session
+							req.session.alertBadge = badge;
 							res.redirect('/' + req.user.username + '/chores');
 						});
 
@@ -115,7 +115,7 @@ exports.completed = function(req, res, next) {
 						}
 
 						checkAwards(function(badge) {
-							// sätt session
+							req.session.alertBadge = badge;
 							res.redirect('/' + req.user.username + '/chores');
 						});
 					});
@@ -130,7 +130,7 @@ exports.completed = function(req, res, next) {
 						}
 
 						checkAwards(function(badge) {
-							// sätt session
+							req.session.alertBadge = badge;
 							res.redirect('/' + req.user.username + '/chores');
 						});
 					});
@@ -199,7 +199,7 @@ exports.completed = function(req, res, next) {
 							if (err) {
 								next(err);
 							}
-
+							console.log(badge);
 							callback(badge);
 						});
 					});

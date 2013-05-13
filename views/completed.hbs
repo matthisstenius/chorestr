@@ -52,7 +52,7 @@
 
 					<form class="complete-chore" action="/{{../user}}/chores/{{_id}}" method="POST">
 						<input type="hidden" name="_method" value="DELETE">
-						<button class="btn task-done"><span class="icon-remove"></span>Remove for good</button>
+						<button class="btn task-done remove"><span class="icon-remove"></span>Remove for good</button>
 					</form>
 
 
@@ -63,5 +63,26 @@
 			<p class="no-chore-message">You have not completed any chores</p>
 		{{/if}}
 
+		<div class="module-alert hidden">
+				<div class="module-alert-inner">
+					<div class="module-alert-header module">
+					</div>
+
+					<div class="module-alert-main module">
+						<p>Are you sure you want to remove this chore? This action can not be undone.</p>
+
+					</div>
+
+					<div class="module-alert-footer module">
+						<a class="btn btn-cancel" href="#">Cancel</a>
+						<form action="#" method="POST">
+							<input type="hidden" name="_method" value="DELETE">
+							<button class="btn btn-menu btn-remove"><span class="icon-remove"></span>Remove</button>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<div id="overlay" class="bg-overlay hidden"></div>
 	</div> {{! end .module }}
 </div> {{! end .grid }}

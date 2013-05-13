@@ -695,6 +695,16 @@ img {
   background-color: white;
 }
 
+.bg-overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
 .border-strip {
   height: 3px;
   width: 20%;
@@ -795,11 +805,59 @@ a:hover {
   background-color: #395875;
 }
 
-.login, .btn-save {
+.login, .btn-save, .btn-badges {
   background-color: #74b152;
 }
-.login:hover, .btn-save:hover {
+.login:hover, .btn-save:hover, .btn-badges:hover {
   background-color: #8ecb6c;
+}
+
+/* ----------------------------------------------------------------
+ *  ￼ Alert
+ * ----------------------------------------------------------------
+*/
+.module-alert, .badge-module-alert {
+  width: 500px;
+  background-color: white;
+  position: absolute;
+  top: 150px;
+  border-radius: 3px;
+  z-index: 200;
+}
+.module-alert img, .badge-module-alert img {
+  width: 150px;
+}
+.module-alert .badgeTitle, .badge-module-alert .badgeTitle {
+  float: right;
+  margin: 52px 42px 0 0;
+  display: block;
+  color: #b72d16;
+  width: 271px;
+  text-align: center;
+}
+.module-alert .btn, .badge-module-alert .btn {
+  float: right;
+  margin-right: 5px;
+}
+
+.module-alert-main {
+  margin: 10px 0;
+}
+
+.module-alert-header, .module-alert-footer {
+  background-color: #F0F0ED;
+}
+
+.module-alert-header {
+  border-bottom: 1px solid #ccc;
+  border-radius: 3px 3px 0 0;
+  min-height: 30px;
+}
+
+.module-alert-footer {
+  border-top: 1px solid #ccc;
+  border-radius: 0 0 3px 3px;
+  height: 50px;
 }
 
 /* ----------------------------------------------------------------
@@ -1041,6 +1099,10 @@ input[type="submit"] {
 
 .date-stamp {
   color: #b72d16;
+}
+
+.reward-failed {
+  text-decoration: line-through;
 }
 
 .manage {
