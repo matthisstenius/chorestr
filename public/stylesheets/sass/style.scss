@@ -433,6 +433,7 @@ $orange: #D24D33;
 
 	.main-nav {
 		padding-top: 7px;
+		position: relative;
 
 		.username {
 			vertical-align: middle;
@@ -440,6 +441,14 @@ $orange: #D24D33;
 		}
 	}
 
+	.user-subnav {
+		position: absolute;
+		background-color: #F9F9F9;
+
+		li {
+			float: none;
+		}
+	}
 
 /* ----------------------------------------------------------------
  *  ￼ Toolbar

@@ -39,7 +39,7 @@ exports.all = function(req, res, next) {
 			if (err) {
 				next(err);
 			}
-			console.log(req.session.alertBadge);
+
 			res.render('chores', {
 				title: 'All chores',
 				user: userDetails.username,

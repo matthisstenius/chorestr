@@ -34,12 +34,12 @@ exports.showCompleted = function(req, res, next) {
 			next(new Error('Could not find completed chores'));
 		}
 
-		db.User.findById(req.user._id, function(err, user) {
+		db.User.findById(req.user._id, function(err, userDetails) {
 			res.render('completed', {
 				title: 'All chores',
-				user: user.username,
+				user: userDetails.username,
 				chores: chores,
-				meta: user.meta,
+				meta: userDetails.meta,
 				sortCompletedDate: sortCompletedDate,
 				sortPrio: sortPrio
 			});

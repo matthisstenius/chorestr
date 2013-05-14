@@ -1,13 +1,12 @@
 var mongoose = require('mongoose');
 var env = process.env.NODE_ENV || 'development';
-module.exports.config = {};
 
 switch (env) {
 	case 'development':
 		mongoose.connect("mongodb://localhost/Chorestr");
 		break;
 	case 'production':
-
+		mongoose.connect("mongodb://nodejitsu:1a9c9754ff4d4213f8c01d2f30bd974b@linus.mongohq.com:10047/nodejitsudb2125588036")
 		break;
 };
 

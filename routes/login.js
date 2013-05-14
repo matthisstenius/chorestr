@@ -11,17 +11,17 @@ var server  = email.server.connect({
 });
 
 exports.show = function(req, res, next) {
-	var username;
+	var userDetails;
 
 	if (req.session.user) {
-		username = req.session.user.username;
+		userDetails = req.session.user;
 	}
 
 	res.render('login', {
 		title: 'Log in',
 		error: req.session.loginError,
 		username: req.session.username,
-		user: username
+		user: userDetails
 	});
 
 	req.session.loginError = null;
@@ -64,16 +64,16 @@ exports.login = function(req, res, next) {
 };
 
 exports.showForgot = function(req, res, next) {
-	var username;
+	var usernameDetails;
 
 	if (req.session.user) {
-		username = req.session.user.username;
+		usernameDetails = req.session.user.username;
 	}
 
 	res.render('forgot', {
 		title: 'Forgot password',
 		messages: req.session.messages,
-		user: username
+		user: usernameDetails.username
 
 	});
 

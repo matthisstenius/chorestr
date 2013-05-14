@@ -29,6 +29,13 @@
             <ul>
               {{#if user}}
                 <li><a class="username" href="/account/{{user}}">{{user}}</a></li>
+                <li>
+                  <ul class="user-subnav hidden">
+                    <li><a href="/account/{{user}}">Profile</a></li>
+                    <li><a href="/account/{{user}}/badges">Badges</a></li>
+                    <li><a href="/logout">Log out</a></li>
+                  </ul>
+                </li>
                 <li><a class="btn btn-chores" href="/{{user}}/chores">My chores</a></li>
                 <li><a href="/logout" class="btn logout">Log out</a></li>
               {{else}}
