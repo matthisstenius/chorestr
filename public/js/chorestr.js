@@ -6,6 +6,7 @@ CHORESTR.init = function() {
 		loginBtn = document.querySelector('.main-nav .login'),
 		alertMessageClose = document.querySelector('.close-message'),
 		validateInput = document.querySelectorAll('.validate'),
+		userMenu = document.querySelector('.username'),
 		badgeModuleAlertBox = document.querySelector('.badge-module-alert'),
 		removeChore = document.querySelectorAll('.remove'),
 		loginBox = document.querySelector('.login-box');
@@ -20,11 +21,22 @@ CHORESTR.init = function() {
 				CHORESTR.validate(this.getAttribute('id'), this.value);
 			}, false);
 		}
+	}
 
+	if (typeof(userMenu) !== 'undefined' && userMenu !== null) {
+		var userSubMenu = document.querySelector('.user-subnav');
+
+		userMenu.addEventListener('click', function(e) {
+			e.preventDefault();
+			$(userSubMenu).toggleClass('hidden');
+		}, false);
+
+		document.addEventListener('click', function() {
+			$(userSubMenu).addClass('hidden');
+		}, true);
 	}
 
 	if (typeof(alertMessageClose) !== 'undefined' && alertMessageClose !== null) {
-		//var overlay = document.getElementById('badge-overlay');
 		var infoMessage = document.querySelector('.info-message');
 		alertMessageClose.addEventListener('click', function (e) {
 			e.preventDefault();
@@ -33,9 +45,7 @@ CHORESTR.init = function() {
 	}
 
 	if (typeof(loginBtn) !== 'undefined' && loginBtn !== null) {
-
 		loginBtn.addEventListener('click', function(e) {
-
 			CHORESTR.loginBox();
 			e.preventDefault();
 		}, false);
@@ -54,7 +64,7 @@ CHORESTR.init = function() {
 	}
 
 	if (typeof(badgeModuleAlertBox) !== 'undefined' && badgeModuleAlertBox !== null) {
-		CHORESTR.moduleAlert(badgeModuleAlertBox);
+		CHORESTR.badgeAlert(badgeModuleAlertBox);
 	}
 };
 
@@ -109,8 +119,9 @@ CHORESTR.validate = function(type, value) {
 	}
 };
 
-CHORESTR.moduleAlert = function(el) {
-	var overlay = document.getElementById('badge-overlay');
+CHORESTR.badgeAlert = function(el) {
+	var overlay = document.getElementById('badge-overlay'),
+		closeButton = document.querySelector('.close-badge-alert');
 
 	var pos = window.innerWidth / 2 - el.offsetWidth / 2;
 	el.setAttribute('style', 'left:' + pos + 'px');
@@ -118,6 +129,10 @@ CHORESTR.moduleAlert = function(el) {
 	overlay.setAttribute('style', 'height:' + $(document).height() + 'px');
 
 	overlay.addEventListener('click', function() {
+		CHORESTR.closeMessage([el, overlay]);
+	}, false);
+
+	closeButton.addEventListener('click', function() {
 		CHORESTR.closeMessage([el, overlay]);
 	}, false);
 
@@ -132,7 +147,7 @@ CHORESTR.closeMessage = function(el) {
 CHORESTR.removeChore = function(el, i) {
 	var moduleAlert = document.querySelector('.module-alert'),
 		overlay = document.getElementById('overlay'),
-		closeButton = document.querySelector('.btn-cancel'),
+		closeButton = document.querySelector('.close'),
 		removeButton = document.querySelector('.btn-remove');
 
 	$(moduleAlert).removeClass('hidden');
@@ -165,11 +180,26 @@ CHORESTR.removeChore = function(el, i) {
 };
 
 CHORESTR.loginBox = function() {
-	var input = document.getElementById('username');
-	input.focus();
-	//var pos = $(loginBtn).offset();
-	//loginBox.setAttribute('style', 'left:' + (pos.left -  $(loginBox).width() / 2) + 'px');
-	$('.login-box').toggleClass('hidden');
+	var input = document.getElementById('username'),
+		loginBox = document.querySelector('.login-box'),
+		overlay = document.getElementById('overlay'),
+		closeButton = document.querySelector('.close');
+
+	var pos = window.innerWidth / 2 - $(loginBox).width() / 2;
+	loginBox.setAttribute('style', 'left:' + pos + 'px');
+
+	$(loginBox).removeClass('hidden');
+	$(overlay).removeClass('hidden');
+
+	overlay.addEventListener('click', function() {
+		$(overlay).addClass('hidden');
+		$(loginBox).addClass('hidden');
+	}, false);
+
+	closeButton.addEventListener('click', function() {
+		$(overlay).addClass('hidden');
+		$(loginBox).addClass('hidden');
+	}, false);
 
 };
 

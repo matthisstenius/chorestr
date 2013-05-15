@@ -231,7 +231,7 @@ $orange: #D24D33;
 	.module-alert, .badge-module-alert {
 		width: 500px;
 	    background-color: white;
-	    position: absolute;
+	    position: fixed;
 	    top: 150px;
 	    border-radius: 3px;
 	    z-index: 200;
@@ -252,6 +252,24 @@ $orange: #D24D33;
 		.btn {
 			float: right;
 			margin-right: 5px;
+		}
+
+		h3 {
+			font-family: $body;
+			font-size: 1.2em;
+			margin-bottom: 5px;
+			float: left;
+			color: $blueGrey;
+		}
+
+		.close, .close-badge-alert {
+			float: right;
+			color: $blueGrey;
+			margin-top: 5px;
+
+			&:hover {
+				color: $red;
+			}
 		}
 	}
 
@@ -369,21 +387,7 @@ $orange: #D24D33;
 */
 
 	.login-box {
-		position: absolute;
-		background-color: #F9F9F9;
-		border-radius: 3px;
-		border: 1px solid #ccc;
-		top: 70px;
-		right: 50px;
-		box-shadow: 0 0 12px 0px rgba(0, 0,0, 0.2);
-
-		// &:before {
-		// 	content: '';
-		// 	@include triangle(up, #F9F9F9, 10px);
-		// 	position: absolute;
-		// 	top: -10px;
-		// 	right: 140px;
-		// }
+		width: 350px;
 
 		p {
 			margin-top: 0;
@@ -394,16 +398,14 @@ $orange: #D24D33;
 		}
 
 		label {
-			font-size: .9em;
-			display: inline-block;
+			font-size: .99em;
+			display: block;
 		}
 
 		input {
-			display: inline-block;
-			height: 25px;
+			display: block;
 			border-radius: 3px;
-			width: 150px;
-			font-size: .8em;
+			font-size: .99em;
 		}
 	}
 /* ----------------------------------------------------------------
@@ -438,15 +440,48 @@ $orange: #D24D33;
 		.username {
 			vertical-align: middle;
 			font-size: 1.1em;
+			padding-right: 10px;
+			margin-right: 10px;
+			position: relative;
+
+			&:after {
+				content: '';
+				position: absolute;
+				top: 10px;
+				right: -5px;
+				@include triangle(down, $blue, .3em);
+			}
+
+			&:hover:after {
+				@include triangle(down, $red, .3em);
+			}
 		}
 	}
 
 	.user-subnav {
 		position: absolute;
-		background-color: #F9F9F9;
+		background-color: white;
+		box-shadow: 0 0 6px 3px rgba(225, 225, 225, .6);
+		border: 1px solid #ccc;
+		border-radius: 3px;
+		top: 50px;
+		left: -10px;
+		z-index: 200;
 
 		li {
 			float: none;
+			margin: 5px 0;
+		}
+
+		a {
+			color: $grey;
+			display: block;
+			padding: 5px 18px;
+
+			&:hover {
+				background-color: $blue;
+				color: white;
+			}
 		}
 	}
 
@@ -470,6 +505,8 @@ $orange: #D24D33;
 	  border-radius: 3px;
 	  border: 1px solid #ccc;
 	  color: $red;
+	  float: right;
+	  margin-right: 10px;
 	}
 
 	.toolbar-menu {

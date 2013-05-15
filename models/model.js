@@ -1,14 +1,16 @@
 var mongoose = require('mongoose');
-var env = process.env.NODE_ENV || 'development';
+var env = process.env.VCAP_SERVICE || 'development';
 
-switch (env) {
-	case 'development':
-		mongoose.connect("mongodb://localhost/Chorestr");
-		break;
-	case 'production':
-		mongoose.connect("mongodb://nodejitsu:1a9c9754ff4d4213f8c01d2f30bd974b@linus.mongohq.com:10047/nodejitsudb2125588036")
-		break;
-};
+
+if (process.env.VCAP_SERVICE) {
+	var env = JSON.parse(process.env.VCAP_SERVICES);
+    mongo = env['mongodb-1.8'][0]['credentials'];
+    mongoose.connect("mongodb://" + env.username + ":" + env.password + "@" + env.hostname + ":" + env.port + "/" + env.db);
+}
+
+else {
+	mongoose.connect("mongodb://localhost/Chorestr");
+}
 
 var ChoresSchema = new mongoose.Schema({
 	name: String,
@@ -62,7 +64,8 @@ var UserSchema = new mongoose.Schema({
 
 		points: {type: Number, default: 0},
 		awards: [BadgeSchema],
-		multiplier: {type: Number, default: 0}
+		rank: {type: String, default: 'Novice'},
+		multiplier: {type: Number, default: 1}
 	}
 });
 

@@ -1,5 +1,5 @@
 @font-face {
-  font-family: "icomoon";
+  font-family: 'icomoon';
   src: url("../fonts/icomoon.eot");
   src: url("../fonts/icomoon.eot?#iefix") format("embedded-opentype"), url("../fonts/icomoon.woff") format("woff"), url("../fonts/icomoon.ttf") format("truetype"), url("../fonts/icomoon.svg#icomoon") format("svg");
   font-weight: normal;
@@ -24,7 +24,7 @@ Instead of a list of all class selectors,
 you can use the generic selector below, but it's slower:
 [class*="icon-"] {
 */
-.icon-checkmark, .icon-coin, .icon-calendar, .icon-remove, .icon-plus, .icon-numbered-list, .icon-star, .icon-signup, .icon-pencil, .icon-close, .icon-cancel-circle, .icon-stopwatch, .icon-notification, .icon-clock, .icon-award-fill, .icon-pushpin, .icon-calendar-2, .icon-fire, .icon-meter, .icon-warning, .icon-forward {
+.icon-checkmark, .icon-coin, .icon-calendar, .icon-remove, .icon-plus, .icon-numbered-list, .icon-star, .icon-signup, .icon-pencil, .icon-close, .icon-cancel-circle, .icon-stopwatch, .icon-notification, .icon-clock, .icon-award-fill, .icon-pushpin, .icon-calendar-2, .icon-fire, .icon-meter, .icon-warning, .icon-forward, .icon-support, .icon-award-stroke, .icon-spin, .icon-switch, .icon-user, .icon-settings, .icon-cog, .icon-spades {
   font-family: 'icomoon';
   speak: none;
   font-style: normal;
@@ -117,6 +117,38 @@ you can use the generic selector below, but it's slower:
 
 .icon-forward:before {
   content: "\e014";
+}
+
+.icon-support:before {
+  content: "\e015";
+}
+
+.icon-award-stroke:before {
+  content: "\e016";
+}
+
+.icon-spin:before {
+  content: "\e017";
+}
+
+.icon-switch:before {
+  content: "\e018";
+}
+
+.icon-user:before {
+  content: "\e019";
+}
+
+.icon-settings:before {
+  content: "\e01a";
+}
+
+.icon-cog:before {
+  content: "\e01b";
+}
+
+.icon-spades:before {
+  content: "\e01c";
 }
 
 /* normalize.css v2.0.1 | MIT License | git.io/normalize */
@@ -818,7 +850,7 @@ a:hover {
 .module-alert, .badge-module-alert {
   width: 500px;
   background-color: white;
-  position: absolute;
+  position: fixed;
   top: 150px;
   border-radius: 3px;
   z-index: 200;
@@ -837,6 +869,21 @@ a:hover {
 .module-alert .btn, .badge-module-alert .btn {
   float: right;
   margin-right: 5px;
+}
+.module-alert h3, .badge-module-alert h3 {
+  font-family: "FuturaPTBook-Reg", helvetica, sans-serif;
+  font-size: 1.2em;
+  margin-bottom: 5px;
+  float: left;
+  color: #395875;
+}
+.module-alert .close, .module-alert .close-badge-alert, .badge-module-alert .close, .badge-module-alert .close-badge-alert {
+  float: right;
+  color: #395875;
+  margin-top: 5px;
+}
+.module-alert .close:hover, .module-alert .close-badge-alert:hover, .badge-module-alert .close:hover, .badge-module-alert .close-badge-alert:hover {
+  color: #b72d16;
 }
 
 .module-alert-main {
@@ -950,13 +997,7 @@ input[type="submit"] {
  * ----------------------------------------------------------------
 */
 .login-box {
-  position: absolute;
-  background-color: #F9F9F9;
-  border-radius: 3px;
-  border: 1px solid #ccc;
-  top: 70px;
-  right: 50px;
-  box-shadow: 0 0 12px 0px rgba(0, 0, 0, 0.2);
+  width: 350px;
 }
 .login-box p {
   margin-top: 0;
@@ -965,15 +1006,13 @@ input[type="submit"] {
   margin: 0;
 }
 .login-box label {
-  font-size: .9em;
-  display: inline-block;
+  font-size: .99em;
+  display: block;
 }
 .login-box input {
-  display: inline-block;
-  height: 25px;
+  display: block;
   border-radius: 3px;
-  width: 150px;
-  font-size: .8em;
+  font-size: .99em;
 }
 
 /* ----------------------------------------------------------------
@@ -1007,14 +1046,51 @@ input[type="submit"] {
 .main-nav .username {
   vertical-align: middle;
   font-size: 1.1em;
+  padding-right: 10px;
+  margin-right: 10px;
+  position: relative;
+}
+.main-nav .username:after {
+  content: '';
+  position: absolute;
+  top: 10px;
+  right: -5px;
+  border-right: 0.3em solid transparent;
+  border-left: 0.3em solid transparent;
+  border-top: 0.3em solid #4da9cd;
+  height: 0;
+  width: 0;
+}
+.main-nav .username:hover:after {
+  border-right: 0.3em solid transparent;
+  border-left: 0.3em solid transparent;
+  border-top: 0.3em solid #b72d16;
+  height: 0;
+  width: 0;
 }
 
 .user-subnav {
   position: absolute;
-  background-color: #F9F9F9;
+  background-color: white;
+  box-shadow: 0 0 6px 3px rgba(225, 225, 225, 0.6);
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  top: 50px;
+  left: -10px;
+  z-index: 200;
 }
 .user-subnav li {
   float: none;
+  margin: 5px 0;
+}
+.user-subnav a {
+  color: #556270;
+  display: block;
+  padding: 5px 18px;
+}
+.user-subnav a:hover {
+  background-color: #4da9cd;
+  color: white;
 }
 
 /* ----------------------------------------------------------------
@@ -1037,6 +1113,8 @@ input[type="submit"] {
   border-radius: 3px;
   border: 1px solid #ccc;
   color: #b72d16;
+  float: right;
+  margin-right: 10px;
 }
 
 .toolbar-menu {

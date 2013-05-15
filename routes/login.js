@@ -64,16 +64,16 @@ exports.login = function(req, res, next) {
 };
 
 exports.showForgot = function(req, res, next) {
-	var usernameDetails;
+	var username;
 
 	if (req.session.user) {
-		usernameDetails = req.session.user.username;
+		username = req.session.user.username;
 	}
 
 	res.render('forgot', {
 		title: 'Forgot password',
 		messages: req.session.messages,
-		user: usernameDetails.username
+		user: username
 
 	});
 

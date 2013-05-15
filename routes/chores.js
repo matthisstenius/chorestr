@@ -159,7 +159,7 @@ exports.remove = function(req, res, next) {
 				next(report);
 				return;
 			}
-			res.redirect('/' + req.user.username + '/chores');
+			res.redirect('back');
 	});
 
 };

@@ -6,7 +6,7 @@ $handwritten: "LonghandLPRegular", helvetica, sans-serif;
 // Iconfont
 
 @font-face {
-	font-family: "icomoon";
+	font-family: 'icomoon';
 	src:url('../fonts/icomoon.eot');
 	src:url('../fonts/icomoon.eot?#iefix') format('embedded-opentype'),
 		url('../fonts/icomoon.woff') format('woff'),
@@ -34,7 +34,7 @@ Instead of a list of all class selectors,
 you can use the generic selector below, but it's slower:
 [class*="icon-"] {
 */
-.icon-checkmark, .icon-coin, .icon-calendar, .icon-remove, .icon-plus, .icon-numbered-list, .icon-star, .icon-signup, .icon-pencil, .icon-close, .icon-cancel-circle, .icon-stopwatch, .icon-notification, .icon-clock, .icon-award-fill, .icon-pushpin, .icon-calendar-2, .icon-fire, .icon-meter, .icon-warning, .icon-forward {
+.icon-checkmark, .icon-coin, .icon-calendar, .icon-remove, .icon-plus, .icon-numbered-list, .icon-star, .icon-signup, .icon-pencil, .icon-close, .icon-cancel-circle, .icon-stopwatch, .icon-notification, .icon-clock, .icon-award-fill, .icon-pushpin, .icon-calendar-2, .icon-fire, .icon-meter, .icon-warning, .icon-forward, .icon-support, .icon-award-stroke, .icon-spin, .icon-switch, .icon-user, .icon-settings, .icon-cog, .icon-spades {
 	font-family: 'icomoon';
 	speak: none;
 	font-style: normal;
@@ -106,4 +106,28 @@ you can use the generic selector below, but it's slower:
 }
 .icon-forward:before {
 	content: "\e014";
+}
+.icon-support:before {
+	content: "\e015";
+}
+.icon-award-stroke:before {
+	content: "\e016";
+}
+.icon-spin:before {
+	content: "\e017";
+}
+.icon-switch:before {
+	content: "\e018";
+}
+.icon-user:before {
+	content: "\e019";
+}
+.icon-settings:before {
+	content: "\e01a";
+}
+.icon-cog:before {
+	content: "\e01b";
+}
+.icon-spades:before {
+	content: "\e01c";
 }

@@ -1,4 +1,5 @@
-var db = require('../models/model');
+var db = require('../models/model'),
+	rank = require('../routes/rank');
 
 exports.showCompleted = function(req, res, next) {
 	// Take querystring and put it into an object
@@ -60,83 +61,102 @@ exports.completed = function(req, res, next) {
 
 		// Increase count depending on prio
 		if (chore.completedDate < chore.due) {
-			switch (chore.prio) {
-				case "1" :
-					db.User.update({_id: userId},
-						{$inc: {"meta.completedTotal": 1, "meta.points": chore.reward, "meta.completedPrio.One": 1}}, function(err, user) {
-						if (err) {
-							next(err);
-						}
+			db.User.findById(userId, function(err, user) {
+				if (err) {
+					next(err);
+				}
 
-						checkAwards(function(badge) {
-							req.session.alertBadge = badge;
-							res.redirect('/' + req.user.username + '/chores');
-						});
-					});
+				switch (chore.prio) {
+					case "1" :
+						var reward = chore.reward * user.meta.multiplier;
+						user.update({$inc: {"meta.completedTotal": 1, "meta.points": reward, "meta.completedPrio.One": 1}}, function(err) {
+							if (err) {
+								next(err);
+							}
 
-					break;
+							checkAwards(function(badge) {
+								req.session.alertBadge = badge;
+								res.redirect('/' + req.user.username + '/chores');
+							});
 
-				case "2" :
-					db.User.update({_id: userId},
-						{$inc: {"meta.completedTotal": 1, "meta.points": chore.reward, "meta.completedPrio.Two": 1}}, function(err, user) {
-						if (err) {
-							next(err);
-						}
-
-						checkAwards(function(badge) {
-							req.session.alertBadge = badge;
-							res.redirect('/' + req.user.username + '/chores');
-						});
-					});
-
-					break;
-
-				case "3" :
-					db.User.update({_id: userId},
-						{$inc: {"meta.completedTotal": 1, "meta.points": chore.reward, "meta.completedPrio.Three": 1}}, function(err, user) {
-						if (err) {
-							next(err);
-						}
-
-						checkAwards(function(badge) {
-							req.session.alertBadge = badge;
-							res.redirect('/' + req.user.username + '/chores');
+							rank(req, res, next);
 						});
 
-					});
+						break;
 
-					break;
+					case "2" :
+						var reward = chore.reward * user.meta.multiplier;
+						user.update({$inc: {"meta.completedTotal": 1, "meta.points": reward, "meta.completedPrio.Two": 1}}, function(err) {
+							if (err) {
+								next(err);
+							}
 
-				case "4" :
-					db.User.update({_id: userId},
-						{$inc: {"meta.completedTotal": 1, "meta.points": chore.reward, "meta.completedPrio.For": 1}}, function(err, user) {
-						if (err) {
-							next(err);
-						}
+							checkAwards(function(badge) {
+								req.session.alertBadge = badge;
+								res.redirect('/' + req.user.username + '/chores');
+							});
 
-						checkAwards(function(badge) {
-							req.session.alertBadge = badge;
-							res.redirect('/' + req.user.username + '/chores');
+							rank(req, res, next);
 						});
-					});
 
-					break;
 
-				case "5" :
-					db.User.update({_id: userId},
-						{$inc: {"meta.completedTotal": 1, "meta.points": chore.reward, "meta.completedPrio.Five": 1}}, function(err, user) {
-						if (err) {
-							next(err);
-						}
+						break;
 
-						checkAwards(function(badge) {
-							req.session.alertBadge = badge;
-							res.redirect('/' + req.user.username + '/chores');
+					case "3" :
+						var reward = chore.reward * user.meta.multiplier;
+						user.update({$inc: {"meta.completedTotal": 1, "meta.points": reward, "meta.completedPrio.Three": 1}}, function(err) {
+							if (err) {
+								next(err);
+							}
+
+							checkAwards(function(badge) {
+								req.session.alertBadge = badge;
+								res.redirect('/' + req.user.username + '/chores');
+							});
+
+							rank(req, res, next);
 						});
-					});
 
-					break;
-			}
+						break;
+
+					case "4" :
+						var reward = chore.reward * user.meta.multiplier;
+						user.update({$inc: {"meta.completedTotal": 1, "meta.points": reward, "meta.completedPrio.For": 1}}, function(err) {
+							if (err) {
+								next(err);
+							}
+
+							checkAwards(function(badge) {
+								req.session.alertBadge = badge;
+								res.redirect('/' + req.user.username + '/chores');
+							});
+
+							rank(req, res, next);
+						});
+
+						break;
+
+					case "5" :
+						var reward = chore.reward * user.meta.multiplier;
+						user.update({$inc: {"meta.completedTotal": 1, "meta.points": reward, "meta.completedPrio.Five": 1}}, function(err) {
+							if (err) {
+								next(err);
+							}
+
+							checkAwards(function(badge) {
+								req.session.alertBadge = badge;
+								res.redirect('/' + req.user.username + '/chores');
+							});
+
+							rank(req, res, next);
+						});
+
+
+						break;
+				}
+
+
+			});
 
 		}
 
@@ -411,5 +431,4 @@ exports.completed = function(req, res, next) {
 			}
 		});
 	};
-
 };

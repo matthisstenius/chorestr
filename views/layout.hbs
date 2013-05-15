@@ -31,28 +31,19 @@
                 <li><a class="username" href="/account/{{user}}">{{user}}</a></li>
                 <li>
                   <ul class="user-subnav hidden">
-                    <li><a href="/account/{{user}}">Profile</a></li>
-                    <li><a href="/account/{{user}}/badges">Badges</a></li>
-                    <li><a href="/logout">Log out</a></li>
+                    <li><a href="/account/{{user}}"><span class="icon-user"></span>Your Profile</a></li>
+                    <li><a href="/account/{{user}}/edit"><span class="icon-cog"></span>Edit Profile</a></li>
+                    <li><a href="/account/{{user}}/badges"><span class="icon-spades"></span>Your Badges</a></li>
+                    <li><a href="/logout"><span class="icon-switch"></span>Log out</a></li>
                   </ul>
                 </li>
                 <li><a class="btn btn-chores" href="/{{user}}/chores">My chores</a></li>
-                <li><a href="/logout" class="btn logout">Log out</a></li>
+                <li><a href="/{{user}}/chores/new" class="btn new-chore"><span class="icon-plus"></span>New Chore</a></li>
               {{else}}
                 <li><a href="/login" class="btn login">Log in</a></li>
                 <li><a href="/register" class="btn register">Sign up</a></li>
                 <li>
-                  <div class="login-box module hidden">
-                    <form action="/login" method="POST">
-                      <p>Enter your login details</p>
 
-                      <input type="text" id="username" placeholder="Username" name="username">
-
-                      <input type="password" id="password" placeholder="Password" name="password">
-                      <button class="btn login">Log in</button>
-                    </form>
-                    <a href="/forgot">forgot you password?</a>
-                  </div>
                 </li>
 
               {{/if}}
@@ -65,7 +56,27 @@
        		{{{ body }}}
 
        </div>
-       <footer class="footer">
+       <div class="login-box module-alert hidden">
+          <div class="module-alert-header module clearfix">
+            <h3>Enter your login details</h3>
+            <a class="close" href="#"><span class="icon-close"></span></a>
+          </div>
+
+          <div class="module-alert-main module">
+            <form action="/login" method="POST">
+              <label for="username">Username</label>
+              <input type="text" id="username" name="username">
+
+              <label for="password">Password</label>
+              <input type="password" id="password" name="password">
+              <button class="btn login">Log in</button>
+            </form>
+            <a href="/forgot">Forgot you password?</a>
+          </div>
+        </div>
+        <div id="overlay" class="bg-overlay hidden"></div>
+
+        <footer class="footer">
 
         </footer>
 

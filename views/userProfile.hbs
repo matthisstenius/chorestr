@@ -31,6 +31,7 @@
 			<p class="btn stats-item">Completed chores: <span>{{userDetails.meta.completedTotal}}</span></p>
 			<p class="btn stats-item">Failed chores: <span>{{userDetails.meta.failedTotal}}</span></p>
 			<p class="btn stats-item">Multiplier: <span>{{userDetails.meta.multiplier}}</span>x</p>
+			<p class="btn stats-item">Rank: <span>{{userDetails.meta.rank}}</span></p>
 
 			<h2>Completed by priority</h2>
 
@@ -55,7 +56,9 @@
 
 	<div class="module-alert hidden">
 		<div class="module-alert-inner">
-			<div class="module-alert-header module">
+			<div class="module-alert-header module clearfix">
+				<h3>Remove account</h3>
+				<a class="close" href="#"><span class="icon-close"></span></a>
 			</div>
 
 			<div class="module-alert-main module">
@@ -64,10 +67,9 @@
 			</div>
 
 			<div class="module-alert-footer module">
-				<a class="btn btn-cancel" href="#">Cancel</a>
 				<form action="#" method="POST">
 					<input type="hidden" name="_method" value="DELETE">
-					<button class="btn btn-menu btn-remove"><span class="icon-remove"></span>Remove</button>
+					<button class="btn btn-cancel btn-remove"><span class="icon-remove"></span>Delete for good</button>
 				</form>
 			</div>
 		</div>

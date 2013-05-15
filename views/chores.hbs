@@ -33,8 +33,10 @@
 
 
 			<div class="col-1-3">
-				<a href="/{{user}}/chores/new" class="btn new-chore"><span class="icon-plus"></span>New Chore</a>
-				<span class="points">Points: {{meta.points}}</span></span>
+				<span class="points">Rank: {{meta.rank}}</span>
+				<span class="points">Points: {{meta.points}}</span>
+				<span class="points">Multiplier: {{meta.multiplier}}x</span>
+
 			</div>
 
 		</section>
@@ -77,8 +79,9 @@
 		{{#if alertBadge}}
 			<div class="badge-module-alert">
 				<div class="module-alert-inner">
-					<div class="module-alert-header module">
-						<h2>You just got awarded a badge</h2>
+					<div class="module-alert-header module clearfix">
+						<h3>You just got awarded a badge</h3>
+						<a class="close-badge-alert" href="#"><span class="icon-close"></span></a>
 					</div>
 
 					<div class="module-alert-main module">
@@ -87,8 +90,7 @@
 					</div>
 
 					<div class="module-alert-footer module">
-						<a class="btn btn-badges" href="/account/{{user}}/badges">View all badges</a>
-						<a class="btn btn-cancel close-message" href="/{{user}}/chores">Close</a>
+						<a class="btn btn-badges" href="/account/{{user}}/badges">View badges</a>
 					</div>
 				</div>
 			</div>
@@ -98,7 +100,9 @@
 
 		<div class="module-alert hidden">
 				<div class="module-alert-inner">
-					<div class="module-alert-header module">
+					<div class="module-alert-header module clearfix">
+						<h3>Remove chore</h3>
+						<a class="close" href="#"><span class="icon-close"></span></a>
 					</div>
 
 					<div class="module-alert-main module">
@@ -107,10 +111,9 @@
 					</div>
 
 					<div class="module-alert-footer module">
-						<a class="btn btn-cancel" href="#">Cancel</a>
 						<form action="#" method="POST">
 							<input type="hidden" name="_method" value="DELETE">
-							<button class="btn btn-menu btn-remove"><span class="icon-remove"></span>Remove</button>
+							<button class="btn btn-cancel btn-remove"><span class="icon-remove"></span>Remove</button>
 						</form>
 					</div>
 				</div>

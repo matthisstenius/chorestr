@@ -2,10 +2,10 @@ var bcrypt = require('bcrypt-nodejs'),
 	db = require('../models/model');
 
 exports.register = function(req, res) {
-	var userDetails;
+	var username;
 
 	if (req.session.user) {
-		userDetails = req.session.user;
+		username = req.session.username;
 	}
 
 	res.render('register', {
@@ -13,7 +13,7 @@ exports.register = function(req, res) {
 		errors: req.session.regErrors,
 		userExists: req.session.userExists,
 		userInput: req.session.userInput,
-		user: userDetails.username
+		user: username
 	});
 
 	req.session.regErrors = null;
