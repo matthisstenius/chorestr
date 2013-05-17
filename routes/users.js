@@ -18,6 +18,7 @@ exports.details = function(req, res, next) {
 			user: docs.username,
 			messages: req.session.messages,
 			awardsCount: docs.meta.awards.length,
+			awards: docs.meta.awards,
 			profilePic: gravatar
 		});
 

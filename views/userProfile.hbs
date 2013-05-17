@@ -1,6 +1,6 @@
 {{!< layout}}
 
-<div class="main module grid">
+<div class="module grid">
 	{{#if messages}}
 		<span class="info-message">{{messages}} <a class="close-message" href="#"><span class="icon-close"></span></a></span>
 	{{/if}}
@@ -16,44 +16,63 @@
 	</header>
 
 	<div class="col-1-2">
-		<div class="account-details module">
-			<h2>Account details</h2>
-			<img src="{{profilePic}}" alt="Profile picture of {{userDetails.username}}">
-			<p>Username: {{userDetails.username}}</p>
-			<p>Email: {{userDetails.email}}</p>
+		<div class="main module">
+			<div class="userbox-inner module clearfix">
+
+				<h2>Account details</h2>
+				<div class="profile-pic">
+					<img src="{{profilePic}}" alt="Profile picture of {{userDetails.username}}">
+				</div>
+
+				<div class="userbox-item">
+					<h4>Username</h4>
+					<p>{{userDetails.username}}</p>
+				</div>
+
+				<div class="userbox-item">
+					<h4>Email</h4>
+					<p>{{userDetails.email}}</p>
+				</div>
+
+				<div class="col-1-1 account-buttons">
+					<form class="edit-account" action="/account/{{userDetails.username}}" method="POST">
+						<input type="hidden" name="_method" value="DELETE">
+						<button class="btn btn-remove remove"><span class="icon-remove"></span>Delete account</button>
+					</form>
+
+					<form class="edit-account" action="/account/{{userDetails.username}}/edit" method="GET">
+						<button class="btn btn-edit"><span class="icon-pencil"></span>Edit account</button>
+					</form>
+
+					<a href="http://www.gravatar.com">(Edit profile image at Gravatar)</a>
+				</div>
+			</div>
 		</div>
 	</div>
 
 	<div class="col-1-2">
-		<div class="stats module">
-			<h2>Stats</h2>
+		<div class="module main">
+			<div class="userbox-inner module">
+				<h2>Stats</h2>
 
-			<p class="btn stats-item">Points: <span>{{userDetails.meta.points}}</span></p>
-			<p class="btn stats-item">Completed chores: <span>{{userDetails.meta.completedTotal}}</span></p>
-			<p class="btn stats-item">Failed chores: <span>{{userDetails.meta.failedTotal}}</span></p>
-			<p class="btn stats-item">Multiplier: <span>{{userDetails.meta.multiplier}}</span>x</p>
-			<p class="btn stats-item">Rank: <span>{{userDetails.meta.rank}}</span></p>
+				<p class="btn stats-item">Points: <span>{{userDetails.meta.points}}</span></p>
+				<p class="btn stats-item">Completed chores: <span>{{userDetails.meta.completedTotal}}</span></p>
+				<p class="btn stats-item">Failed chores: <span>{{userDetails.meta.failedTotal}}</span></p>
+				<p class="btn stats-item">Multiplier: <span>{{userDetails.meta.multiplier}}</span>x</p>
+				<p class="btn stats-item">Rank: <span>{{userDetails.meta.rank}}</span></p>
 
-			<h2>Completed by priority</h2>
+				<h2>Completed by priority</h2>
 
-			<p class="btn stats-item prio-one">Priority One: <span>{{userDetails.meta.completedPrio.One}}</span></p>
-			<p class="btn stats-item prio-two">Priority Two: <span>{{userDetails.meta.completedPrio.Two}}</span></p>
-			<p class="btn stats-item prio-three">Priority Three: <span>{{userDetails.meta.completedPrio.Three}}</span></p>
-			<p class="btn stats-item prio-four">Priority Four: <span>{{userDetails.meta.completedPrio.For}}</span></p>
-			<p class="btn stats-item prio-five">Priority Five: <span>{{userDetails.meta.completedPrio.Five}}</span></p>
+				<p class="btn stats-item prio-one">Priority One: <span>{{userDetails.meta.completedPrio.One}}</span></p>
+				<p class="btn stats-item prio-two">Priority Two: <span>{{userDetails.meta.completedPrio.Two}}</span></p>
+				<p class="btn stats-item prio-three">Priority Three: <span>{{userDetails.meta.completedPrio.Three}}</span></p>
+				<p class="btn stats-item prio-four">Priority Four: <span>{{userDetails.meta.completedPrio.For}}</span></p>
+				<p class="btn stats-item prio-five">Priority Five: <span>{{userDetails.meta.completedPrio.Five}}</span></p>
+
+			</div>
 		</div>
 	</div>
 
-	<div class="col-1-1">
-		<form class="edit-account" action="/account/{{userDetails.username}}" method="POST">
-			<input type="hidden" name="_method" value="DELETE">
-			<button class="btn btn-remove remove"><span class="icon-remove"></span>Delete account</button>
-		</form>
-
-		<form class="edit-account" action="/account/{{userDetails.username}}/edit" method="GET">
-			<button class="btn btn-edit"><span class="icon-pencil"></span>Edit account</button>
-		</form>
-	</div>
 
 	<div class="module-alert hidden">
 		<div class="module-alert-inner">

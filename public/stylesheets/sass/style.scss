@@ -156,6 +156,12 @@ $orange: #D24D33;
 		font-size: 1.3em;
 	}
 
+	h4 {
+		font-family: $bodyBold;
+		font-size: 1.2em;
+		margin-bottom: 0;
+	}
+
 	a {
 		text-decoration: none;
 		color: $blue;
@@ -697,10 +703,10 @@ $orange: #D24D33;
 		border-radius: 3px;
 	}
 
-	.main-header {
-		border-bottom: 1px solid #ddd;
-		margin-bottom: 20px;
-	}
+	// .main-header {
+	// 	border-bottom: 1px solid #ddd;
+	// 	margin-bottom: 20px;
+	// }
 
 	.btn-add {
 		display: block;
@@ -756,8 +762,12 @@ $orange: #D24D33;
 		margin-right: 10px;
 	}
 
+	.main-header h1 {
+		float: left;
+	}
+
 	.user-nav {
-		float: none;
+		//float: none;
 		margin-bottom: 10px;
 		position: relative;
 		padding-top: 7px;
@@ -768,8 +778,30 @@ $orange: #D24D33;
 		}
 	}
 
-	.account-details, .stats {
-		background-color: $lightBlue;
+	.userbox-inner {
+		border: 1px solid #ddd;
+
+		a {
+			font-size: .9em;
+		}
+
+		.profile-pic {
+			float: left;
+		}
+	}
+
+	.userbox-item {
+		display: inline-block;
+		margin-left: 20px;
+
+		p {
+			margin: 0;
+		}
+
+	}
+
+	.account-buttons {
+		margin-top: 20px;
 	}
 
 	.stats-item {
@@ -779,8 +811,7 @@ $orange: #D24D33;
 	    color: white;
 	    padding: 5px 0;
 	    position: relative;
-	    display: inline-block;
-	    width: 247px;
+	    width: 220px;
 
 	    span {
 	    	font-family: $bodyBold;
@@ -793,12 +824,12 @@ $orange: #D24D33;
 	    }
 
 	    &:before {
-	    	@include triangle(right, $lightBlue, 16px);
+	    	@include triangle(right, white, 16px);
 	    	left: 0;
 	    }
 
 	    &:after {
-	    	@include triangle(left, $lightBlue, 16px);
+	    	@include triangle(left, white, 16px);
 	    	right: 0;
 	    }
 	}
