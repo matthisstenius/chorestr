@@ -1301,6 +1301,11 @@ input[type="submit"] {
   border-radius: 3px;
 }
 
+.main-header {
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 20px;
+}
+
 .btn-add {
   display: block;
 }
@@ -1333,27 +1338,12 @@ input[type="submit"] {
  *  ￼ Account
  * ----------------------------------------------------------------
 */
-.awards-menu-item:after {
-  content: attr(data-count);
-  background-color: #d24d33;
-  padding: 3px;
-  width: 24px;
-  height: 24px;
-  border: 1px solid #556270;
-  text-align: center;
-  border-radius: 50%;
-  color: white;
-  font-size: .9em;
-  position: absolute;
-  top: 0;
-}
-
 .edit-account {
   float: left;
   margin-right: 10px;
 }
 
-.main-header h1 {
+.user-header h1 {
   float: left;
 }
 
@@ -1372,6 +1362,8 @@ input[type="submit"] {
 }
 .userbox-inner a {
   font-size: .9em;
+  display: block;
+  margin-top: 50px;
 }
 .userbox-inner .profile-pic {
   float: left;
