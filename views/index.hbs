@@ -1,2 +1,111 @@
-{{!< layout}}
-<h1>Welcome to Chorestr</h1>
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <title>{{ title }}</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <link href="http://fnt.webink.com/wfs/webink.css/?project=E64DD2E9-085E-4403-ADBE-1EB47BFEF3D0&fonts=99B90B52-FC86-D532-91E2-93D2FC4AE03D:f=FuturaPTBook-Reg,BE8D3979-1915-4052-1CA9-A6705FF0D750:f=LonghandLPRegular,0D47B8E9-3C6E-CE3D-89C8-57E788336980:f=RooneyWeb-Regular,C65CFDCF-329E-C2D3-A0CE-2DE9D7D6FEF6:f=FuturaPTMedium-Reg" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="/stylesheets/style.css">
+    </head>
+    <body class="bg">
+      <span class="border-strip stripe-1"></span>
+      <span class="border-strip stripe-2"></span>
+      <span class="border-strip stripe-3"></span>
+      <span class="border-strip stripe-4"></span>
+      <span class="border-strip stripe-5"></span>
+    	<header class="header">
+
+        <div class="header-inner grid">
+          {{#if user}}
+            <a href="/{{user}}/chores" class="logo">Chorestr</a>
+          {{else}}
+            <a href="/" class="logo">Chorestr</a>
+          {{/if}}
+          <nav class="nav main-nav">
+            <ul>
+              {{#if user}}
+                <li><a class="username" href="/account/{{user}}">{{user}}</a></li>
+                <li>
+                  <ul class="user-subnav hidden">
+                    <li><a href="/account/{{user}}"><span class="icon-user"></span>Your Profile</a></li>
+                    <li><a href="/account/{{user}}/edit"><span class="icon-cog"></span>Edit Profile</a></li>
+                    <li><a href="/account/{{user}}/badges"><span class="icon-spades"></span>Your Badges</a></li>
+                    <li><a href="/logout"><span class="icon-switch"></span>Log out</a></li>
+                  </ul>
+                </li>
+                <li><a class="btn btn-chores" href="/{{user}}/chores">My chores</a></li>
+                <li><a href="/{{user}}/chores/new" class="btn new-chore"><span class="icon-plus"></span>New Chore</a></li>
+              {{else}}
+                <li><a href="/login" class="btn login">Log in</a></li>
+                <li><a href="/register" class="btn register">Sign up</a></li>
+              {{/if}}
+            </ul>
+          </nav>
+        </div>
+
+    	</header>
+
+    	<div class="wrapper">
+			<div class="intro module ">
+				<h1 class="slogan">Make your boring chores fun.</br> Join Chorestr today!</h1>
+			</div>
+
+			<div class="features module grid">
+				<div class="clearfix">
+					<div class="feature-item col-1-3">
+						<h2 data-icon class="feature-chore">Manage Chores</h2>
+						<p>
+							Add all your chores and prioritize them. Get an instant overlook of what needs to be done.
+						</p>
+					</div>
+
+					<div class="feature-item col-1-3">
+						<h2 data-icon class="feature-reward">Points</h2>
+						<p>
+							Complete your chores before the given deadline and gain points.
+						</p>
+					</div>
+
+					<div class="feature-item col-1-3">
+						<h2 data-icon class="feature-badge">Badges &amp; Ranks</h2>
+						<p>
+							Claim the ranks and collect badges and multipliers to watch your boring chores get done with ease.
+						</p>
+					</div>
+				</div>
+
+				<a class="btn btn-big register" href="/register">Sign up for a free account</a>
+			</div>
+		</div>
+
+		<div class="login-box module-alert hidden">
+          <div class="module-alert-header module clearfix">
+            <h3>Enter your login details</h3>
+            <a class="close" href="#"><span class="icon-close"></span></a>
+          </div>
+
+          <div class="module-alert-main module">
+            <form action="/login" method="POST">
+              <label for="username">Username</label>
+              <input type="text" id="username" name="username">
+
+              <label for="password">Password</label>
+              <input type="password" id="password" name="password">
+              <button class="btn login">Log in</button>
+            </form>
+            <a href="/forgot">Forgot you password?</a>
+          </div>
+        </div>
+        <div id="overlay" class="bg-overlay hidden"></div>
+		<footer class="footer">
+
+        </footer>
+
+       <script src="/js/jquery-min.js"></script>
+       <script src="/js/chorestr.js"></script>
+    </body>
+</html>

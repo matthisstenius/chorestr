@@ -4,6 +4,7 @@
  */
 
 var express = require('express'),
+    connectionEnv = require('./dbConfig'),
     MongoStore = require('connect-mongo')(express),
     routes = require('./routes'),
     hbs = require('express-hbs'),
@@ -40,7 +41,7 @@ app.configure(function(){
     expires: new Date(Date.now() + 5 * 86400 * 1000), // 5 days
 
     store: new MongoStore({
-      db: 'Chorestr'
+      url: connectionEnv.dbConnection
     })
   }));
 

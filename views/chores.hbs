@@ -36,7 +36,6 @@
 				<span class="points">Rank: {{meta.rank}}</span>
 				<span class="points">Points: {{meta.points}}</span>
 				<span class="points">Multiplier: {{meta.multiplier}}x</span>
-
 			</div>
 
 		</section>
@@ -53,7 +52,7 @@
 					<p class="due"></span>Complete this chore before:</br> <span class="date-stamp">{{ date.format }}</span></br> to recieve reward.</p>
 
 					<form class="complete-chore" action="/{{../user}}/chores/completed/{{_id}}" method="POST">
-						<button class="btn task-done"><span class="icon-checkmark"></span>Finished</button>
+						<button class="btn task-done"><span class="icon-checkmark"></span>Mark Finished</button>
 					</form>
 
 

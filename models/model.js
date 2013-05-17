@@ -1,16 +1,13 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'),
+	connectionEnv = require('../dbConfig');
 var env = process.env.VCAP_SERVICE || 'development';
 
 
-if (process.env.VCAP_SERVICE) {
-	var env = JSON.parse(process.env.VCAP_SERVICES);
-    mongo = env['mongodb-1.8'][0]['credentials'];
-    mongoose.connect("mongodb://" + env.username + ":" + env.password + "@" + env.hostname + ":" + env.port + "/" + env.db);
-}
 
-else {
-	mongoose.connect("mongodb://localhost/Chorestr");
-}
+
+
+mongoose.connect(connectionEnv.dbConnection);
+
 
 var ChoresSchema = new mongoose.Schema({
 	name: String,

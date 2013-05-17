@@ -1094,6 +1094,71 @@ input[type="submit"] {
 }
 
 /* ----------------------------------------------------------------
+ *  ￼ Landingpage
+ * ----------------------------------------------------------------
+*/
+.bg {
+  background: url("../img/sunset3.jpg") center center;
+}
+
+.features {
+  background: #F9F9F9;
+  border-radius: 3px;
+  margin-top: 20px;
+}
+.features h2 {
+  text-align: center;
+  margin-top: 10px;
+}
+.features h2:before {
+  border-radius: 50%;
+  padding: 10px;
+  color: white;
+  text-align: center;
+  font-size: .9em;
+  margin-right: 15px;
+}
+.features .feature-chore:before {
+  content: '\e004';
+  background-color: #74b152;
+}
+.features .feature-reward:before {
+  content: '\e005';
+  background-color: #4da9cd;
+}
+.features .feature-badge:before {
+  content: '\e01c';
+  background-color: #d24d33;
+}
+.features p {
+  font-size: 1.1em;
+  text-align: center;
+}
+.features .btn-big {
+  padding: 15px;
+  font-size: 1.3em;
+  margin: 30px auto 0 auto;
+  display: block;
+  width: 270px;
+}
+
+.feature-item {
+  border-left: 1px solid #ddd;
+  padding-left: 10px;
+  height: 144px;
+}
+
+.feature-item:first-child {
+  border-left: none;
+}
+
+.slogan {
+  font-size: 3.5em;
+  color: white;
+  text-align: center;
+}
+
+/* ----------------------------------------------------------------
  *  ￼ Toolbar
  * ----------------------------------------------------------------
 */

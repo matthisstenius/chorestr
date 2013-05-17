@@ -486,6 +486,77 @@ $orange: #D24D33;
 	}
 
 /* ----------------------------------------------------------------
+ *  ￼ Landingpage
+ * ----------------------------------------------------------------
+*/
+	.bg {
+		background: url('../img/sunset3.jpg') center center;
+	}
+
+	.features {
+		background: #F9F9F9;
+		border-radius: 3px;
+		margin-top: 20px;
+
+		h2 {
+			text-align: center;
+			margin-top: 10px;
+
+			&:before {
+				border-radius: 50%;
+				padding: 10px;
+				color: white;
+				text-align: center;
+				font-size: .9em;
+				margin-right: 15px;
+			}
+		}
+
+		.feature-chore:before {
+			content: '\e004';
+			background-color: $green;
+		}
+
+		.feature-reward:before {
+			content: '\e005';
+			background-color: $blue;
+		}
+
+		.feature-badge:before {
+			content: '\e01c';
+			background-color: $orange;
+		}
+
+		p {
+			font-size: 1.1em;
+			text-align: center;
+		}
+
+		.btn-big {
+		    padding: 15px;
+		    font-size: 1.3em;
+		    margin: 30px auto 0 auto;
+		    display: block;
+		    width: 270px;
+		}
+	}
+
+	.feature-item {
+		border-left: 1px solid #ddd;
+		padding-left: 10px;
+		height: 144px;
+	}
+
+	.feature-item:first-child {
+		border-left: none;
+	}
+
+	.slogan {
+		font-size: 3.5em;
+		color: white;
+		text-align: center;
+	}
+/* ----------------------------------------------------------------
  *  ￼ Toolbar
  * ----------------------------------------------------------------
 */
@@ -621,14 +692,6 @@ $orange: #D24D33;
  *  ￼ New chore
  * ----------------------------------------------------------------
 */
-	// .new-chore-overlay {
-	// 	background-color: white;
-	// 	width: 500px;
-	// 	position: absolute;
-	// 	top: 150px;
-	// 	z-index: 2;
-	// }
-
 	.add-chore {
 		background-color: $lightBlue;
 		border-radius: 3px;

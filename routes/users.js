@@ -1,18 +1,24 @@
 var db = require('../models/model'),
-	bcrypt = require('bcrypt-nodejs');
+	bcrypt = require('bcrypt-nodejs'),
+	crypto = require('crypto');
 
 exports.details = function(req, res, next) {
+	var baseUri = 'http://www.gravatar.com/avatar/';
+
 	db.User.findOne({username: req.user.username}, {username: 1, meta: 1, email: 1}, function(err, docs) {
 		if (err) {
 			next();
 		}
+
+		var gravatar = baseUri + crypto.createHash('md5').update(docs.email.toLowerCase().trim()).digest('hex') + '?d=mm';
 
 		res.render('userProfile', {
 			title: "Profile",
 			userDetails: docs,
 			user: docs.username,
 			messages: req.session.messages,
-			awardsCount: docs.meta.awards.length
+			awardsCount: docs.meta.awards.length,
+			profilePic: gravatar
 		});
 
 		req.session.messages = null;
