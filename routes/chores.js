@@ -66,12 +66,11 @@ exports.new = function(req, res, next) {
 	});
 
 	req.session.messages = null;
-};
-
+}
 exports.add = function(req, res, next) {
 	var body = req.body;
 
-	req.assert('title', 'Enter a title').notEmpty().is(/[A-ZÅÄÖa-zåäö0-9]/);
+	req.assert('title', 'Enter a title').notEmpty();
 
 
 	var errors = req.validationErrors(true);
@@ -118,9 +117,11 @@ exports.edit = function(req, res, next) {
 		res.render('edit', {
 			title: chore.name,
 			user: req.user.username,
-			chore: chore
+			chore: chore,
+			messages: req.session.messages
 		});
 
+		req.session.messages = null;
 	});
 
 };
@@ -128,6 +129,17 @@ exports.edit = function(req, res, next) {
 exports.update = function(req, res, next) {
 	var body = req.body,
 		id = req.params.id;
+
+	req.assert('title', 'Enter a title').notEmpty();
+
+
+	var errors = req.validationErrors(true);
+
+	if (errors) {
+		req.session.messages = errors;
+		res.redirect('back');
+		return;
+	}
 
 	var data = riskCalc(body.prio);
 

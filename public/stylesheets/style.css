@@ -866,11 +866,10 @@ a:hover {
 }
 .module-alert .badgeTitle, .badge-module-alert .badgeTitle {
   float: right;
-  margin: 52px 42px 0 0;
+  margin: 28px 0 0 0;
   display: block;
   color: #b72d16;
   width: 271px;
-  text-align: center;
 }
 .module-alert .btn, .badge-module-alert .btn {
   float: right;
@@ -982,7 +981,6 @@ legend {
 
 input[type="radio"] {
   display: inline;
-  margin-right: 20px;
 }
 
 input[type="submit"] {
@@ -1246,8 +1244,13 @@ input[type="submit"] {
 .task {
   background-color: white;
   margin-bottom: 20px;
-  height: 276px;
+  height: 257px;
   box-shadow: 0 0 6px 3px rgba(225, 225, 225, 0.6);
+}
+.task h3 {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .due {
@@ -1296,18 +1299,19 @@ input[type="submit"] {
  *  ￼ New chore
  * ----------------------------------------------------------------
 */
-.add-chore {
-  background-color: #f0f7fa;
+.prio-picker li {
+  margin-right: 10px;
+  float: left;
+  padding: 10px;
   border-radius: 3px;
 }
-
-.main-header {
-  border-bottom: 1px solid #ddd;
-  margin-bottom: 20px;
+.prio-picker label {
+  color: white;
 }
 
 .btn-add {
   display: block;
+  margin-top: 20px;
 }
 
 .instructions {
@@ -1334,6 +1338,13 @@ input[type="submit"] {
   line-height: 2em;
 }
 
+.new-chore-box {
+  width: 552px;
+}
+.new-chore-box form, .new-chore-box .btn-add {
+  margin: 0;
+}
+
 /* ----------------------------------------------------------------
  *  ￼ Account
  * ----------------------------------------------------------------
@@ -1357,9 +1368,6 @@ input[type="submit"] {
   color: white !important;
 }
 
-.userbox-inner {
-  border: 1px solid #ddd;
-}
 .userbox-inner a {
   font-size: .9em;
   display: block;
@@ -1367,6 +1375,7 @@ input[type="submit"] {
 }
 .userbox-inner .profile-pic {
   float: left;
+  border-radius: 3px;
 }
 
 .userbox-item {

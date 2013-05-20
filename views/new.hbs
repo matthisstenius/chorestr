@@ -1,48 +1,49 @@
 {{!< layout}}
 
-<div class="main module grid">
-	<header class="main-header">
-		<h1>Add new chore</h1>
-	</header>
-	<div class="col-1-2">
-		<div class="add-chore">
-			<div class="module">
-				<form action="/{{user}}/chores/new" method="POST">
-					<label for="title">Title</label>
-					<span class="error">{{messages.title.msg}}</span>
-					<input id="title" name="title" type="text">
+<div class="main module single-col">
 
-					<label>Priority</label>
+	<h1>Add new chore</h1>
 
-					<label class="radio-label" for="prio-1">1 (50 p)</label>
-					<input type="radio" id="prio-1" name="prio" value="1">
+	<form action="/{{user}}/chores/new" method="POST">
+		<label for="title">1. Add a title for your chore</label>
+		<span class="error">{{messages.title.msg}}</span>
 
-					<label class="radio-label" for="prio-2">2 (75 p)</label>
-					<input type="radio" id="prio-2" name="prio" value="2">
+		{{#if messages}}
+			<input id="title" name="title" value="{{messages.title.value}}" type="text">
+		{{else}}
+			<input id="title" name="title" value="{{chore.name}}" type="text">
+		{{/if}}
 
-					<label class="radio-label" for="prio-3">3 (100 p)</label>
-					<input type="radio" id="prio-3" checked="checked" name="prio" value="3">
+		<label>2. Choose a priority for you chore.</label>
 
-					<label class="radio-label" for="prio-4">4 (150 p)</label>
-					<input type="radio" id="prio-4" name="prio" value="4">
-
-					<label class="radio-label" for="prio-5">5 (300 p)</label>
-					<input type="radio" id="prio-5" name="prio" value="5">
-
-					<input class="btn btn-add" type="submit" value="Add chore">
-				</form>
-			</div>
-		</div>
-	</div>
-
-	<div class="col-1-2">
-		<ol class="instructions">
-			<li>Add a title for your chore</li>
-			<li>
-				Choose a priority for you chore. A score and duedate will be calculated depending on the priority you pick.
-				The higher the risk the greater the reward.
+		<ul class="prio-picker clearfix">
+			<li class="prio-one">
+				<label class="radio-label" for="prio-1">1 (50 p)</label>
+				<input type="radio" id="prio-1" name="prio" value="1">
 			</li>
-			<li>Complete your chore before the deadline and gain the reward.</li>
-		</ol>
-	</div>
+
+			<li class="prio-two">
+				<label class="radio-label" for="prio-2">2 (75 p)</label>
+				<input type="radio" id="prio-2" name="prio" value="2">
+			</li>
+
+			<li class="prio-three">
+				<label class="radio-label" for="prio-3">3 (100 p)</label>
+				<input type="radio" id="prio-3" checked="checked" name="prio" value="3">
+			</li>
+
+			<li class="prio-four">
+				<label class="radio-label" for="prio-4">4 (150 p)</label>
+				<input type="radio" id="prio-4" name="prio" value="4">
+			</li>
+
+			<li class="prio-five">
+				<label class="radio-label" for="prio-5">5 (300 p)</label>
+				<input type="radio" id="prio-5" name="prio" value="5">
+			</li>
+		</ul>
+
+		<button class="btn btn-add">Add chore</button>
+	</form>
+
 </div>

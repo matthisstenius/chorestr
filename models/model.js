@@ -2,12 +2,7 @@ var mongoose = require('mongoose'),
 	connectionEnv = require('../dbConfig');
 var env = process.env.VCAP_SERVICE || 'development';
 
-
-
-
-
 mongoose.connect(connectionEnv.dbConnection);
-
 
 var ChoresSchema = new mongoose.Schema({
 	name: String,
@@ -20,11 +15,11 @@ var ChoresSchema = new mongoose.Schema({
 });
 
 ChoresSchema.virtual('date.format').get(function() {
-	return this.due.toLocaleDateString() + ' ' + this.due.getHours	() + ':' + this.due.getMinutes();
+	return this.due.toDateString() + ' ' + this.due.getHours	() + ':' + this.due.getMinutes();
 });
 
 ChoresSchema.virtual('complete.date').get(function() {
-	return this.completedDate.toLocaleDateString() + ' ' + this.completedDate.getHours	() + ':' + this.completedDate.getMinutes();
+	return this.completedDate.toDateString() + ' ' + this.completedDate.getHours	() + ':' + this.completedDate.getMinutes();
 });
 
 var ChoresModel = mongoose.model('Chores', ChoresSchema);
@@ -36,7 +31,7 @@ var BadgeSchema = new mongoose.Schema({
 });
 
 BadgeSchema.virtual('badge.date').get(function() {
-	return this.date.toLocaleDateString();
+	return this.date.toDateString();
 });
 
 var BadgeModel = mongoose.model('Badges', BadgeSchema);

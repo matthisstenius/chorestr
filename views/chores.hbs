@@ -20,7 +20,6 @@
 				</nav>
 			</div>
 
-
 			<div class="col-1-3">
 				<nav class="toolbar-menu">
 					<ul>
@@ -31,15 +30,12 @@
 				</nav>
 			</div>
 
-
 			<div class="col-1-3">
 				<span class="points">Rank: {{meta.rank}}</span>
 				<span class="points">Points: {{meta.points}}</span>
 				<span class="points">Multiplier: {{meta.multiplier}}x</span>
 			</div>
-
 		</section>
-
 
 		{{#if chores}}
 			{{#each chores}}
@@ -55,18 +51,15 @@
 						<button class="btn task-done"><span class="icon-checkmark"></span>Mark Finished</button>
 					</form>
 
-
 					<div class="manage">
 						<form action="/{{../user}}/chores/{{_id}}" method="POST">
 							<input type="hidden" name="_method" value="DELETE">
-							<button class="remove"><span class="icon-remove"></span></button>
+							<button class="remove" title="Remove"><span class="icon-remove"></span></button>
 						</form>
 
 						<form action="/{{../user}}/chores/edit/{{_id}}" method="GET">
-							<button class="edit"><span class="icon-pencil"></span></button>
+							<button class="edit" title="Edit"><span class="icon-pencil"></span></button>
 						</form>
-
-
 					</div>
 				</div>
 			</div>
@@ -117,7 +110,6 @@
 					</div>
 				</div>
 			</div>
-
 			<div id="overlay" class="bg-overlay hidden"></div>
 	</div> {{! end .module }}
 </div> {{! end .grid }}

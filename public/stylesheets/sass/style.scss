@@ -248,11 +248,10 @@ $orange: #D24D33;
 
 	    .badgeTitle {
 		    float: right;
-			margin: 52px 42px 0 0;
+			margin: 28px 0 0 0;
 			display: block;
 			color: $red;
 			width: 271px;
-			text-align: center;
 		}
 
 		.btn {
@@ -357,7 +356,6 @@ $orange: #D24D33;
 		margin-bottom: 10px;
 		display: block;
 		color: #337394;
-		//font-family: $headings;
 	}
 
 	.radio-label {
@@ -368,7 +366,6 @@ $orange: #D24D33;
 
 	input[type="radio"] {
 		display: inline;
-		margin-right: 20px;
 	}
 
 	input[type="submit"] {
@@ -645,8 +642,14 @@ $orange: #D24D33;
 	.task {
 		background-color: white;
 		margin-bottom: 20px;
-		height: 276px;
+		height: 257px;
 		box-shadow: 0 0 6px 3px rgba(225, 225, 225, .6);
+
+		h3 {
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			overflow: hidden;
+		}
 	}
 
 	.due {
@@ -698,18 +701,22 @@ $orange: #D24D33;
  *  ￼ New chore
  * ----------------------------------------------------------------
 */
-	.add-chore {
-		background-color: $lightBlue;
-		border-radius: 3px;
-	}
+	.prio-picker {
+		li {
+			margin-right: 10px;
+			float: left;
+			padding: 10px;
+			border-radius: 3px;
+		}
 
-	.main-header {
-		border-bottom: 1px solid #ddd;
-		margin-bottom: 20px;
+		label {
+			color: white;
+		}
 	}
 
 	.btn-add {
 		display: block;
+		margin-top: 20px;
 	}
 
 	.instructions {
@@ -738,6 +745,14 @@ $orange: #D24D33;
     	}
 	}
 
+	.new-chore-box {
+		width: 552px;
+
+		form, .btn-add {
+			margin: 0;
+		}
+	}
+
 /* ----------------------------------------------------------------
  *  ￼ Account
  * ----------------------------------------------------------------
@@ -763,8 +778,6 @@ $orange: #D24D33;
 	}
 
 	.userbox-inner {
-		border: 1px solid #ddd;
-
 		a {
 			font-size: .9em;
 			display: block;
@@ -773,6 +786,7 @@ $orange: #D24D33;
 
 		.profile-pic {
 			float: left;
+			border-radius: 3px;
 		}
 	}
 
