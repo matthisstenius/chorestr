@@ -24,7 +24,7 @@ Instead of a list of all class selectors,
 you can use the generic selector below, but it's slower:
 [class*="icon-"] {
 */
-.icon-checkmark, .icon-coin, .icon-calendar, .icon-remove, .icon-plus, .icon-numbered-list, .icon-star, .icon-signup, .icon-pencil, .icon-close, .icon-cancel-circle, .icon-stopwatch, .icon-notification, .icon-clock, .icon-award-fill, .icon-pushpin, .icon-calendar-2, .icon-fire, .icon-meter, .icon-warning, .icon-forward, .icon-support, .icon-award-stroke, .icon-spin, .icon-switch, .icon-user, .icon-settings, .icon-cog, .icon-spades {
+.icon-checkmark, .icon-coin, .icon-calendar, .icon-remove, .icon-plus, .icon-numbered-list, .icon-star, .icon-signup, .icon-pencil, .icon-close, .icon-cancel-circle, .icon-stopwatch, .icon-notification, .icon-clock, .icon-award-fill, .icon-pushpin, .icon-calendar-2, .icon-fire, .icon-meter, .icon-warning, .icon-forward, .icon-support, .icon-award-stroke, .icon-spin, .icon-switch, .icon-user, .icon-settings, .icon-cog, .icon-spades, .icon-menu, .icon-menu-2 {
   font-family: 'icomoon';
   speak: none;
   font-style: normal;
@@ -149,6 +149,14 @@ you can use the generic selector below, but it's slower:
 
 .icon-spades:before {
   content: "\e01c";
+}
+
+.icon-menu:before {
+  content: "\e01d";
+}
+
+.icon-menu-2:before {
+  content: "\e01e";
 }
 
 /* normalize.css v2.0.1 | MIT License | git.io/normalize */
@@ -1072,6 +1080,9 @@ input[type="submit"] {
   height: 0;
   width: 0;
 }
+.main-nav .show-activity-log {
+  color: #556270;
+}
 
 .user-subnav {
   position: absolute;
@@ -1293,6 +1304,32 @@ input[type="submit"] {
   font-size: 2.5em;
   text-align: center;
   margin-top: 100px;
+}
+
+/* ----------------------------------------------------------------
+ *  ￼ Activity Log
+ * ----------------------------------------------------------------
+*/
+.activity-log {
+  height: 70%;
+  top: 100px;
+  overflow: hidden;
+}
+.activity-log .module-alert-main {
+  overflow: scroll;
+  height: 100%;
+  margin: 0;
+}
+.activity-log li {
+  padding: 5px 10px;
+}
+.activity-log li:nth-child(odd) {
+  background-color: #556270;
+  color: white;
+}
+.activity-log .activity-date {
+  font-size: .8em;
+  float: right;
 }
 
 /* ----------------------------------------------------------------

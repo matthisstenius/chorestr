@@ -19,7 +19,8 @@ exports.details = function(req, res, next) {
 			messages: req.session.messages,
 			awardsCount: docs.meta.awards.length,
 			awards: docs.meta.awards,
-			profilePic: gravatar
+			profilePic: gravatar,
+			activity: docs.meta.activity.reverse()
 		});
 
 		req.session.messages = null;

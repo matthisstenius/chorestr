@@ -14,6 +14,24 @@ module.exports = function(req, res, next) {
 						next(err);
 					}
 				});
+
+				new db.Activity({
+					title: 'Earned rank Amateur',
+					date: new Date()
+				}).save(function(err, activity) {
+					if (err) {
+						next(err);
+					}
+
+					user.meta.activity.push(activity);
+
+					user.save(function(err) {
+						if (err) {
+							next(err);
+						}
+					});
+				});
+
 			break;
 
 			case (user.meta.completedTotal === 50):
@@ -24,6 +42,24 @@ module.exports = function(req, res, next) {
 						next(err);
 					}
 				});
+
+				new db.Activity({
+					title: 'Earned rank Pro',
+					date: new Date()
+				}).save(function(err, activity) {
+					if (err) {
+						next(err);
+					}
+
+					user.meta.activity.push(activity);
+
+					user.save(function(err) {
+						if (err) {
+							next(err);
+						}
+					});
+				});
+
 			break;
 
 			case (user.meta.completedTotal === 100):
@@ -34,6 +70,24 @@ module.exports = function(req, res, next) {
 						next(err);
 					}
 				});
+
+				new db.Activity({
+					title: 'Earned rank King of Chores',
+					date: new Date()
+				}).save(function(err, activity) {
+					if (err) {
+						next(err);
+					}
+
+					user.meta.activity.push(activity);
+
+					user.save(function(err) {
+						if (err) {
+							next(err);
+						}
+					});
+				});
+
 			break;
 		}
 	});

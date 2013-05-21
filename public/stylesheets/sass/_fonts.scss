@@ -34,7 +34,7 @@ Instead of a list of all class selectors,
 you can use the generic selector below, but it's slower:
 [class*="icon-"] {
 */
-.icon-checkmark, .icon-coin, .icon-calendar, .icon-remove, .icon-plus, .icon-numbered-list, .icon-star, .icon-signup, .icon-pencil, .icon-close, .icon-cancel-circle, .icon-stopwatch, .icon-notification, .icon-clock, .icon-award-fill, .icon-pushpin, .icon-calendar-2, .icon-fire, .icon-meter, .icon-warning, .icon-forward, .icon-support, .icon-award-stroke, .icon-spin, .icon-switch, .icon-user, .icon-settings, .icon-cog, .icon-spades {
+.icon-checkmark, .icon-coin, .icon-calendar, .icon-remove, .icon-plus, .icon-numbered-list, .icon-star, .icon-signup, .icon-pencil, .icon-close, .icon-cancel-circle, .icon-stopwatch, .icon-notification, .icon-clock, .icon-award-fill, .icon-pushpin, .icon-calendar-2, .icon-fire, .icon-meter, .icon-warning, .icon-forward, .icon-support, .icon-award-stroke, .icon-spin, .icon-switch, .icon-user, .icon-settings, .icon-cog, .icon-spades, .icon-menu, .icon-menu-2 {
 	font-family: 'icomoon';
 	speak: none;
 	font-style: normal;
@@ -130,4 +130,10 @@ you can use the generic selector below, but it's slower:
 }
 .icon-spades:before {
 	content: "\e01c";
+}
+.icon-menu:before {
+	content: "\e01d";
+}
+.icon-menu-2:before {
+	content: "\e01e";
 }

@@ -42,7 +42,8 @@ exports.showCompleted = function(req, res, next) {
 				chores: chores,
 				meta: userDetails.meta,
 				sortCompletedDate: sortCompletedDate,
-				sortPrio: sortPrio
+				sortPrio: sortPrio,
+				activity: userDetails.meta.activity.reverse()
 			});
 		});
 	});
@@ -65,6 +66,23 @@ exports.completed = function(req, res, next) {
 				if (err) {
 					next(err);
 				}
+
+				new db.Activity({
+					title: 'Completed ' + chore.name,
+					date: new Date()
+				}).save(function(err, activity) {
+					if (err) {
+						next(err);
+					}
+
+					user.meta.activity.push(activity);
+
+					user.save(function(err) {
+						if (err) {
+							next(err);
+						}
+					});
+				});
 
 				switch (chore.prio) {
 					case "1" :
@@ -162,8 +180,6 @@ exports.completed = function(req, res, next) {
 
 		// Failed chores
 		else {
-			console.log("misslyckad");
-
 			db.Chores.findByIdAndUpdate(req.params.id, {
 				status: 'failed',
 				completedDate: new Date()
@@ -171,6 +187,23 @@ exports.completed = function(req, res, next) {
 				if (err) {
 					next(err);
 				}
+
+				new db.Activity({
+					title: 'Failed ' + chore.name,
+					date: new Date()
+				}).save(function(err, activity) {
+					if (err) {
+						next(err);
+					}
+
+					user.meta.activity.push(activity);
+
+					user.save(function(err) {
+						if (err) {
+							next(err);
+						}
+					});
+				});
 
 				db.User.update({_id: userId}, {$inc: {"meta.failedTotal": 1}}, function(err, user) {
 					if (err) {
@@ -219,8 +252,25 @@ exports.completed = function(req, res, next) {
 							if (err) {
 								next(err);
 							}
-							console.log(badge);
+
 							callback(badge);
+						});
+
+						new db.Activity({
+							title: 'Awarded badge ' + badge.name,
+							date: new Date()
+						}).save(function(err, activity) {
+							if (err) {
+								next(err);
+							}
+
+							user.meta.activity.push(activity);
+
+							user.save(function(err) {
+								if (err) {
+									next(err);
+								}
+							});
 						});
 					});
 
@@ -240,6 +290,23 @@ exports.completed = function(req, res, next) {
 
 							callback(badge);
 						});
+
+						new db.Activity({
+							title: 'Awarded badge ' + badge.name,
+							date: new Date()
+						}).save(function(err, activity) {
+							if (err) {
+								next(err);
+							}
+
+							user.meta.activity.push(activity);
+
+							user.save(function(err) {
+								if (err) {
+									next(err);
+								}
+							});
+						});
 					});
 
 					break;
@@ -257,6 +324,23 @@ exports.completed = function(req, res, next) {
 							}
 
 							callback(badge);
+						});
+
+						new db.Activity({
+							title: 'Awarded badge ' + badge.name,
+							date: new Date()
+						}).save(function(err, activity) {
+							if (err) {
+								next(err);
+							}
+
+							user.meta.activity.push(activity);
+
+							user.save(function(err) {
+								if (err) {
+									next(err);
+								}
+							});
 						});
 					});
 
@@ -276,6 +360,23 @@ exports.completed = function(req, res, next) {
 
 							callback(badge);
 						});
+
+						new db.Activity({
+							title: 'Awarded badge ' + badge.name,
+							date: new Date()
+						}).save(function(err, activity) {
+							if (err) {
+								next(err);
+							}
+
+							user.meta.activity.push(activity);
+
+							user.save(function(err) {
+								if (err) {
+									next(err);
+								}
+							});
+						});
 					});
 
 					break;
@@ -293,6 +394,23 @@ exports.completed = function(req, res, next) {
 							}
 
 							callback(badge);
+						});
+
+						new db.Activity({
+							title: 'Awarded badge ' + badge.name,
+							date: new Date()
+						}).save(function(err, activity) {
+							if (err) {
+								next(err);
+							}
+
+							user.meta.activity.push(activity);
+
+							user.save(function(err) {
+								if (err) {
+									next(err);
+								}
+							});
 						});
 					});
 
@@ -313,6 +431,23 @@ exports.completed = function(req, res, next) {
 
 							callback(badge);
 						});
+
+						new db.Activity({
+							title: 'Awarded badge ' + badge.name,
+							date: new Date()
+						}).save(function(err, activity) {
+							if (err) {
+								next(err);
+							}
+
+							user.meta.activity.push(activity);
+
+							user.save(function(err) {
+								if (err) {
+									next(err);
+								}
+							});
+						});
 					});
 
 					break;
@@ -330,6 +465,23 @@ exports.completed = function(req, res, next) {
 							}
 
 							callback(badge);
+						});
+
+						new db.Activity({
+							title: 'Awarded badge ' + badge.name,
+							date: new Date()
+						}).save(function(err, activity) {
+							if (err) {
+								next(err);
+							}
+
+							user.meta.activity.push(activity);
+
+							user.save(function(err) {
+								if (err) {
+									next(err);
+								}
+							});
 						});
 					});
 
@@ -350,6 +502,23 @@ exports.completed = function(req, res, next) {
 
 							callback(badge);
 						});
+
+						new db.Activity({
+							title: 'Awarded badge ' + badge.name,
+							date: new Date()
+						}).save(function(err, activity) {
+							if (err) {
+								next(err);
+							}
+
+							user.meta.activity.push(activity);
+
+							user.save(function(err) {
+								if (err) {
+									next(err);
+								}
+							});
+						});
 					});
 
 					break;
@@ -367,6 +536,23 @@ exports.completed = function(req, res, next) {
 							}
 
 							callback(badge);
+						});
+
+						new db.Activity({
+							title: 'Awarded badge ' + badge.name,
+							date: new Date()
+						}).save(function(err, activity) {
+							if (err) {
+								next(err);
+							}
+
+							user.meta.activity.push(activity);
+
+							user.save(function(err) {
+								if (err) {
+									next(err);
+								}
+							});
 						});
 					});
 
@@ -386,6 +572,23 @@ exports.completed = function(req, res, next) {
 
 							callback(badge);
 						});
+
+						new db.Activity({
+							title: 'Awarded badge ' + badge.name,
+							date: new Date()
+						}).save(function(err, activity) {
+							if (err) {
+								next(err);
+							}
+
+							user.meta.activity.push(activity);
+
+							user.save(function(err) {
+								if (err) {
+									next(err);
+								}
+							});
+						});
 					});
 
 					break;
@@ -403,6 +606,23 @@ exports.completed = function(req, res, next) {
 							}
 
 							callback(badge);
+						});
+
+						new db.Activity({
+							title: 'Awarded badge ' + badge.name,
+							date: new Date()
+						}).save(function(err, activity) {
+							if (err) {
+								next(err);
+							}
+
+							user.meta.activity.push(activity);
+
+							user.save(function(err) {
+								if (err) {
+									next(err);
+								}
+							});
 						});
 					});
 
@@ -422,6 +642,23 @@ exports.completed = function(req, res, next) {
 							}
 
 							callback(badge);
+						});
+
+						new db.Activity({
+							title: 'Awarded badge ' + badge.name,
+							date: new Date()
+						}).save(function(err, activity) {
+							if (err) {
+								next(err);
+							}
+
+							user.meta.activity.push(activity);
+
+							user.save(function(err) {
+								if (err) {
+									next(err);
+								}
+							});
 						});
 					});
 

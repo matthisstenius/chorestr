@@ -47,7 +47,8 @@ exports.all = function(req, res, next) {
 				meta: userDetails.meta,
 				sortId: sortId,
 				sortPrio: sortPrio,
-				alertBadge: req.session.alertBadge
+				alertBadge: req.session.alertBadge,
+				activity: userDetails.meta.activity.reverse()
 			});
 
 			req.session.alertBadge = null;

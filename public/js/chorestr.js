@@ -7,6 +7,7 @@ CHORESTR.init = function() {
 		alertMessageClose = document.querySelector('.close-message'),
 		validateInput = document.querySelectorAll('.validate'),
 		userMenu = document.querySelector('.username'),
+		showActivityLog = document.querySelector('.show-activity-log '),
 		newChoreBtn = document.querySelector('.new-chore'),
 		badgeModuleAlertBox = document.querySelector('.badge-module-alert'),
 		removeChore = document.querySelectorAll('.remove'),
@@ -35,6 +36,13 @@ CHORESTR.init = function() {
 		document.addEventListener('click', function() {
 			$(userSubMenu).addClass('hidden');
 		}, true);
+	}
+
+	if (typeof(showActivityLog) !== 'undefined' && showActivityLog !== null) {
+		showActivityLog.addEventListener('click', function(e) {
+			e.preventDefault();
+			CHORESTR.showActivityLog(this.getAttribute('data-user'));
+		}, false);
 	}
 
 	if (typeof(alertMessageClose) !== 'undefined' && alertMessageClose !== null) {
@@ -235,6 +243,51 @@ CHORESTR.loginBox = function() {
 
 CHORESTR.centerEl = function(el) {
 	return window.innerWidth / 2 - $(el).width() / 2;
+};
+
+CHORESTR.showActivityLog = function(user) {
+	var activityLog = document.querySelector('.activity-log'),
+		closeButton = document.querySelector('.close'),
+		overlay = document.getElementById('overlay');
+
+	var pos = CHORESTR.centerEl(activityLog);
+	activityLog.setAttribute('style', 'left:' + pos + 'px');
+	$(activityLog).toggleClass('hidden');
+	$(overlay).toggleClass('hidden');
+
+	overlay.addEventListener('click', function() {
+		$(overlay).addClass('hidden');
+		$(activityLog).addClass('hidden');
+	}, false);
+
+	closeButton.addEventListener('click', function() {
+		$(overlay).addClass('hidden');
+		$(activityLog).addClass('hidden');
+	}, false);
+	// $.ajax({
+	// 	url: '/account/' + user + '/activity'
+	// }).done(function(data) {
+	// 	var aside = document.createElement('aside'),
+	// 		ul = document.createElement('ul');
+
+	// 	aside.setAttribute('class', 'activity-log');
+
+	// 	aside.appendChild(ul);
+
+	// 	for (var i = 0; i < data.length; i += 1) {
+	// 		var li = document.createElement('li'),
+	// 			span = document.createElement('span');
+
+	// 		span.setAttribute('class', 'activity-date');
+	// 		li.textContent = data[i].title;
+	// 		span.textContent = data[i].date;
+
+	// 		li.appendChild(span);
+	// 		ul.appendChild(li);
+	// 	}
+
+	// 	activityWrapper.appendChild(aside);
+	// });
 };
 
 (function() {

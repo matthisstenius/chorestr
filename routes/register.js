@@ -94,7 +94,11 @@ exports.add = function(req, res, next) {
 								next(report);
 							}
 
-							req.session.user = docs;
+							req.session.user = {
+								username: docs.username,
+								_id: docs._id,
+								email: docs.email
+							};
 							res.redirect('/' + docs.username + '/chores');
 
 						});
