@@ -14,6 +14,7 @@ var express = require('express'),
     failed = require('./routes/failed'),
     users = require('./routes/users'),
     badges = require('./routes/badges'),
+    activity = require('./routes/activity'),
     login = require('./routes/login'),
     http = require('http'),
     db = require('./models/model'),
@@ -47,7 +48,6 @@ app.configure(function(){
 
   app.use(app.router);
   app.use(express.static(path.join(__dirname, 'public')));
-
 
   // 404
   app.use(function(req, res) {
@@ -145,6 +145,7 @@ app.get('/logout', login.logout);
 app.get('/account/:user', users.details);
 app.get('/account/:user/edit', users.edit);
 app.get('/account/:user/badges', badges.showBadges);
+app.get('/account/:user/activity', activity.showActivity);
 app.put('/account/:user/edit', users.save);
 app.delete('/account/:user', users.remove);
 

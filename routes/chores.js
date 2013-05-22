@@ -48,7 +48,6 @@ exports.all = function(req, res, next) {
 				sortId: sortId,
 				sortPrio: sortPrio,
 				alertBadge: req.session.alertBadge,
-				activity: userDetails.meta.activity.reverse()
 			});
 
 			req.session.alertBadge = null;

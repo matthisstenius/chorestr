@@ -462,6 +462,8 @@ $orange: #D24D33;
 		}
 
 		.show-activity-log {
+			display: inline-block;
+			margin-top: 5px;
 			color: $grey;
 		}
 	}
@@ -719,12 +721,11 @@ $orange: #D24D33;
 		}
 
 		li {
-			//margin-bottom: 10px;
 			padding: 5px 10px;
 		}
 
 		li:nth-child(odd) {
-			background-color: $grey;
+			background-color: $blue;
 			color: white;
 		}
 

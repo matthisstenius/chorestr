@@ -43,8 +43,7 @@ exports.showFailed = function(req, res, next) {
 				chores: chores,
 				meta: userDetails.meta,
 				sortFailedDate: sortFailedDate,
-				sortPrio: sortPrio,
-				activity: userDetails.meta.activity.reverse()
+				sortPrio: sortPrio
 			});
 		});
 	});

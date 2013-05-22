@@ -1081,6 +1081,8 @@ input[type="submit"] {
   width: 0;
 }
 .main-nav .show-activity-log {
+  display: inline-block;
+  margin-top: 5px;
   color: #556270;
 }
 
@@ -1324,7 +1326,7 @@ input[type="submit"] {
   padding: 5px 10px;
 }
 .activity-log li:nth-child(odd) {
-  background-color: #556270;
+  background-color: #4da9cd;
   color: white;
 }
 .activity-log .activity-date {

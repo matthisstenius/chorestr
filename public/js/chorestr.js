@@ -1,5 +1,7 @@
 var CHORESTR = CHORESTR || {};
 
+CHORESTR.enabled = true;
+
 CHORESTR.init = function() {
 
 	var newChoreInput = document.querySelector('#title'),
@@ -41,7 +43,10 @@ CHORESTR.init = function() {
 	if (typeof(showActivityLog) !== 'undefined' && showActivityLog !== null) {
 		showActivityLog.addEventListener('click', function(e) {
 			e.preventDefault();
-			CHORESTR.showActivityLog(this.getAttribute('data-user'));
+			if (CHORESTR.enabled) {
+				CHORESTR.showActivityLog(this.getAttribute('data-user'));
+			}
+
 		}, false);
 	}
 
@@ -246,48 +251,58 @@ CHORESTR.centerEl = function(el) {
 };
 
 CHORESTR.showActivityLog = function(user) {
-	var activityLog = document.querySelector('.activity-log'),
-		closeButton = document.querySelector('.close'),
+	var activityWrapper = document.querySelector('.activty-log-wrapper'),
 		overlay = document.getElementById('overlay');
 
-	var pos = CHORESTR.centerEl(activityLog);
-	activityLog.setAttribute('style', 'left:' + pos + 'px');
-	$(activityLog).toggleClass('hidden');
-	$(overlay).toggleClass('hidden');
+	// Disable menubutton click while open.
+	CHORESTR.enabled = false;
 
-	overlay.addEventListener('click', function() {
-		$(overlay).addClass('hidden');
-		$(activityLog).addClass('hidden');
-	}, false);
+	$.ajax({
+		url: '/account/' + user + '/activity'
+	}).done(function(data) {
+		var $activityLog = $('<div class="activity-log module-alert"/>'),
+			$header = $('<div class="module-alert-header module clearfix"><h3>Recent Activity</h3><a class="close close-activity" href="#"><span class="icon-close"></span></a></div>'),
+			$main = $('<div class="module-alert-main">'),
+			ul = document.createElement('ul');
 
-	closeButton.addEventListener('click', function() {
-		$(overlay).addClass('hidden');
-		$(activityLog).addClass('hidden');
-	}, false);
-	// $.ajax({
-	// 	url: '/account/' + user + '/activity'
-	// }).done(function(data) {
-	// 	var aside = document.createElement('aside'),
-	// 		ul = document.createElement('ul');
+		for (var i = 0; i < data.length; i += 1) {
+			var li = document.createElement('li'),
+				span = document.createElement('span');
 
-	// 	aside.setAttribute('class', 'activity-log');
+			span.setAttribute('class', 'activity-date');
+			li.textContent = data[i].title;
+			var dateFormat = new Date(data[i].date);
+			span.textContent = dateFormat.toDateString() + ' ' + dateFormat.getHours() + ':' + dateFormat.getMinutes();
 
-	// 	aside.appendChild(ul);
+			li.appendChild(span);
+			ul.appendChild(li);
+		}
 
-	// 	for (var i = 0; i < data.length; i += 1) {
-	// 		var li = document.createElement('li'),
-	// 			span = document.createElement('span');
+		$main.append(ul);
+		$(activityWrapper).append($activityLog);
+		$activityLog.append($header, $main);
 
-	// 		span.setAttribute('class', 'activity-date');
-	// 		li.textContent = data[i].title;
-	// 		span.textContent = data[i].date;
+		var pos = CHORESTR.centerEl($activityLog);
+		$activityLog.attr('style', 'left:' + pos + 'px');
 
-	// 		li.appendChild(span);
-	// 		ul.appendChild(li);
-	// 	}
+		$(overlay).removeClass('hidden');
 
-	// 	activityWrapper.appendChild(aside);
-	// });
+		overlay.addEventListener('click', function() {
+			$(activityWrapper).empty($activityLog);
+			$(overlay).addClass('hidden');
+			CHORESTR.enabled = true;
+		}, false);
+
+		var closeButton = document.querySelector('.close-activity');
+
+		closeButton.addEventListener('click', function() {
+			$(activityWrapper).empty($activityLog);
+			$(overlay).addClass('hidden');
+			CHORESTR.enabled = true;
+		}, false);
+
+	});
+
 };
 
 (function() {

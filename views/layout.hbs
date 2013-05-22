@@ -39,9 +39,8 @@
                 </li>
                 <li><a class="btn btn-chores" href="/{{user}}/chores">My chores</a></li>
                 <li><a href="/{{user}}/chores/new" class="btn new-chore"><span class="icon-plus"></span>New Chore</a></li>
-                {{#if activity}}
-                  <li><a class="show-activity-log" data-user="{{user}}" href="#"><span class="icon-menu"></span></a></li>
-                {{/if}}
+                <li><a class="show-activity-log" data-user="{{user}}" data-notification="{{activity}}" title="Show activity log" href="#"><span class="icon-menu"></span></a></li>
+
               {{else}}
                 <li><a href="/login" class="btn login">Log in</a></li>
                 <li><a href="/register" class="btn register">Sign up</a></li>
@@ -122,20 +121,10 @@
         </div>
         <div id="overlay" class="bg-overlay hidden"></div>
 
-        <div class="activity-log module-alert hidden">
-          <div class="module-alert-header module clearfix">
-            <h3>Recent activity</h3>
-            <a class="close" href="#"><span class="icon-close"></span></a>
-          </div>
+        <div class="activty-log-wrapper">
 
-          <div class="module-alert-main">
-             <ul>
-              {{#each activity}}
-                <li>{{title}} <span class="activity-date">{{activity.date}}</span></li>
-              {{/each}}
-            </ul>
-          </div>
         </div>
+
 
         <footer class="footer">
 

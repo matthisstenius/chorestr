@@ -41,10 +41,6 @@ var ActivitySchema = mongoose.Schema({
 	date: {type: Date, default: new Date()}
 });
 
-ActivitySchema.virtual('activity.date').get(function() {
-	return this.date.toDateString() + ' ' + this.date.getHours() + ':' + this.date.getMinutes();
-});
-
 var ActivtyModel = mongoose.model('Activities', ActivitySchema);
 
 var UserSchema = new mongoose.Schema({

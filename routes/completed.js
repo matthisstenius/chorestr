@@ -42,8 +42,7 @@ exports.showCompleted = function(req, res, next) {
 				chores: chores,
 				meta: userDetails.meta,
 				sortCompletedDate: sortCompletedDate,
-				sortPrio: sortPrio,
-				activity: userDetails.meta.activity.reverse()
+				sortPrio: sortPrio
 			});
 		});
 	});
@@ -76,11 +75,11 @@ exports.completed = function(req, res, next) {
 					}
 
 					user.meta.activity.push(activity);
-
 					user.save(function(err) {
 						if (err) {
 							next(err);
 						}
+
 					});
 				});
 
