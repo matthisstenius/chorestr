@@ -295,7 +295,8 @@ CHORESTR.showActivityLog = function(user) {
 
 		var closeButton = document.querySelector('.close-activity');
 
-		closeButton.addEventListener('click', function() {
+		closeButton.addEventListener('click', function(e) {
+			e.preventDefault();
 			$(activityWrapper).empty($activityLog);
 			$(overlay).addClass('hidden');
 			CHORESTR.enabled = true;

@@ -1,5 +1,6 @@
 var db = require('../models/model'),
-	rank = require('../routes/rank');
+	rank = require('../routes/rank'),
+	badges = require('../routes/checkBadges');
 
 exports.showCompleted = function(req, res, next) {
 	// Take querystring and put it into an object
@@ -91,7 +92,7 @@ exports.completed = function(req, res, next) {
 								next(err);
 							}
 
-							checkAwards(function(badge) {
+							badges.check(req, res, next, function(badge) {
 								req.session.alertBadge = badge;
 								res.redirect('/' + req.user.username + '/chores');
 							});
@@ -108,12 +109,14 @@ exports.completed = function(req, res, next) {
 								next(err);
 							}
 
-							checkAwards(function(badge) {
+							badges.check(req, res, next, function(badge) {
 								req.session.alertBadge = badge;
+								console.log(badge);
 								res.redirect('/' + req.user.username + '/chores');
 							});
 
 							rank(req, res, next);
+
 						});
 
 
@@ -126,12 +129,14 @@ exports.completed = function(req, res, next) {
 								next(err);
 							}
 
-							checkAwards(function(badge) {
+							badges.check(req, res, next, function(badge) {
 								req.session.alertBadge = badge;
 								res.redirect('/' + req.user.username + '/chores');
 							});
 
+
 							rank(req, res, next);
+
 						});
 
 						break;
@@ -143,7 +148,7 @@ exports.completed = function(req, res, next) {
 								next(err);
 							}
 
-							checkAwards(function(badge) {
+							badges.check(req, res, next, function(badge) {
 								req.session.alertBadge = badge;
 								res.redirect('/' + req.user.username + '/chores');
 							});
@@ -160,14 +165,13 @@ exports.completed = function(req, res, next) {
 								next(err);
 							}
 
-							checkAwards(function(badge) {
+							badges.check(req, res, next, function(badge) {
 								req.session.alertBadge = badge;
 								res.redirect('/' + req.user.username + '/chores');
 							});
 
 							rank(req, res, next);
 						});
-
 
 						break;
 				}
@@ -217,454 +221,4 @@ exports.completed = function(req, res, next) {
 
 	});
 
-	// Check if goal for earning badge is true
-	function checkAwards(callback) {
-		db.User.findById(userId, function(err, user) {
-			if (err) {
-				next(err);
-			}
-
-			var awardExists = function(id) {
-				// Om samma badge redan finns avbryt
-				for (var i = 0; i < user.meta.awards.length; i += 1) {
-					if (user.meta.awards[i]._id.toString() === id) {
-
-						return false;
-					}
-
-				}
-
-				return true;
-			};
-
-
-			switch (true) {
-				// Check amount of completed chores
-				case (user.meta.completedTotal === 1):
-					db.Badges.findByIdAndUpdate('5188e715f1f1ff48cce7b215', {date: new Date()}, function(err, badge){
-						if (err) {
-							next(err);
-						}
-
-						user.meta.awards.push(badge);
-						user.save(function(err) {
-							if (err) {
-								next(err);
-							}
-
-							callback(badge);
-						});
-
-						new db.Activity({
-							title: 'Awarded badge ' + badge.name,
-							date: new Date()
-						}).save(function(err, activity) {
-							if (err) {
-								next(err);
-							}
-
-							user.meta.activity.push(activity);
-
-							user.save(function(err) {
-								if (err) {
-									next(err);
-								}
-							});
-						});
-					});
-
-					break;
-
-				case (user.meta.completedTotal === 10):
-					db.Badges.findByIdAndUpdate('5188dbb4f1f1ff48cce7b214', {date: new Date()}, function(err, badge){
-						if (err) {
-							next(err);
-						}
-
-						user.meta.awards.push(badge);
-						user.save(function(err) {
-							if (err) {
-								next(err);
-							}
-
-							callback(badge);
-						});
-
-						new db.Activity({
-							title: 'Awarded badge ' + badge.name,
-							date: new Date()
-						}).save(function(err, activity) {
-							if (err) {
-								next(err);
-							}
-
-							user.meta.activity.push(activity);
-
-							user.save(function(err) {
-								if (err) {
-									next(err);
-								}
-							});
-						});
-					});
-
-					break;
-
-				case (user.meta.completedTotal === 50):
-					db.Badges.findByIdAndUpdate('5188e73bf1f1ff48cce7b217', {date: new Date()}, function(err, badge){
-						if (err) {
-							next(err);
-						}
-
-						user.meta.awards.push(badge);
-						user.save(function(err) {
-							if (err) {
-								next(err);
-							}
-
-							callback(badge);
-						});
-
-						new db.Activity({
-							title: 'Awarded badge ' + badge.name,
-							date: new Date()
-						}).save(function(err, activity) {
-							if (err) {
-								next(err);
-							}
-
-							user.meta.activity.push(activity);
-
-							user.save(function(err) {
-								if (err) {
-									next(err);
-								}
-							});
-						});
-					});
-
-					break;
-
-				case (user.meta.completedTotal === 100):
-					db.Badges.findByIdAndUpdate('518be147f1f1ff48cce7b21c', {date: new Date()}, function(err, badge){
-						if (err) {
-							next(err);
-						}
-
-						user.meta.awards.push(badge);
-						user.save(function(err) {
-							if (err) {
-								next(err);
-							}
-
-							callback(badge);
-						});
-
-						new db.Activity({
-							title: 'Awarded badge ' + badge.name,
-							date: new Date()
-						}).save(function(err, activity) {
-							if (err) {
-								next(err);
-							}
-
-							user.meta.activity.push(activity);
-
-							user.save(function(err) {
-								if (err) {
-									next(err);
-								}
-							});
-						});
-					});
-
-					break;
-
-				case (user.meta.completedTotal === 500):
-					db.Badges.findByIdAndUpdate('5188e745f1f1ff48cce7b218', {date: new Date()}, function(err, badge){
-						if (err) {
-							next(err);
-						}
-
-						user.meta.awards.push(badge);
-						user.save(function(err) {
-							if (err) {
-								next(err);
-							}
-
-							callback(badge);
-						});
-
-						new db.Activity({
-							title: 'Awarded badge ' + badge.name,
-							date: new Date()
-						}).save(function(err, activity) {
-							if (err) {
-								next(err);
-							}
-
-							user.meta.activity.push(activity);
-
-							user.save(function(err) {
-								if (err) {
-									next(err);
-								}
-							});
-						});
-					});
-
-					break;
-
-				// Check score
-				case (user.meta.points >= 1000 && user.meta.points <= 1500 && awardExists('518cc23ff1f1ff48cce7b21f')):
-					db.Badges.findByIdAndUpdate('518cc23ff1f1ff48cce7b21f', {date: new Date()}, function(err, badge){
-						if (err) {
-							next(err);
-						}
-
-						user.meta.awards.push(badge);
-						user.save(function(err) {
-							if (err) {
-								next(err);
-							}
-
-							callback(badge);
-						});
-
-						new db.Activity({
-							title: 'Awarded badge ' + badge.name,
-							date: new Date()
-						}).save(function(err, activity) {
-							if (err) {
-								next(err);
-							}
-
-							user.meta.activity.push(activity);
-
-							user.save(function(err) {
-								if (err) {
-									next(err);
-								}
-							});
-						});
-					});
-
-					break;
-
-				case (user.meta.points >= 7000 && user.meta.points <= 7500 && awardExists('518cc253f1f1ff48cce7b220')):
-					db.Badges.findByIdAndUpdate('518cc253f1f1ff48cce7b220', {date: new Date()}, function(err, badge){
-						if (err) {
-							next(err);
-						}
-
-						user.meta.awards.push(badge);
-						user.save(function(err) {
-							if (err) {
-								next(err);
-							}
-
-							callback(badge);
-						});
-
-						new db.Activity({
-							title: 'Awarded badge ' + badge.name,
-							date: new Date()
-						}).save(function(err, activity) {
-							if (err) {
-								next(err);
-							}
-
-							user.meta.activity.push(activity);
-
-							user.save(function(err) {
-								if (err) {
-									next(err);
-								}
-							});
-						});
-					});
-
-					break;
-
-				// Check completed chores by prio
-				case (user.meta.completedPrio.One === 15 && awardExists('518ba595f1f1ff48cce7b21b')):
-					db.Badges.findByIdAndUpdate('518ba595f1f1ff48cce7b21b', {date: new Date()}, function(err, badge){
-						if (err) {
-							next(err);
-						}
-
-						user.meta.awards.push(badge);
-						user.save(function(err) {
-							if (err) {
-								next(err);
-							}
-
-							callback(badge);
-						});
-
-						new db.Activity({
-							title: 'Awarded badge ' + badge.name,
-							date: new Date()
-						}).save(function(err, activity) {
-							if (err) {
-								next(err);
-							}
-
-							user.meta.activity.push(activity);
-
-							user.save(function(err) {
-								if (err) {
-									next(err);
-								}
-							});
-						});
-					});
-
-					break;
-
-				case (user.meta.completedPrio.Two === 15 && awardExists('518bf23ff1f1ff48cce7b21d')):
-					db.Badges.findByIdAndUpdate('518bf23ff1f1ff48cce7b21d', {date: new Date()}, function(err, badge){
-						if (err) {
-							next(err);
-						}
-
-						user.meta.awards.push(badge);
-						user.save(function(err) {
-							if (err) {
-								next(err);
-							}
-
-							callback(badge);
-						});
-
-						new db.Activity({
-							title: 'Awarded badge ' + badge.name,
-							date: new Date()
-						}).save(function(err, activity) {
-							if (err) {
-								next(err);
-							}
-
-							user.meta.activity.push(activity);
-
-							user.save(function(err) {
-								if (err) {
-									next(err);
-								}
-							});
-						});
-					});
-
-					break;
-
-				case (user.meta.completedPrio.Three === 15 && awardExists('518ba58cf1f1ff48cce7b21a')):
-					db.Badges.findByIdAndUpdate('518ba58cf1f1ff48cce7b21a', {date: new Date()}, function(err, badge){
-						if (err) {
-							next(err);
-						}
-
-						user.meta.awards.push(badge);
-						user.save(function(err) {
-							if (err) {
-								next(err);
-							}
-
-							callback(badge);
-						});
-
-						new db.Activity({
-							title: 'Awarded badge ' + badge.name,
-							date: new Date()
-						}).save(function(err, activity) {
-							if (err) {
-								next(err);
-							}
-
-							user.meta.activity.push(activity);
-
-							user.save(function(err) {
-								if (err) {
-									next(err);
-								}
-							});
-						});
-					});
-
-					break;
-
-				case (user.meta.completedPrio.For === 15 && awardExists('518bf24af1f1ff48cce7b21e')):
-					db.Badges.findByIdAndUpdate('518bf24af1f1ff48cce7b21e', {date: new Date()}, function(err, badge){
-						if (err) {
-							next(err);
-						}
-
-						user.meta.awards.push(badge);
-						user.save(function(err) {
-							if (err) {
-								next(err);
-							}
-
-							callback(badge);
-						});
-
-						new db.Activity({
-							title: 'Awarded badge ' + badge.name,
-							date: new Date()
-						}).save(function(err, activity) {
-							if (err) {
-								next(err);
-							}
-
-							user.meta.activity.push(activity);
-
-							user.save(function(err) {
-								if (err) {
-									next(err);
-								}
-							});
-						});
-					});
-
-					break;
-
-
-				case (user.meta.completedPrio.Five === 15 && awardExists('518ba57ef1f1ff48cce7b219')):
-					db.Badges.findByIdAndUpdate('518ba57ef1f1ff48cce7b219', {date: new Date()}, function(err, badge){
-						if (err) {
-							next(err);
-						}
-
-						user.meta.awards.push(badge);
-						user.save(function(err) {
-							if (err) {
-								next(err);
-							}
-
-							callback(badge);
-						});
-
-						new db.Activity({
-							title: 'Awarded badge ' + badge.name,
-							date: new Date()
-						}).save(function(err, activity) {
-							if (err) {
-								next(err);
-							}
-
-							user.meta.activity.push(activity);
-
-							user.save(function(err) {
-								if (err) {
-									next(err);
-								}
-							});
-						});
-					});
-
-					break;
-				default:
-					callback();
-			}
-		});
-	};
 };

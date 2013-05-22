@@ -78,8 +78,10 @@
 					</div>
 
 					<div class="module-alert-main module">
-						<h3 class="badgeTitle">{{alertBadge.name}}</h3>
-						<img src="{{alertBadge.src}}" alt="{{alertBadge.name}}">
+						{{#each alertBadge}}
+							<h3 class="badgeTitle">{{name}}</h3>
+							<img src="{{src}}" alt="{{name}}">
+						{{/each}}
 					</div>
 
 					<div class="module-alert-footer module">
