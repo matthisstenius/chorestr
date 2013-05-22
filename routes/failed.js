@@ -31,7 +31,7 @@ exports.showFailed = function(req, res, next) {
 		sortFailedDate = false;
 	}
 
-	db.Chores.find({status: 'failed', user: userID}, function(err, chores) {
+	db.Chores.find({status: 'failed', user: userID}.sort(sort).exec(function(err, chores) {
 		if (err) {
 			next(err);
 		}
