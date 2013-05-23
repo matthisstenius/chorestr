@@ -741,7 +741,6 @@ img {
   top: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.5);
-  filter: url(#blur);
   z-index: 1;
 }
 
@@ -1536,6 +1535,20 @@ input[type="submit"] {
   height: 0;
   width: 0;
   right: 0;
+}
+
+/* ----------------------------------------------------------------
+ *  ￼ 404, 500
+ * ----------------------------------------------------------------
+*/
+.page-error h1 {
+  font-size: 16em;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #556270;
+}
+.page-error h2 {
+  text-align: center;
 }
 
 /* ----------------------------------------------------------------

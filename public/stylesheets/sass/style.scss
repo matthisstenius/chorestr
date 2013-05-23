@@ -108,7 +108,6 @@ $orange: #D24D33;
     	top: 0;
     	left: 0;
     	background-color: rgba(0,0,0,.5);
-    	filter: url(#blur);
     	z-index: 1;
 	}
 
@@ -940,6 +939,24 @@ $orange: #D24D33;
 	    	@include triangle(left, white, 14px);
 	    	right: 0;
 	    }
+	}
+
+/* ----------------------------------------------------------------
+ *  ￼ 404, 500
+ * ----------------------------------------------------------------
+*/
+	.page-error {
+		h1 {
+			font-size: 16em;
+			text-align: center;
+			margin-bottom: 30px;
+			color: $grey;
+		}
+
+		h2 {
+			text-align: center;
+		}
+
 	}
 /* ----------------------------------------------------------------
  *  ￼ Footer

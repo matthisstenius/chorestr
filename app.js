@@ -82,8 +82,7 @@ app.configure(function(){
     res.status = 500;
 
     res.render('500', {
-      title: 'Error: 500',
-      message: err.message,
+      title: '500',
       user: username
     });
   });
