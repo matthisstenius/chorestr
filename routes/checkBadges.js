@@ -14,10 +14,8 @@ module.exports.check = function(req, res, next, callback) {
 				// Om samma badge redan finns avbryt
 				for (var i = 0; i < user.meta.awards.length; i += 1) {
 					if (user.meta.awards[i].name === id) {
-
 						return false;
 					}
-
 				}
 
 				return true;
@@ -36,22 +34,12 @@ module.exports.check = function(req, res, next, callback) {
 				user.meta.awards.push(badge);
 				badgeCollection.push(badge);
 
-				new db.Activity({
+				var activity = {
 					title: 'Awarded badge Completed first chore',
 					date: new Date()
-				}).save(function(err, activity) {
-					if (err) {
-						next(err);
-					}
+				};
 
-					user.meta.activity.push(activity);
-
-					user.save(function(err) {
-						if (err) {
-							next(err);
-						}
-					});
-				});
+				user.meta.activity.push(activity);
 			}
 
 			if (user.meta.completedTotal === 10) {
@@ -66,22 +54,12 @@ module.exports.check = function(req, res, next, callback) {
 				user.meta.awards.push(badge);
 				badgeCollection.push(badge);
 
-				new db.Activity({
+				var activity = {
 					title: 'Awarded badge Completed 10 chores',
 					date: new Date()
-				}).save(function(err, activity) {
-					if (err) {
-						next(err);
-					}
+				};
 
-					user.meta.activity.push(activity);
-
-					user.save(function(err) {
-						if (err) {
-							next(err);
-						}
-					});
-				});
+				user.meta.activity.push(activity);
 
 			}
 
@@ -97,24 +75,12 @@ module.exports.check = function(req, res, next, callback) {
 				user.meta.awards.push(badge);
 				badgeCollection.push(badge);
 
-
-				new db.Activity({
+				var activity = {
 					title: 'Awarded badge Completed 50 chores',
 					date: new Date()
-				}).save(function(err, activity) {
-					if (err) {
-						next(err);
-					}
+				};
 
-					user.meta.activity.push(activity);
-
-					user.save(function(err) {
-						if (err) {
-							next(err);
-						}
-					});
-				});
-
+				user.meta.activity.push(activity);
 
 			}
 
@@ -127,22 +93,12 @@ module.exports.check = function(req, res, next, callback) {
 					date: now.toDateString()
 				});
 
-				new db.Activity({
+				var activity = {
 					title: 'Awarded badge Completed 100 chores',
 					date: new Date()
-				}).save(function(err, activity) {
-					if (err) {
-						next(err);
-					}
+				};
 
-					user.meta.activity.push(activity);
-
-					user.save(function(err) {
-						if (err) {
-							next(err);
-						}
-					});
-				});
+				user.meta.activity.push(activity);
 			}
 
 			if (user.meta.completedTotal === 500) {
@@ -157,22 +113,12 @@ module.exports.check = function(req, res, next, callback) {
 				user.meta.awards.push(badge);
 				badgeCollection.push(badge);
 
-				new db.Activity({
+				var activity = {
 					title: 'Awarded badge Completed 500 chores',
 					date: new Date()
-				}).save(function(err, activity) {
-					if (err) {
-						next(err);
-					}
+				};
 
-					user.meta.activity.push(activity);
-
-					user.save(function(err) {
-						if (err) {
-							next(err);
-						}
-					});
-				});
+				user.meta.activity.push(activity);
 			}
 
 			// Check score
@@ -188,22 +134,12 @@ module.exports.check = function(req, res, next, callback) {
 				user.meta.awards.push(badge);
 				badgeCollection.push(badge);
 
-				new db.Activity({
+				var activity = {
 					title: 'Awarded badge Earned 1000 points',
 					date: new Date()
-				}).save(function(err, activity) {
-					if (err) {
-						next(err);
-					}
+				};
 
-					user.meta.activity.push(activity);
-
-					user.save(function(err) {
-						if (err) {
-							next(err);
-						}
-					});
-				});
+				user.meta.activity.push(activity);
 			}
 
 			if (user.meta.points >= 7000 && user.meta.points <= 7500 && awardExists('Earned 7000 points')) {
@@ -218,22 +154,12 @@ module.exports.check = function(req, res, next, callback) {
 				user.meta.awards.push(badge);
 				badgeCollection.push(badge);
 
-				new db.Activity({
+				var activity = {
 					title: 'Awarded badge Earned 7000 points',
 					date: new Date()
-				}).save(function(err, activity) {
-					if (err) {
-						next(err);
-					}
+				};
 
-					user.meta.activity.push(activity);
-
-					user.save(function(err) {
-						if (err) {
-							next(err);
-						}
-					});
-				});
+				user.meta.activity.push(activity);
 			}
 
 			// Check completed chores by prio
@@ -249,22 +175,12 @@ module.exports.check = function(req, res, next, callback) {
 				user.meta.awards.push(badge);
 				badgeCollection.push(badge);
 
-				new db.Activity({
+				var activity = {
 					title: 'Awarded badge Completed 15 prio-one chores',
 					date: new Date()
-				}).save(function(err, activity) {
-					if (err) {
-						next(err);
-					}
+				};
 
-					user.meta.activity.push(activity);
-
-					user.save(function(err) {
-						if (err) {
-							next(err);
-						}
-					});
-				});
+				user.meta.activity.push(activity);
 			}
 
 			if (user.meta.completedPrio.Two === 15 && awardExists('Completed 15 prio-two chores')) {
@@ -279,22 +195,12 @@ module.exports.check = function(req, res, next, callback) {
 				user.meta.awards.push();
 				badgeCollection.push(badge);
 
-				new db.Activity({
+				var activity = {
 					title: 'Awarded badge Completed 15 prio-two chores',
 					date: new Date()
-				}).save(function(err, activity) {
-					if (err) {
-						next(err);
-					}
+				};
 
-					user.meta.activity.push(activity);
-
-					user.save(function(err) {
-						if (err) {
-							next(err);
-						}
-					});
-				});
+				user.meta.activity.push(activity);
 			}
 
 			if (user.meta.completedPrio.Three === 15 && awardExists('Completed 15 prio-three chores')) {
@@ -308,25 +214,14 @@ module.exports.check = function(req, res, next, callback) {
 				};
 
 				user.meta.awards.push(badge);
-
 				badgeCollection.push(badge);
 
-				new db.Activity({
+				var activity = {
 					title: 'Awarded badge Completed 15 prio-three chores',
 					date: new Date()
-				}).save(function(err, activity) {
-					if (err) {
-						next(err);
-					}
+				};
 
-					user.meta.activity.push(activity);
-
-					user.save(function(err) {
-						if (err) {
-							next(err);
-						}
-					});
-				});
+				user.meta.activity.push(activity);
 			}
 
 			if (user.meta.completedPrio.For === 15 && awardExists('Completed 15 prio-one four')) {
@@ -341,22 +236,12 @@ module.exports.check = function(req, res, next, callback) {
 				user.meta.awards.push(badge);
 				badgeCollection.push(badge);
 
-				new db.Activity({
-					title: 'Awarded badge Completed 15 prio-one four',
+				var activity = {
+					title: 'Awarded badge Completed 15 prio-four chores',
 					date: new Date()
-				}).save(function(err, activity) {
-					if (err) {
-						next(err);
-					}
+				};
 
-					user.meta.activity.push(activity);
-
-					user.save(function(err) {
-						if (err) {
-							next(err);
-						}
-					});
-				});
+				user.meta.activity.push(activity);
 			}
 
 
@@ -372,25 +257,22 @@ module.exports.check = function(req, res, next, callback) {
 				user.meta.awards.push(badge);
 				badgeCollection.push(badge);
 
-				new db.Activity({
+				var activity = {
 					title: 'Awarded badge Completed 15 prio-five chores',
 					date: new Date()
-				}).save(function(err, activity) {
-					if (err) {
-						next(err);
-					}
+				};
 
-					user.meta.activity.push(activity);
-
-					user.save(function(err) {
-						if (err) {
-							next(err);
-						}
-					});
-				});
+				user.meta.activity.push(activity);
 			}
 
-			callback(badgeCollection);
+			user.save(function(err) {
+				if ( (err)) {
+					next(err)
+				}
+
+				callback(badgeCollection);
+				badgeCollection = [];
+			});
 
 		});
 

@@ -741,6 +741,7 @@ img {
   top: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.5);
+  filter: url(#blur);
   z-index: 1;
 }
 
@@ -871,6 +872,7 @@ a:hover {
 }
 .module-alert img, .badge-module-alert img {
   width: 150px;
+  margin-bottom: 20px;
 }
 .module-alert .badgeTitle, .badge-module-alert .badgeTitle {
   float: right;
@@ -1084,6 +1086,14 @@ input[type="submit"] {
   display: inline-block;
   margin-top: 5px;
   color: #556270;
+}
+.main-nav .show-activity-log:after {
+  content: attr(data-notification);
+  position: absolute;
+  top: 4px;
+  right: 15px;
+  color: #d24d33;
+  text-align: center;
 }
 
 .user-subnav {
@@ -1313,9 +1323,8 @@ input[type="submit"] {
  * ----------------------------------------------------------------
 */
 .activity-log {
-  height: 70%;
+  height: 300px;
   top: 100px;
-  overflow: hidden;
 }
 .activity-log .module-alert-main {
   overflow: scroll;
@@ -1324,9 +1333,10 @@ input[type="submit"] {
 }
 .activity-log li {
   padding: 5px 10px;
+  background-color: #F9F9F9;
 }
 .activity-log li:nth-child(odd) {
-  background-color: #4da9cd;
+  background-color: #74b152;
   color: white;
 }
 .activity-log .activity-date {

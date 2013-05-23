@@ -108,6 +108,7 @@ $orange: #D24D33;
     	top: 0;
     	left: 0;
     	background-color: rgba(0,0,0,.5);
+    	filter: url(#blur);
     	z-index: 1;
 	}
 
@@ -244,6 +245,7 @@ $orange: #D24D33;
 
 	    img {
 	    	width: 150px;
+	    	margin-bottom: 20px;
 	    }
 
 	    .badgeTitle {
@@ -465,6 +467,15 @@ $orange: #D24D33;
 			display: inline-block;
 			margin-top: 5px;
 			color: $grey;
+
+			&:after {
+				content: attr(data-notification);
+				position: absolute;
+				top: 4px;
+				right: 15px;
+				color: $orange;
+				text-align: center;
+			}
 		}
 	}
 
@@ -710,9 +721,8 @@ $orange: #D24D33;
  * ----------------------------------------------------------------
 */
 	.activity-log {
-		height: 70%;
+		height: 300px;
 		top: 100px;
-		overflow: hidden;
 
 		.module-alert-main {
 			overflow: scroll;
@@ -722,10 +732,11 @@ $orange: #D24D33;
 
 		li {
 			padding: 5px 10px;
+			background-color: #F9F9F9;
 		}
 
 		li:nth-child(odd) {
-			background-color: $blue;
+			background-color: $green;
 			color: white;
 		}
 

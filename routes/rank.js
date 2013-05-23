@@ -9,86 +9,60 @@ module.exports = function(req, res, next) {
 		switch (true) {
 			case (user.meta.completedTotal === 10):
 				user.meta.rank = "Amateur";
-				user.save(function(err) {
-					if (err) {
-						next(err);
-					}
-				});
 
-				new db.Activity({
+				var activity = {
 					title: 'Earned rank Amateur',
 					date: new Date()
-				}).save(function(err, activity) {
-					if (err) {
-						next(err);
-					}
+				};
 
-					user.meta.activity.push(activity);
-
-					user.save(function(err) {
-						if (err) {
-							next(err);
-						}
-					});
-				});
+				user.meta.activity.push(activity);
+				req.session.notification += 1;
 
 			break;
 
 			case (user.meta.completedTotal === 50):
 				user.meta.rank = "Pro";
 				user.meta.multiplier = 2;
-				user.save(function(err) {
-					if (err) {
-						next(err);
-					}
-				});
 
-				new db.Activity({
+				var activity = {
 					title: 'Earned rank Pro',
 					date: new Date()
-				}).save(function(err, activity) {
-					if (err) {
-						next(err);
-					}
+				};
 
-					user.meta.activity.push(activity);
+				var activity2 = {
+					title: 'Earned 2x multiplier',
+					date: new Date()
+				};
 
-					user.save(function(err) {
-						if (err) {
-							next(err);
-						}
-					});
-				});
+				user.meta.activity.push(activity, activity2);
+				req.session.notification += 2;
 
 			break;
 
 			case (user.meta.completedTotal === 100):
 				user.meta.rank = "King of Chores";
 				user.meta.multiplier = 3;
-				user.save(function(err) {
-					if (err) {
-						next(err);
-					}
-				});
 
-				new db.Activity({
+				var activity = {
 					title: 'Earned rank King of Chores',
 					date: new Date()
-				}).save(function(err, activity) {
-					if (err) {
-						next(err);
-					}
+				};
 
-					user.meta.activity.push(activity);
+				var activity2 = {
+					title: 'Earned 3x multiplier',
+					date: new Date()
+				};
 
-					user.save(function(err) {
-						if (err) {
-							next(err);
-						}
-					});
-				});
+				user.meta.activity.push(activity, activity2);
+				req.session.notification += 2;
 
 			break;
 		}
+
+		user.save(function(err) {
+			if (err) {
+				next(err);
+			}
+		});
 	});
 };

@@ -67,22 +67,27 @@ exports.completed = function(req, res, next) {
 					next(err);
 				}
 
-				new db.Activity({
+				var activity = {
 					title: 'Completed ' + chore.name,
 					date: new Date()
-				}).save(function(err, activity) {
+				};
+
+				user.meta.activity.push(activity);
+
+				user.save(function(err) {
 					if (err) {
 						next(err);
 					}
-
-					user.meta.activity.push(activity);
-					user.save(function(err) {
-						if (err) {
-							next(err);
-						}
-
-					});
 				});
+
+				// Kollar om notiser ska adderas eller startas om
+				if (req.session.notification) {
+					req.session.notification += 1;
+				}
+
+				else {
+					req.session.notification = 1;
+				}
 
 				switch (chore.prio) {
 					case "1" :
@@ -93,7 +98,11 @@ exports.completed = function(req, res, next) {
 							}
 
 							badges.check(req, res, next, function(badge) {
+								if (badge) {
+									req.session.notification += badge.length;
+								}
 								req.session.alertBadge = badge;
+
 								res.redirect('/' + req.user.username + '/chores');
 							});
 
@@ -110,15 +119,16 @@ exports.completed = function(req, res, next) {
 							}
 
 							badges.check(req, res, next, function(badge) {
+								if (badge) {
+									req.session.notification += badge.length;
+								}
+
 								req.session.alertBadge = badge;
-								console.log(badge);
 								res.redirect('/' + req.user.username + '/chores');
 							});
 
 							rank(req, res, next);
-
 						});
-
 
 						break;
 
@@ -130,6 +140,10 @@ exports.completed = function(req, res, next) {
 							}
 
 							badges.check(req, res, next, function(badge) {
+								if (badge) {
+									req.session.notification += badge.length;
+								}
+
 								req.session.alertBadge = badge;
 								res.redirect('/' + req.user.username + '/chores');
 							});
@@ -149,6 +163,10 @@ exports.completed = function(req, res, next) {
 							}
 
 							badges.check(req, res, next, function(badge) {
+								if (badge) {
+									req.session.notification += badge.length;
+								}
+
 								req.session.alertBadge = badge;
 								res.redirect('/' + req.user.username + '/chores');
 							});
@@ -166,6 +184,10 @@ exports.completed = function(req, res, next) {
 							}
 
 							badges.check(req, res, next, function(badge) {
+								if (badge) {
+									req.session.notification += badge.length;
+								}
+
 								req.session.alertBadge = badge;
 								res.redirect('/' + req.user.username + '/chores');
 							});
@@ -175,10 +197,7 @@ exports.completed = function(req, res, next) {
 
 						break;
 				}
-
-
 			});
-
 		}
 
 		// Failed chores
@@ -191,22 +210,26 @@ exports.completed = function(req, res, next) {
 					next(err);
 				}
 
-				new db.Activity({
+				var activity = {
 					title: 'Failed ' + chore.name,
 					date: new Date()
-				}).save(function(err, activity) {
+				};
+
+				user.meta.activity.push(activity);
+
+				user.save(function(err) {
 					if (err) {
 						next(err);
 					}
-
-					user.meta.activity.push(activity);
-
-					user.save(function(err) {
-						if (err) {
-							next(err);
-						}
-					});
 				});
+
+				if (req.session.notification) {
+					req.session.notification += 1;
+				}
+
+				else {
+					req.session.notification = 1;
+				}
 
 				db.User.update({_id: userId}, {$inc: {"meta.failedTotal": 1}}, function(err, user) {
 					if (err) {

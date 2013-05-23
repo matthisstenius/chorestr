@@ -46,6 +46,12 @@ app.configure(function(){
     })
   }));
 
+  app.use(function(req, res, next) {
+    // Notification for activity log
+    app.locals.notification = req.session.notification;
+    next();
+  });
+
   app.use(app.router);
   app.use(express.static(path.join(__dirname, 'public')));
 

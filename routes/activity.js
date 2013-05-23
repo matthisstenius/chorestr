@@ -10,4 +10,5 @@ exports.showActivity = function(req, res, next) {
 		res.send(docs.meta.activity.reverse());
 
 	});
+	req.session.notification = null;
 };

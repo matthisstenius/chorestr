@@ -167,83 +167,52 @@ CHORESTR.closeMessage = function(el) {
 
 CHORESTR.removeChore = function(el, i) {
 	var moduleAlert = document.querySelector('.module-alert'),
-		overlay = document.getElementById('overlay'),
-		closeButton = document.querySelector('.close'),
-		removeButton = document.querySelector('.btn-remove');
+		closeButton = document.querySelector('.close');
 
-	$(moduleAlert).removeClass('hidden');
-	$(overlay).removeClass('hidden');
+	CHORESTR.alertBox(moduleAlert, closeButton);
 
-	// Get the url from original form
 	var form = document.querySelector('.module-alert-footer form');
 	form.action = el[i].parentNode.action;
-
-	var pos = CHORESTR.centerEl(moduleAlert);
-	moduleAlert.setAttribute('style', 'left:' + pos + 'px');
-
-	overlay.setAttribute('style', 'height:' + $(document).height() + 'px');
-
-	closeButton.addEventListener('click', function(e) {
-		e.preventDefault();
-		$(moduleAlert).addClass('hidden');
-		$(overlay).addClass('hidden');
-	}, false);
-
-	overlay.addEventListener('click', function(e) {
-		e.preventDefault();
-		$(moduleAlert).addClass('hidden');
-		$(overlay).addClass('hidden');
-	}, false);
-
-	removeButton.addEventListener('click', function(e) {
-
-	}, false);
 };
 
 CHORESTR.newChore = function() {
 	var newChore = document.querySelector('.new-chore-box'),
-		overlay = document.getElementById('overlay'),
+		newChoreInput = document.querySelector('#title'),
 		closeButton = document.querySelector('.close-new-chore');
 
-	var pos = CHORESTR.centerEl(newChore);
-	newChore.setAttribute('style', 'left:' + pos + 'px');
+	CHORESTR.alertBox(newChore, closeButton);
 
-	$(newChore).removeClass('hidden');
+	newChoreInput.focus();
+};
+
+CHORESTR.alertBox = function(el, closeButton) {
+	var overlay = document.getElementById('overlay');
+
+	var pos = CHORESTR.centerEl(el);
+	el.setAttribute('style', 'left:' + pos + 'px');
+
+	overlay.setAttribute('style', 'height:' + $(document).height() + 'px');
+
+	$(el).removeClass('hidden');
 	$(overlay).removeClass('hidden');
 
 	overlay.addEventListener('click', function() {
 		$(overlay).addClass('hidden');
-		$(newChore).addClass('hidden');
+		$(el).addClass('hidden');
 	}, false);
 
 	closeButton.addEventListener('click', function() {
 		$(overlay).addClass('hidden');
-		$(newChore).addClass('hidden');
+		$(el).addClass('hidden');
 	}, false);
 };
 
 CHORESTR.loginBox = function() {
 	var input = document.getElementById('username'),
 		loginBox = document.querySelector('.login-box'),
-		overlay = document.getElementById('overlay'),
 		closeButton = document.querySelector('.close');
 
-	var pos = CHORESTR.centerEl(loginBox);
-	loginBox.setAttribute('style', 'left:' + pos + 'px');
-
-	$(loginBox).removeClass('hidden');
-	$(overlay).removeClass('hidden');
-
-	overlay.addEventListener('click', function() {
-		$(overlay).addClass('hidden');
-		$(loginBox).addClass('hidden');
-	}, false);
-
-	closeButton.addEventListener('click', function() {
-		$(overlay).addClass('hidden');
-		$(loginBox).addClass('hidden');
-	}, false);
-
+	CHORESTR.alertBox(loginBox, closeButton);
 };
 
 CHORESTR.centerEl = function(el) {
@@ -252,6 +221,7 @@ CHORESTR.centerEl = function(el) {
 
 CHORESTR.showActivityLog = function(user) {
 	var activityWrapper = document.querySelector('.activty-log-wrapper'),
+		showActivityLog = document.querySelector('.show-activity-log ')
 		overlay = document.getElementById('overlay');
 
 	// Disable menubutton click while open.
@@ -288,6 +258,7 @@ CHORESTR.showActivityLog = function(user) {
 		$(overlay).removeClass('hidden');
 
 		overlay.addEventListener('click', function() {
+			showActivityLog.setAttribute('data-notification', '');
 			$(activityWrapper).empty($activityLog);
 			$(overlay).addClass('hidden');
 			CHORESTR.enabled = true;
@@ -297,6 +268,7 @@ CHORESTR.showActivityLog = function(user) {
 
 		closeButton.addEventListener('click', function(e) {
 			e.preventDefault();
+			showActivityLog.setAttribute('data-notification', '');
 			$(activityWrapper).empty($activityLog);
 			$(overlay).addClass('hidden');
 			CHORESTR.enabled = true;

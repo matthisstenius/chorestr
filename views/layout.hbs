@@ -39,7 +39,8 @@
                 </li>
                 <li><a class="btn btn-chores" href="/{{user}}/chores">My chores</a></li>
                 <li><a href="/{{user}}/chores/new" class="btn new-chore"><span class="icon-plus"></span>New Chore</a></li>
-                <li><a class="show-activity-log" data-user="{{user}}" data-notification="{{activity}}" title="Show activity log" href="#"><span class="icon-menu"></span></a></li>
+                <li><a class="show-activity-log" data-user="{{user}}" data-notification="{{notification}}" title="Show activity log" href="#"><span class="icon-menu"></span></a></li>
+
 
               {{else}}
                 <li><a href="/login" class="btn login">Log in</a></li>
@@ -121,9 +122,13 @@
         </div>
         <div id="overlay" class="bg-overlay hidden"></div>
 
-        <div class="activty-log-wrapper">
+        <svg>
+           <filter id="blur">
+               <feGaussianBlur stdDeviation="2"/>
+           </filter>
+        </svg>
 
-        </div>
+        <div class="activty-log-wrapper"></div>
 
 
         <footer class="footer">

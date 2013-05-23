@@ -24,14 +24,6 @@ ChoresSchema.virtual('complete.date').get(function() {
 
 var ChoresModel = mongoose.model('Chores', ChoresSchema);
 
-
-var ActivitySchema = mongoose.Schema({
-	title: String,
-	date: {type: Date, default: new Date()}
-});
-
-var ActivtyModel = mongoose.model('Activities', ActivitySchema);
-
 var UserSchema = new mongoose.Schema({
 	username: {type: String, trim: true, index: true},
 	email: String,
@@ -52,7 +44,7 @@ var UserSchema = new mongoose.Schema({
 
 		points: {type: Number, default: 0},
 		awards: [],
-		activity: [ActivitySchema],
+		activity: [],
 		rank: {type: String, default: 'Novice'},
 		multiplier: {type: Number, default: 1}
 	}
@@ -63,4 +55,3 @@ var UserModel = mongoose.model("Users", UserSchema);
 
 module.exports.Chores = ChoresModel;
 module.exports.User = UserModel;
-module.exports.Activity = ActivtyModel;
