@@ -123,7 +123,7 @@ exports.forgot = function(req, res, next) {
 					text: 	 "hejhej",
 				   	from:    "<no-reply@chorestr.com>",
 				   	to:      "<" + user.email + ">",
-				   	subject: "testing emailjs",
+				   	subject: "Reset password",
 				   	attachment: [
 				   		{data: "<html> <a href='" + resetUrl + "'>" + resetUrl + "</a></html>", alternative: true}
 				   	]

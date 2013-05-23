@@ -426,6 +426,17 @@ $orange: #D24D33;
 		color: black;
 		float: left;
 		font-size: 2em;
+
+		&:after {
+		    content: 'BETA';
+		    font-size: .37em;
+		    font-family: $bodyBold;
+		    color: $orange;
+		}
+
+		&:hover {
+			color: black;
+		}
 	}
 
 	.nav {
@@ -510,7 +521,7 @@ $orange: #D24D33;
  * ----------------------------------------------------------------
 */
 	.bg {
-		background: url('../img/sunset3.jpg') center center;
+		background: url('../img/bg.jpg') center center;
 	}
 
 	.features {
@@ -720,7 +731,7 @@ $orange: #D24D33;
  * ----------------------------------------------------------------
 */
 	.activity-log {
-		height: 300px;
+		height: 400px;
 		top: 100px;
 
 		.module-alert-main {
@@ -845,6 +856,10 @@ $orange: #D24D33;
 			margin: 0;
 		}
 
+	}
+
+	.userbox-badges {
+		min-height: 400px;
 	}
 
 	.account-buttons {

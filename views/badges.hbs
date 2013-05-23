@@ -2,7 +2,7 @@
 
 <div class="module grid">
 	<header class="user-header clearfix">
-		<h1> My Badges</h1>
+		<h1>My Badges</h1>
 		<nav class="nav user-nav clearfix">
 			<ul>
 				<li><a class="btn btn-menu" href="/account/{{userDetails.username}}">My Profile</a></li>
@@ -13,16 +13,20 @@
 
 
 	<div class="main module">
-		<div class="userbox-inner module clearfix">
+		<div class="userbox-inner userbox-badges module clearfix">
 			<div class="badges-wrapper">
-				{{#each awards}}
-					<div class="badge-item col-1-3">
-						<h3>{{name}}</h3>
-						<img class="badge" src="{{src}}" alt="{{name}}">
-						<p class="badge-date">{{date}}</p>
+				{{#if awards}}
+					{{#each awards}}
+						<div class="badge-item col-1-3">
+							<h3>{{name}}</h3>
+							<img class="badge" src="{{src}}" alt="{{name}}">
+							<p class="badge-date">{{date}}</p>
 
-					</div>
-				{{/each}}
+						</div>
+					{{/each}}
+				{{else}}
+					<p class="no-chore-message">No badges yet. Complete your chores in time to achieve badges.</p>
+				{{/if}}
 			</div>
 		</div>
 	</div>

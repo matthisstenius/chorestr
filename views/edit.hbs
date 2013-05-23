@@ -2,7 +2,7 @@
 
 <div class="main module single-col">
 
-	<h1>Add new chore</h1>
+	<h1>Edit {{chore.name}}</h1>
 
 	<form action="/{{user}}/chores/{{chore._id}}" method="POST">
 		<input type="hidden" name="_method" value="PUT">
@@ -45,7 +45,7 @@
 			</li>
 		</ul>
 
-		<button class="btn btn-add">Add chore</button>
+		<button class="btn btn-add">Save changes</button>
 	</form>
 
 </div>

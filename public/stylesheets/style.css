@@ -1042,6 +1042,15 @@ input[type="submit"] {
   float: left;
   font-size: 2em;
 }
+.logo:after {
+  content: 'BETA';
+  font-size: .37em;
+  font-family: "FuturaPTMedium-Reg", helvetica, sans-serif;
+  color: #d24d33;
+}
+.logo:hover {
+  color: black;
+}
 
 .nav {
   float: right;
@@ -1124,7 +1133,7 @@ input[type="submit"] {
  * ----------------------------------------------------------------
 */
 .bg {
-  background: url("../img/sunset3.jpg") center center;
+  background: url("../img/bg.jpg") center center;
 }
 
 .features {
@@ -1322,7 +1331,7 @@ input[type="submit"] {
  * ----------------------------------------------------------------
 */
 .activity-log {
-  height: 300px;
+  height: 400px;
   top: 100px;
 }
 .activity-log .module-alert-main {
@@ -1432,6 +1441,10 @@ input[type="submit"] {
 }
 .userbox-item p {
   margin: 0;
+}
+
+.userbox-badges {
+  min-height: 400px;
 }
 
 .account-buttons {
