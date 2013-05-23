@@ -3,6 +3,11 @@
  * Module dependencies.
  */
 
+require('nodetime').profile({
+  accountKey: '0e6af9711d763f2903433907b9b4ac1cc7adb704',
+  appName: 'Chorestr'
+});
+
 var express = require('express'),
     connectionEnv = require('./dbConfig'),
     MongoStore = require('connect-mongo')(express),
@@ -92,6 +97,15 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
+app.get('/', function(req, res, next) {
+    if (req.session.user) {
+      res.redirect('/' + req.session.user.username + '/chores');
+    }
+
+    else {
+      next();
+    }
+  });
 
 // Kolla om användare finns i session
 app.param('user', function(req, res, next, id) {

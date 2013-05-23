@@ -13,7 +13,8 @@
     "bcrypt-nodejs": "*",
     "express-validator": "*",
     "connect-mongo": "*",
-    "emailjs": "*"
+    "emailjs": "*",
+    "nodetime": "~0.8.12"
   },
   "devDependencies": {
     "nodemon": "*"

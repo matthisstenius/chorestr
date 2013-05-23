@@ -10,7 +10,7 @@ exports.index = function(req, res){
 		username = req.session.user.username;
 	}
 	res.render('index', {
-		title: 'Welcome to Chorestr',
+		title: 'A good way to make chores fun - Chorestr.com',
 	  	user: username
 	});
 };
