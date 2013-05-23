@@ -231,7 +231,7 @@ CHORESTR.showActivityLog = function(user) {
 		url: '/account/' + user + '/activity'
 	}).done(function(data) {
 		var $activityLog = $('<div class="activity-log module-alert"/>'),
-			$header = $('<div class="module-alert-header module clearfix"><h3>Recent Activity</h3><a class="close close-activity" href="#"><span class="icon-close"></span></a></div>'),
+			$header = $('<div class="module-alert-header module clearfix"><h3>Notifications</h3><a class="close close-activity" href="#"><span class="icon-close"></span></a></div>'),
 			$main = $('<div class="module-alert-main">'),
 			ul = document.createElement('ul');
 
@@ -258,7 +258,8 @@ CHORESTR.showActivityLog = function(user) {
 		$(overlay).removeClass('hidden');
 
 		overlay.addEventListener('click', function() {
-			showActivityLog.setAttribute('data-notification', '');
+			showActivityLog.textContent = 0;
+			$(showActivityLog).removeClass('new-notification');
 			$(activityWrapper).empty($activityLog);
 			$(overlay).addClass('hidden');
 			CHORESTR.enabled = true;
@@ -268,7 +269,8 @@ CHORESTR.showActivityLog = function(user) {
 
 		closeButton.addEventListener('click', function(e) {
 			e.preventDefault();
-			showActivityLog.setAttribute('data-notification', '');
+			showActivityLog.textContent = 0;
+			$(showActivityLog).removeClass('new-notification');
 			$(activityWrapper).empty($activityLog);
 			$(overlay).addClass('hidden');
 			CHORESTR.enabled = true;

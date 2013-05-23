@@ -474,18 +474,15 @@ $orange: #D24D33;
 		}
 
 		.show-activity-log {
-			display: inline-block;
-			margin-top: 5px;
+			border: 1px solid #ccc;
+			@include gradient(#FEFEFE, top, #FEFEFE, #F5F5F5);
 			color: $grey;
+		}
 
-			&:after {
-				content: attr(data-notification);
-				position: absolute;
-				top: 4px;
-				right: 15px;
-				color: $orange;
-				text-align: center;
-			}
+		.new-notification {
+			background: $orange;
+			color: white;
+			border: none;
 		}
 	}
 

@@ -3,4 +3,5 @@
 .sublime-workflow
 node_modules
 svn
+.afignore
 

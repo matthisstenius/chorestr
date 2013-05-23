@@ -1091,17 +1091,19 @@ input[type="submit"] {
   width: 0;
 }
 .main-nav .show-activity-log {
-  display: inline-block;
-  margin-top: 5px;
+  border: 1px solid #ccc;
+  background: #fefefe;
+  background: -webkit-linear-gradient(top, #fefefe, whitesmoke);
+  background: -moz-linear-gradient(top, #fefefe, whitesmoke);
+  background: -o-linear-gradient(top, #fefefe, whitesmoke);
+  background: -ms-linear-gradient(top, #fefefe, whitesmoke);
+  background: linear-gradient(top, #fefefe, whitesmoke);
   color: #556270;
 }
-.main-nav .show-activity-log:after {
-  content: attr(data-notification);
-  position: absolute;
-  top: 4px;
-  right: 15px;
-  color: #d24d33;
-  text-align: center;
+.main-nav .new-notification {
+  background: #d24d33;
+  color: white;
+  border: none;
 }
 
 .user-subnav {

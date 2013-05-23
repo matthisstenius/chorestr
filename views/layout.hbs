@@ -1,8 +1,5 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<html>
     <head>
         <meta charset="utf-8">
         <title>{{ title }}</title>
@@ -18,7 +15,6 @@
       <span class="border-strip stripe-4"></span>
       <span class="border-strip stripe-5"></span>
     	<header class="header">
-
         <div class="header-inner grid">
           {{#if user}}
             <a href="/{{user}}/chores" class="logo">Chorestr</a>
@@ -39,9 +35,11 @@
                 </li>
                 <li><a class="btn btn-chores" href="/{{user}}/chores">My chores</a></li>
                 <li><a href="/{{user}}/chores/new" class="btn new-chore"><span class="icon-plus"></span>New Chore</a></li>
-                <li><a class="show-activity-log" data-user="{{user}}" data-notification="{{notification}}" title="Show activity log" href="#"><span class="icon-menu"></span></a></li>
-
-
+                {{#if notification}}
+                  <li><a class="show-activity-log btn new-notification" data-user="{{user}}" title="Notifications" href="#">{{notification}}</a></li>
+                {{else}}
+                  <li><a class="show-activity-log btn" data-user="{{user}}" title="Notifications" href="#">0</a></li>
+                {{/if}}
               {{else}}
                 <li><a href="/login" class="btn login">Log in</a></li>
                 <li><a href="/register" class="btn register">Sign up</a></li>
