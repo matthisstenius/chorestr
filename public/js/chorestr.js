@@ -8,6 +8,7 @@ CHORESTR.init = function() {
 		loginBtn = document.querySelector('.main-nav .login'),
 		alertMessageClose = document.querySelector('.close-message'),
 		validateInput = document.querySelectorAll('.validate'),
+		validateStrength = document.querySelector('.validate-strength'),
 		userMenu = document.querySelector('.username'),
 		showActivityLog = document.querySelector('.show-activity-log '),
 		newChoreBtn = document.querySelector('.new-chore'),
@@ -25,6 +26,17 @@ CHORESTR.init = function() {
 				CHORESTR.validate(this.getAttribute('id'), this.value);
 			}, false);
 		}
+	}
+
+	if (typeof(validateStrength) !== 'undefined' && validateStrength !== null) {
+		validateStrength.addEventListener('keyup', function() {
+			CHORESTR.validate('pwdStrength', this.value);
+		}, false);
+
+		validateStrength.addEventListener('blur', function() {
+			var output = document.querySelector('.pwd-strength');
+			output.textContent = "";
+		}, false);
 	}
 
 	if (typeof(userMenu) !== 'undefined' && userMenu !== null) {
@@ -130,13 +142,33 @@ CHORESTR.validate = function(type, value) {
 
 		if (value.length < 6) {
 			error.textContent = 'Pasword must contain at least 6 characters';
+			return;
 		}
-
-
 
 		else {
 			error.textContent = '';
 		}
+	}
+
+	if (type === "pwdStrength") {
+		var output = document.querySelector('.pwd-strength');
+
+		if (value.match(/^[a-z]{6,8}$/)) {
+			output.textContent = "Weak";
+			$(output).addClass('pwd-weak');
+		}
+
+		if (value.match(/^(?=.[a-z]{6,})(?=.[0-9]{2,})(?=.[A-Z]{2,})$/)) {
+			output.textContent = "Medium";
+			$(output).addClass('pwd-medium');
+		}
+
+		if (value.match(/^(?:[a-z]{6,}[0-9]{3,}[A-Z]{3,}[!@#$&*]{1,})+$/)) {
+			output.textContent = "Strong";
+			$(output).addClass('pwd-strong');
+		}
+
+
 	}
 };
 
@@ -221,11 +253,13 @@ CHORESTR.centerEl = function(el) {
 
 CHORESTR.showActivityLog = function(user) {
 	var activityWrapper = document.querySelector('.activty-log-wrapper'),
-		showActivityLog = document.querySelector('.show-activity-log ')
+		showActivityLog = document.querySelector('.show-activity-log'),
+		loading = document.querySelector('.notifications'),
 		overlay = document.getElementById('overlay');
 
 	// Disable menubutton click while open.
 	CHORESTR.enabled = false;
+	$(loading).addClass('loading');
 
 	$.ajax({
 		url: '/account/' + user + '/activity'
@@ -256,6 +290,8 @@ CHORESTR.showActivityLog = function(user) {
 		$activityLog.attr('style', 'left:' + pos + 'px');
 
 		$(overlay).removeClass('hidden');
+
+		$(loading).removeClass('loading');
 
 		overlay.addEventListener('click', function() {
 			showActivityLog.textContent = 0;

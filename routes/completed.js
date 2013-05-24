@@ -202,41 +202,43 @@ exports.completed = function(req, res, next) {
 
 		// Failed chores
 		else {
-			db.Chores.findByIdAndUpdate(req.params.id, {
-				status: 'failed',
-				completedDate: new Date()
-			}, function(err, chore) {
+			chore.status = "failed";
+			chore.completedDate = new Date();
+
+			chore.save(function(err) {
 				if (err) {
 					next(err);
 				}
 
-				var activity = {
-					title: 'Failed ' + chore.name,
-					date: new Date()
-				};
-
-				user.meta.activity.push(activity);
-
-				user.save(function(err) {
-					if (err) {
-						next(err);
-					}
-				});
-
-				if (req.session.notification) {
-					req.session.notification += 1;
-				}
-
-				else {
-					req.session.notification = 1;
-				}
-
-				db.User.update({_id: userId}, {$inc: {"meta.failedTotal": 1}}, function(err, user) {
+				db.User.findByIdAndUpdate(userId, {$inc: {"meta.failedTotal": 1}}, function(err, user) {
 					if (err) {
 						next(err);
 					}
 
-					res.redirect('/' + req.user.username + '/chores/failed');
+					var activity = {
+						title: 'Failed ' + chore.name,
+						date: new Date()
+					};
+
+					console.log(user);
+					user.meta.activity.push(activity);
+
+					user.save(function(err) {
+						if (err) {
+							next(err);
+						}
+
+						if (req.session.notification) {
+							req.session.notification += 1;
+						}
+
+						else {
+							req.session.notification = 1;
+						}
+
+						res.redirect('/' + req.user.username + '/chores/failed');
+					});
+
 				});
 
 			});

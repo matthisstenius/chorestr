@@ -68,8 +68,7 @@ app.configure(function(){
       username = req.session.user.username;
     }
 
-    res.status = 404;
-    res.render('404', {
+    res.status(404).render('404', {
       title: '404',
       user: username
     });
@@ -83,10 +82,9 @@ app.configure(function(){
       username = req.session.user.username;
     }
 
-    console.log(err);
-    res.status = 500;
+    console.log(err.stack);
 
-    res.render('500', {
+    res.status(500).render('500', {
       title: '500',
       user: username
     });

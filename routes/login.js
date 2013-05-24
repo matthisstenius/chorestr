@@ -11,17 +11,17 @@ var server  = email.server.connect({
 });
 
 exports.show = function(req, res, next) {
-	var userDetails;
+	var username;
 
 	if (req.session.user) {
-		userDetails = req.session.user;
+		username = req.session.user.username;
 	}
 
 	res.render('login', {
 		title: 'Log in',
 		error: req.session.loginError,
-		username: req.session.username,
-		user: userDetails
+		user: username,
+		username: req.session.username
 	});
 
 	req.session.loginError = null;
@@ -152,10 +152,11 @@ exports.forgot = function(req, res, next) {
 
 exports.showReset = function(req, res, next) {
 	var body = req.body;
-	console.log("kommer jag hit");
+
 	db.User.findOne({_id: req.params.userId}, function(err, user) {
 		if (err) {
 			next(err);
+			return;
 		}
 
 		if (user) {
@@ -163,7 +164,7 @@ exports.showReset = function(req, res, next) {
 				if (err) {
 					next(err);
 				}
-				console.log(result);
+
 				if (result && new Date(Date.now()) <= user.resetDue) {
 					res.render('reset', {
 						title: 'Reset password',

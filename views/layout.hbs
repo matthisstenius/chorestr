@@ -36,9 +36,9 @@
                 <li><a class="btn btn-chores" href="/{{user}}/chores">My chores</a></li>
                 <li><a href="/{{user}}/chores/new" class="btn new-chore"><span class="icon-plus"></span>New Chore</a></li>
                 {{#if notification}}
-                  <li><a class="show-activity-log btn new-notification" data-user="{{user}}" title="Notifications" href="#">{{notification}}</a></li>
+                  <li class="notifications"><a class="show-activity-log btn new-notification" data-user="{{user}}" title="Notifications" href="#">{{notification}}</a></li>
                 {{else}}
-                  <li><a class="show-activity-log btn" data-user="{{user}}" title="Notifications" href="#">0</a></li>
+                  <li class="notifications"><a class="show-activity-log btn" data-user="{{user}}" title="Notifications" href="#">0</a></li>
                 {{/if}}
               {{else}}
                 <li><a href="/login" class="btn login">Log in</a></li>

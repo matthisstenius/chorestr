@@ -386,6 +386,18 @@ $orange: #D24D33;
 		}
 	}
 
+	.pwd-weak {
+		color: $red;
+	}
+
+	.pwd-medium {
+		color: $orange;
+	}
+
+	.pwd-strong {
+		color: $green;
+	}
+
 /* ----------------------------------------------------------------
  *  ￼ Log in
  * ----------------------------------------------------------------
@@ -483,6 +495,12 @@ $orange: #D24D33;
 			background: $orange;
 			color: white;
 			border: none;
+		}
+
+		.loading:after {
+		    content: url('../img/ajax-loader.gif');
+		    vertical-align: middle;
+		    margin-left: 5px;
 		}
 	}
 

@@ -1005,6 +1005,18 @@ input[type="submit"] {
   font-size: 1.1em;
 }
 
+.pwd-weak {
+  color: #b72d16;
+}
+
+.pwd-medium {
+  color: #d24d33;
+}
+
+.pwd-strong {
+  color: #74b152;
+}
+
 /* ----------------------------------------------------------------
  *  ￼ Log in
  * ----------------------------------------------------------------
@@ -1104,6 +1116,11 @@ input[type="submit"] {
   background: #d24d33;
   color: white;
   border: none;
+}
+.main-nav .loading:after {
+  content: url("../img/ajax-loader.gif");
+  vertical-align: middle;
+  margin-left: 5px;
 }
 
 .user-subnav {
