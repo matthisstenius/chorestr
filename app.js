@@ -22,7 +22,6 @@ var express = require('express'),
     activity = require('./routes/activity'),
     login = require('./routes/login'),
     http = require('http'),
-    db = require('./models/model'),
     util = require('util'),
     expressValidator = require('express-validator'),
     path = require('path');
@@ -134,7 +133,7 @@ app.get('/', routes.index);
 app.get('/:user/chores', chores.all);
 app.get('/:user/chores/new', chores.new);
 app.post('/:user/chores/new', chores.add);
-app.get('/:user/chores/edit/:id', chores.edit)
+app.get('/:user/chores/edit/:id', chores.edit);
 app.put('/:user/chores/:id', chores.update);
 app.delete('/:user/chores/:id', chores.remove);
 
