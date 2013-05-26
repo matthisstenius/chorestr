@@ -3,10 +3,14 @@
  * Module dependencies.
  */
 
-require('nodetime').profile({
-  accountKey: '0e6af9711d763f2903433907b9b4ac1cc7adb704',
-  appName: 'Chorestr'
-});
+var appfog = JSON.parse(process.env.VMC_APP_INSTANCE);
+require('nodefly').profile(
+    '5c9e4bd7f72b2df31cc991a5e147270b',
+    [APPLICATION_NAME,
+     appfog.name,
+     appfog.instance_index],
+     options // optional
+);
 
 var express = require('express'),
     connectionEnv = require('./dbConfig'),
