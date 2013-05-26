@@ -1,16 +1,16 @@
 var db = require('../models/model'),
 	bcrypt = require('bcrypt-nodejs'),
-	email = require('emailjs'),
+	nodemailer = require('nodemailer'),
 	crypto = require('crypto');
 
-var server  = email.server.connect({
-   user:    "support@chorestr.com",
-   password:"Ed?{FD3XW]7C2EoG",
-   host:    "smtp.live.com",
-   port: 	587,
-   ssl:     true,
-   tsl: true
+var smtpTransport = nodemailer.createTransport("SMTP", {
+	service: "Hotmail",
+	auth: {
+		user: "support@chorestr.com",
+		pass: "Ed?{FD3XW]7C2EoG"
+	}
 });
+
 
 exports.show = function(req, res, next) {
 	var username;
@@ -122,17 +122,14 @@ exports.forgot = function(req, res, next) {
 				var text = "Chorestr received a request to reset the password for your Chorestr account. To reset your password click on the link below."
 				var resetUrl = req.headers.host + '/reset/' + user._id + '/' + buf.toString('hex');
 
-				var message = {
-					text: 	 "hejhej",
-				   	to:      "<" + user.email + ">",
-				   	from: "<support@chorestr.com>",
-				   	subject: "Reset password",
-				   	attachment: [
-				   		{data: "<html><p>" + text + "</p><a href='" + resetUrl + "'>" + resetUrl + "</a><p> If you didn't a password reset your can disregard this message.</p></html>", alternative: true}
-				   	]
+				var mailOptions = {
+					from: "Chorestr support <support@chorestr.com>",
+					to: user.email,
+					subject: "Reset password",
+					html: "<html><p>" + text + "</p><a href='" + resetUrl + "'>" + resetUrl + "</a><p> If you didn't request a password reset your can disregard this message.</p></html>"
 				};
 
-				server.send(message, function(err, message) {
+				smtpTransport.sendMail(mailOptions, function(err, response) {
 					if (err) {
 						next(err);
 						return;
@@ -140,6 +137,7 @@ exports.forgot = function(req, res, next) {
 
 					req.session.messages = {success: "An email has been sent to you."}
 					res.redirect('/forgot');
+
 				});
 			});
 		}
