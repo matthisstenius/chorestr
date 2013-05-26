@@ -1359,16 +1359,23 @@ input[type="submit"] {
   margin: 0;
 }
 .activity-log li {
-  padding: 5px 10px;
+  padding: 10px;
   background-color: #F9F9F9;
 }
 .activity-log li:nth-child(odd) {
-  background-color: #74b152;
-  color: white;
+  background-color: #ECEBE8;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+.activity-log li:first-child {
+  border-top: none;
 }
 .activity-log .activity-date {
   font-size: .8em;
   float: right;
+}
+.activity-log .no-notifications {
+  text-align: center;
 }
 
 /* ----------------------------------------------------------------
@@ -1444,6 +1451,16 @@ input[type="submit"] {
   color: white !important;
 }
 
+.stats {
+  margin-top: 20px;
+}
+.stats h2 {
+  margin-bottom: 0;
+}
+.stats h2:last-of-type {
+  margin-top: 20px;
+}
+
 .userbox-inner a {
   font-size: .9em;
   display: block;
@@ -1454,9 +1471,22 @@ input[type="submit"] {
   border-radius: 3px;
 }
 
+.todo li {
+  padding: 10px;
+}
+.todo li:nth-child(odd) {
+  background-color: #F9F9F9;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #dddddd;
+}
+.todo .emphasis {
+  color: #b72d16;
+  font-family: "FuturaPTMedium-Reg", helvetica, sans-serif;
+}
+
 .userbox-item {
   display: inline-block;
-  margin-left: 20px;
+  margin-left: 45px;
 }
 .userbox-item p {
   margin: 0;
@@ -1475,9 +1505,8 @@ input[type="submit"] {
   font-size: 1.1em;
   margin-right: 10px;
   color: white;
-  padding: 5px 0;
+  padding: 5px 43px;
   position: relative;
-  width: 220px;
 }
 .stats-item span {
   font-family: "FuturaPTMedium-Reg", helvetica, sans-serif;

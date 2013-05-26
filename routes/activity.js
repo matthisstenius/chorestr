@@ -9,6 +9,14 @@ exports.showActivity = function(req, res, next) {
 
 		res.send(docs.meta.activity.reverse());
 
+		docs.meta.activity = [];
+
+		docs.save(function(err) {
+			if (err) {
+				next(err);
+			}
+		})
+
 	});
 	req.session.notification = null;
 };

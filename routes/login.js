@@ -4,10 +4,12 @@ var db = require('../models/model'),
 	crypto = require('crypto');
 
 var server  = email.server.connect({
-   user:    "admin@matthis.se",
-   password:"meaCYsM66ywuyRP9hN",
-   host:    "smtp.gmail.com",
-   ssl:     true
+   user:    "support@chorestr.com",
+   password:"Ed?{FD3XW]7C2EoG",
+   host:    "smtp.live.com",
+   port: 	587,
+   ssl:     true,
+   tsl: true
 });
 
 exports.show = function(req, res, next) {
@@ -117,21 +119,23 @@ exports.forgot = function(req, res, next) {
 
 				});
 
+				var text = "Chorestr received a request to reset the password for your Chorestr account. To reset your password click on the link below."
 				var resetUrl = req.headers.host + '/reset/' + user._id + '/' + buf.toString('hex');
 
 				var message = {
 					text: 	 "hejhej",
-				   	from:    "<no-reply@chorestr.com>",
 				   	to:      "<" + user.email + ">",
+				   	from: "<support@chorestr.com>",
 				   	subject: "Reset password",
 				   	attachment: [
-				   		{data: "<html> <a href='" + resetUrl + "'>" + resetUrl + "</a></html>", alternative: true}
+				   		{data: "<html><p>" + text + "</p><a href='" + resetUrl + "'>" + resetUrl + "</a><p> If you didn't a password reset your can disregard this message.</p></html>", alternative: true}
 				   	]
 				};
 
 				server.send(message, function(err, message) {
 					if (err) {
 						next(err);
+						return;
 					}
 
 					req.session.messages = {success: "An email has been sent to you."}
@@ -215,6 +219,7 @@ exports.reset = function(req, res, next) {
 			var report = new Error('Hash failed');
 			report.inner = err;
 			next(report);
+			return;
 		}
 
 		db.User.findByIdAndUpdate(req.params.userId, {
@@ -222,6 +227,7 @@ exports.reset = function(req, res, next) {
 		}, function(err, user) {
 			if (err) {
 				next(err);
+				return;
 			}
 
 			req.session.username = user.username;

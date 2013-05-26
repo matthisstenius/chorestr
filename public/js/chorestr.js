@@ -8,7 +8,6 @@ CHORESTR.init = function() {
 		loginBtn = document.querySelector('.main-nav .login'),
 		alertMessageClose = document.querySelector('.close-message'),
 		validateInput = document.querySelectorAll('.validate'),
-		validateStrength = document.querySelector('.validate-strength'),
 		userMenu = document.querySelector('.username'),
 		showActivityLog = document.querySelector('.show-activity-log '),
 		newChoreBtn = document.querySelector('.new-chore'),
@@ -28,16 +27,6 @@ CHORESTR.init = function() {
 		}
 	}
 
-	if (typeof(validateStrength) !== 'undefined' && validateStrength !== null) {
-		validateStrength.addEventListener('keyup', function() {
-			CHORESTR.validate('pwdStrength', this.value);
-		}, false);
-
-		validateStrength.addEventListener('blur', function() {
-			var output = document.querySelector('.pwd-strength');
-			output.textContent = "";
-		}, false);
-	}
 
 	if (typeof(userMenu) !== 'undefined' && userMenu !== null) {
 		var userSubMenu = document.querySelector('.user-subnav');
@@ -149,27 +138,6 @@ CHORESTR.validate = function(type, value) {
 			error.textContent = '';
 		}
 	}
-
-	if (type === "pwdStrength") {
-		var output = document.querySelector('.pwd-strength');
-
-		if (value.match(/^[a-z]{6,8}$/)) {
-			output.textContent = "Weak";
-			$(output).addClass('pwd-weak');
-		}
-
-		if (value.match(/^(?=.[a-z]{6,})(?=.[0-9]{2,})(?=.[A-Z]{2,})$/)) {
-			output.textContent = "Medium";
-			$(output).addClass('pwd-medium');
-		}
-
-		if (value.match(/^(?:[a-z]{6,}[0-9]{3,}[A-Z]{3,}[!@#$&*]{1,})+$/)) {
-			output.textContent = "Strong";
-			$(output).addClass('pwd-strong');
-		}
-
-
-	}
 };
 
 CHORESTR.badgeAlert = function(el) {
@@ -264,25 +232,37 @@ CHORESTR.showActivityLog = function(user) {
 	$.ajax({
 		url: '/account/' + user + '/activity'
 	}).done(function(data) {
-		var $activityLog = $('<div class="activity-log module-alert"/>'),
-			$header = $('<div class="module-alert-header module clearfix"><h3>Notifications</h3><a class="close close-activity" href="#"><span class="icon-close"></span></a></div>'),
-			$main = $('<div class="module-alert-main">'),
+		var $activityLog,
+			$header,
+			$main,
 			ul = document.createElement('ul');
 
-		for (var i = 0; i < data.length; i += 1) {
-			var li = document.createElement('li'),
-				span = document.createElement('span');
+		if (data.length > 0) {
+			$activityLog = $('<div class="activity-log module-alert"/>'),
+			$header = $('<div class="module-alert-header module clearfix"><h3>Notifications</h3><a class="close close-activity" href="#"><span class="icon-close"></span></a></div>'),
+			$main = $('<div class="module-alert-main">');
 
-			span.setAttribute('class', 'activity-date');
-			li.textContent = data[i].title;
-			var dateFormat = new Date(data[i].date);
-			span.textContent = dateFormat.toDateString() + ' ' + dateFormat.getHours() + ':' + dateFormat.getMinutes();
+			for (var i = 0; i < data.length; i += 1) {
+				var li = document.createElement('li'),
+					span = document.createElement('span');
 
-			li.appendChild(span);
-			ul.appendChild(li);
+				span.setAttribute('class', 'activity-date');
+				li.textContent = data[i].title;
+				var dateFormat = new Date(data[i].date);
+				span.textContent = dateFormat.toDateString() + ' ' + dateFormat.getHours() + ':' + dateFormat.getMinutes();
+
+				li.appendChild(span);
+				ul.appendChild(li);
+			}
+			$main.append(ul);
 		}
 
-		$main.append(ul);
+		else {
+			$activityLog = $('<div class="activity-log module-alert"/>'),
+			$header = $('<div class="module-alert-header module clearfix"><h3>Notifications</h3><a class="close close-activity" href="#"><span class="icon-close"></span></a></div>'),
+			$main = $('<div class="module-alert-main"><p class="no-notifications">No new notifications</p></div>');
+		}
+
 		$(activityWrapper).append($activityLog);
 		$activityLog.append($header, $main);
 

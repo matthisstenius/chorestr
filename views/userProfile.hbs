@@ -15,7 +15,7 @@
 		</nav>
 	</header>
 
-	<div class="col-1-2">
+	<div class="col-5-12">
 		<div class="main module">
 			<div class="userbox-inner module clearfix">
 
@@ -50,7 +50,36 @@
 		</div>
 	</div>
 
-	<div class="col-1-2">
+	<div class="col-7-12">
+		<div class="module main">
+			<div class="userbox-inner module todo">
+				<h2>Todo</h2>
+				<ul>
+					{{#if nextStats}}
+						{{#if nextStats.nextRank}}
+							<li>Complete <span class="emphasis">{{nextStats.nextRank}}</span> more chores to rank up</li>
+						{{/if}}
+
+						{{#each nextStats.nextPointBadge}}
+							<li>Earn <span class="emphasis">{{required}}</span> more points to recieve the <span class="emphasis">{{name}}</span> badge</li>
+						{{/each}}
+
+						{{#each nextStats.nextCompletedBadge}}
+							<li>Complete <span class="emphasis">{{required}}</span> more chores to recieve the <span class="emphasis">{{name}}</span> badge</li>
+						{{/each}}
+
+						{{#each nextStats.nextPrioBadge}}
+							<li class="{{className}}">Complete <span class="emphasis">{{required}}</span> more <span class="emphasis">prio-{{prio}}</span> chores to recieve the <span class="emphasis">{{name}}</span> badge</li>
+						{{/each}}
+					{{else}}
+						<p>Congratulations! You have achieved everything. You are truly a king of chores</p>
+					{{/if}}
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-1-1 stats">
 		<div class="module main">
 			<div class="userbox-inner module">
 				<h2>Stats</h2>
@@ -72,6 +101,9 @@
 			</div>
 		</div>
 	</div>
+
+
+
 
 	<div class="module-alert hidden">
 		<div class="module-alert-inner">

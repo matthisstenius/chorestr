@@ -6,7 +6,7 @@
 	</header>
 	<form action="/account/{{userProfile.username}}/edit" method="POST">
 		<input type="hidden" name="_method" value="PUT">
-		<label for="email">Update email adress</label>
+		<label for="email">Update email address</label>
 		<span class="error">{{messages.email.msg}}</span>
 
 		<input type="email" id="email" name="email" value="{{userProfile.email}}">
