@@ -1,1 +1,0 @@
-var CHORESTR=CHORESTR||{};CHORESTR.init=function(){};(function(){CHORESTR.init()})();
