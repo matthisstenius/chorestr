@@ -3,14 +3,15 @@
  * Module dependencies.
  */
 
-var appfog = JSON.parse(process.env.VMC_APP_INSTANCE);
-require('nodefly').profile(
-    '5c9e4bd7f72b2df31cc991a5e147270b',
-    [APPLICATION_NAME,
-     appfog.name,
-     appfog.instance_index],
-     options // optional
-);
+if (process.env.VMC_APP_INSTANCE) {
+  var appfog = JSON.parse(process.env.VMC_APP_INSTANCE);
+  require('nodefly').profile(
+      '5c9e4bd7f72b2df31cc991a5e147270b',
+      ["Chorestr",
+       appfog.name,
+       appfog.instance_index]
+  );
+}
 
 var express = require('express'),
     connectionEnv = require('./dbConfig'),
@@ -25,6 +26,7 @@ var express = require('express'),
     badges = require('./routes/badges'),
     activity = require('./routes/activity'),
     login = require('./routes/login'),
+    docs = require('./routes/docs'),
     http = require('http'),
     util = require('util'),
     expressValidator = require('express-validator'),
@@ -168,6 +170,9 @@ app.get('/account/:user/badges', badges.showBadges);
 app.get('/account/:user/activity', activity.showActivity);
 app.put('/account/:user/edit', users.save);
 app.delete('/account/:user', users.remove);
+
+//Docs
+app.get('/privacy', docs.privacy);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

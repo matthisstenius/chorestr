@@ -1009,6 +1009,17 @@ $orange: #D24D33;
 	}
 
 /* ----------------------------------------------------------------
+ *  ￼ Docs
+ * ----------------------------------------------------------------
+*/
+	.docs {
+		ul {
+			list-style: disc;
+			padding-left: 30px;
+			margin-bottom: 20px;
+		}
+	}
+/* ----------------------------------------------------------------
  *  ￼ 404, 500
  * ----------------------------------------------------------------
 */
@@ -1035,6 +1046,21 @@ $orange: #D24D33;
 		left: 0;
 		border-top: 1px solid #ccc;
 		width: 100%;
-		height: 100px; // Ta bort senare
+		//height: 100px; // Ta bort senare
+	}
+
+	.footer-inner {
+		.copyright {
+			float: left;
+		}
+	}
+	.footer-nav {
+		float: right;
+		margin: 20px 0;
+
+		li {
+			float: left;
+			padding-left: 20px;
+		}
 	}
 
