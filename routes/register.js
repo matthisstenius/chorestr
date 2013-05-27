@@ -5,7 +5,7 @@ exports.register = function(req, res) {
 	var username;
 
 	if (req.session.user) {
-		username = req.session.username;
+		username = req.session.user.username;
 	}
 
 	res.render('register', {

@@ -1,0 +1,23 @@
+{{!< layout}}
+<div class="main module single-col">
+	{{#if messages}}
+		<span class="info-message">{{messages}} <a class="close-message" href="#"><span class="icon-close"></span></a></span>
+	{{/if}}
+	<form action="/contact" method="POST">
+		<h1>Contact us</h1>
+
+		<label for="subject">Subject</label>
+		<span class="subject-error error">{{errors.subject.msg}}</span>
+		<input class="validate" type="text" id="subject" name="subject">
+
+		<label for="email">Email</label>
+		<span class="email-error error">{{errors.email.msg}}</span>
+		<input class="validate" type="email" value="{{email}}" id="email" name="email">
+
+		<label for="message">Message</label>
+		<span class="message-error error">{{errors.message.msg}}</span>
+		<textarea class="validate" name="message" id="message"></textarea>
+
+		<button class="btn btn-save">Send</button>
+	</form>
+</div>

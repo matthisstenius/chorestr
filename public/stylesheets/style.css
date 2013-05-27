@@ -997,6 +997,10 @@ input[type="submit"] {
   margin-top: 20px;
 }
 
+textarea {
+  height: 200px;
+}
+
 /* ----------------------------------------------------------------
  *  ￼ Register
  * ----------------------------------------------------------------
@@ -1207,9 +1211,10 @@ input[type="submit"] {
 }
 
 .slogan {
-  font-size: 3.5em;
+  font-size: 3.7em;
   color: white;
   text-align: center;
+  margin-top: 20px;
 }
 
 /* ----------------------------------------------------------------

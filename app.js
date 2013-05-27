@@ -27,6 +27,7 @@ var express = require('express'),
     activity = require('./routes/activity'),
     login = require('./routes/login'),
     docs = require('./routes/docs'),
+    contact = require('./routes/contact'),
     http = require('http'),
     util = require('util'),
     expressValidator = require('express-validator'),
@@ -173,6 +174,8 @@ app.delete('/account/:user', users.remove);
 
 //Docs
 app.get('/privacy', docs.privacy);
+app.get('/contact', contact.showContact);
+app.post('/contact', contact.send);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

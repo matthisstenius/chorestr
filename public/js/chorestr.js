@@ -138,6 +138,21 @@ CHORESTR.validate = function(type, value) {
 			error.textContent = '';
 		}
 	}
+
+	if (type === "subject") {
+		var error = document.querySelector('.subject-error');
+		if (value === "") {
+			error.textContent = "Enter a subject";
+			return;
+		}
+	}
+
+	if (type === "message") {
+		var error = document.querySelector('.message-error');
+		if (value === "") {
+			error.textContent = "Enter a message";
+		}
+	}
 };
 
 CHORESTR.badgeAlert = function(el) {
