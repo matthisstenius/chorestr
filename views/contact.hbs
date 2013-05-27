@@ -10,7 +10,7 @@
 	<form action="/contact" method="POST">
 		<label for="subject">Subject</label>
 		<span class="subject-error error">{{errors.subject.msg}}</span>
-		<input class="validate" type="text" placeholder="Required" id="subject" name="subject">
+		<input class="validate" type="text" placeholder="Required" value="{{bugReport.subject}}" id="subject" name="subject">
 
 		<label for="email">Email</label>
 		<span class="email-error error">{{errors.email.msg}}</span>
@@ -18,7 +18,7 @@
 
 		<label for="message">Message</label>
 		<span class="message-error error">{{errors.message.msg}}</span>
-		<textarea class="validate" placeholder="Required" name="message" id="message"></textarea>
+		<textarea class="validate" placeholder="Required" name="message" id="message">{{bugReport.stack}}</textarea>
 
 		<button class="btn btn-save"><span class="icon-forward"></span>Send</button>
 	</form>

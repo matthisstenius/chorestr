@@ -976,7 +976,7 @@ button {
 
 label,
 legend {
-  font-size: 1.3em;
+  font-size: 1.1em;
   margin-bottom: 10px;
   display: block;
   color: #337394;
@@ -1005,10 +1005,6 @@ textarea {
  *  ￼ Register
  * ----------------------------------------------------------------
 */
-.register-form label, .login-wrap label, .contact-wrap label {
-  font-size: 1.1em;
-}
-
 .pwd-weak {
   color: #b72d16;
 }

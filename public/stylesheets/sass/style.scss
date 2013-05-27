@@ -354,7 +354,7 @@ $orange: #D24D33;
 
 	label,
 	legend {
-		font-size: 1.3em;
+		font-size: 1.1em;
 		margin-bottom: 10px;
 		display: block;
 		color: #337394;
@@ -384,12 +384,6 @@ $orange: #D24D33;
  *  ￼ Register
  * ----------------------------------------------------------------
 */
-	.register-form, .login-wrap, .contact-wrap {
-		label {
-			font-size: 1.1em;
-		}
-	}
-
 	.pwd-weak {
 		color: $red;
 	}
