@@ -38,7 +38,7 @@ exports.showCompleted = function(req, res, next) {
 
 		db.User.findById(req.user._id, function(err, userDetails) {
 			res.render('completed', {
-				title: 'All chores',
+				title: 'Completed chores',
 				user: userDetails.username,
 				chores: chores,
 				meta: userDetails.meta,

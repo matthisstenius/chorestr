@@ -41,7 +41,7 @@ exports.all = function(req, res, next) {
 			}
 
 			res.render('chores', {
-				title: 'All chores',
+				title: 'Current chores',
 				user: userDetails.username,
 				chores: chores,
 				meta: userDetails.meta,

@@ -15,7 +15,7 @@ exports.details = function(req, res, next) {
 		var gravatar = baseUri + crypto.createHash('md5').update(docs.email.toLowerCase().trim()).digest('hex') + '?d=mm';
 
 		res.render('userProfile', {
-			title: "Profile",
+			title: docs.username + "'s profile",
 			userDetails: docs,
 			user: docs.username,
 			messages: req.session.messages,
