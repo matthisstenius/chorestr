@@ -1005,7 +1005,7 @@ textarea {
  *  ￼ Register
  * ----------------------------------------------------------------
 */
-.register-form label, .login-wrap label {
+.register-form label, .login-wrap label, .contact-wrap label {
   font-size: 1.1em;
 }
 

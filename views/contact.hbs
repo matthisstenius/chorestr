@@ -1,23 +1,25 @@
 {{!< layout}}
-<div class="main module single-col">
+<div class="main module single-col contact-wrap">
 	{{#if messages}}
 		<span class="info-message">{{messages}} <a class="close-message" href="#"><span class="icon-close"></span></a></span>
 	{{/if}}
-	<form action="/contact" method="POST">
-		<h1>Contact us</h1>
 
+	<h1>Contact us</h1>
+
+	<p>Have a burning question, need support, found something you like or dislike? Feel free to contact us with your questions. We'll do our best to get back to you as soon as possible.</p>
+	<form action="/contact" method="POST">
 		<label for="subject">Subject</label>
 		<span class="subject-error error">{{errors.subject.msg}}</span>
-		<input class="validate" type="text" id="subject" name="subject">
+		<input class="validate" type="text" placeholder="Required" id="subject" name="subject">
 
 		<label for="email">Email</label>
 		<span class="email-error error">{{errors.email.msg}}</span>
-		<input class="validate" type="email" value="{{email}}" id="email" name="email">
+		<input class="validate" type="email" placeholder="Required" value="{{email}}" id="email" name="email">
 
 		<label for="message">Message</label>
 		<span class="message-error error">{{errors.message.msg}}</span>
-		<textarea class="validate" name="message" id="message"></textarea>
+		<textarea class="validate" placeholder="Required" name="message" id="message"></textarea>
 
-		<button class="btn btn-save">Send</button>
+		<button class="btn btn-save"><span class="icon-forward"></span>Send</button>
 	</form>
 </div>
