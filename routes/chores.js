@@ -30,11 +30,10 @@ exports.all = function(req, res, next) {
 
 	db.Chores.find({user: req.user._id, status: 'active'}).sort(sort).exec(function(err, chores) {
 		if (err) {
-			var report = new Error('Unable to find chores');
-			report.inner = err;
-			next(report);
+			next(err);
+			return;
 		}
-
+		console.log(chores[0].due);
 		db.User.findById(req.user._id, function(err, userDetails) {
 			if (err) {
 				next(err);
@@ -91,14 +90,11 @@ exports.add = function(req, res, next) {
 		user: req.user._id
 	}).save(function(err) {
 		if (err) {
-				var report = new Error('Unable to save chore');
-				report.inner = err;
+			next(err);
+			return;
+		}
 
-				next(report);
-				return;
-			}
-
-			res.redirect('/' + req.user.username + '/chores');
+		res.redirect('/' + req.user.username + '/chores');
 	});
 
 };
@@ -150,11 +146,9 @@ exports.update = function(req, res, next) {
 		prio: body.prio
 	}, function(err) {
 		if (err) {
-				var report = new Error('Unable to update chore');
-				report.inner = err;
-				next(report);
-				return;
-			}
+			next(err);
+			return;
+		}
 
 		res.redirect('/' + req.user.username + '/chores');
 	});
@@ -166,9 +160,7 @@ exports.remove = function(req, res, next) {
 
 	db.Chores.findByIdAndRemove(id, function(err) {
 		if (err) {
-				var report = new Error('Unable to delete chore');
-				report.inner = err;
-				next(report);
+				next(err);
 				return;
 			}
 			res.redirect('back');

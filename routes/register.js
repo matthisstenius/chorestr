@@ -47,7 +47,8 @@ exports.add = function(req, res, next) {
 
 	db.User.findOne({username: body.username}, function(err, user) {
 		if (err) {
-			next(new Error('Could not get user from db'));
+			next(err);
+			return;
 		}
 
 		if (user) {
@@ -63,6 +64,7 @@ exports.add = function(req, res, next) {
 			db.User.findOne({email: body.email}, function(err, user) {
 				if (err) {
 					next(err);
+					return;
 				}
 
 				if (user) {
@@ -78,9 +80,8 @@ exports.add = function(req, res, next) {
 					bcrypt.hash(body.password, null, null, function(err, hash) {
 
 						if (err) {
-							var report = new Error('Hash failed');
-							report.inner = err;
-							next(report);
+							next(err);
+							return;
 						}
 
 						new db.User({
@@ -89,9 +90,8 @@ exports.add = function(req, res, next) {
 							password: hash
 						}).save(function(err, docs) {
 							if (err) {
-								var report = new Error('Could not save user');
-								report.inner = err;
-								next(report);
+								next(err);
+								return;
 							}
 
 							req.session.user = {

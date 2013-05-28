@@ -19,7 +19,7 @@ ChoresSchema.virtual('date.format').get(function() {
 });
 
 ChoresSchema.virtual('complete.date').get(function() {
-	return this.completedDate.toDateString() + ' ' + this.completedDate.getHours	() + ':' + this.completedDate.getMinutes();
+	return this.completedDate.toDateString() + ' ' + this.completedDate.getHours() + ':' + this.completedDate.getMinutes();
 });
 
 var ChoresModel = mongoose.model('Chores', ChoresSchema);

@@ -8,6 +8,7 @@ exports.details = function(req, res, next) {
 	db.User.findOne({username: req.user.username}, {username: 1, meta: 1, email: 1}, function(err, docs) {
 		if (err) {
 			next();
+			return;
 		}
 
 		var todo = achievmentCountdown(docs);
@@ -138,6 +139,7 @@ exports.edit = function(req, res, next) {
 	db.User.findOne({username: req.user.username}, function(err, docs) {
 		if (err) {
 			next(err);
+			return;
 		}
 
 		res.render('editProfile', {
@@ -175,9 +177,8 @@ exports.save = function(req, res, next) {
 		bcrypt.hash(body.password, null, null, function(err, hash) {
 
 				if (err) {
-					var report = new Error('Hash failed');
-					report.inner = err;
-					next(report);
+					next(err);
+					return;
 				}
 
 				db.User.findOneAndUpdate({username: req.user.username}, {
@@ -200,7 +201,9 @@ exports.save = function(req, res, next) {
 		}, function(err, user) {
 			if (err) {
 				next(err);
+				return;
 			}
+
 			req.session.messages = "Your account details have been saved";
 			res.redirect('/account/' + user.username);
 		});
@@ -212,12 +215,14 @@ exports.save = function(req, res, next) {
 exports.remove = function(req, res, next) {
 	db.User.remove({username: req.params.user}, function(err, User) {
 		if (err) {
-			next(err)
+			next(err);
+			return;
 		}
 
 		db.Chores.remove({user: User._id}, function(err) {
 			if (err) {
 				next(err);
+				return;
 			}
 
 		});

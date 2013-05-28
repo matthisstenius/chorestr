@@ -33,7 +33,8 @@ exports.showCompleted = function(req, res, next) {
 
 	db.Chores.find({user: req.user._id, status: 'completed'}).sort(sort).exec(function(err, chores) {
 		if (err) {
-			next(new Error('Could not find completed chores'));
+			next(err);
+			return;
 		}
 
 		db.User.findById(req.user._id, function(err, userDetails) {
@@ -57,7 +58,8 @@ exports.completed = function(req, res, next) {
 		completedDate: new Date()
 	}, function(err, chore) {
 		if (err) {
-			next(new Error('Could not complete chore'));
+			next(err);
+			return;
 		}
 
 		// Increase count depending on prio
@@ -65,6 +67,7 @@ exports.completed = function(req, res, next) {
 			db.User.findById(userId, function(err, user) {
 				if (err) {
 					next(err);
+					return;
 				}
 
 				var activity = {
@@ -77,6 +80,7 @@ exports.completed = function(req, res, next) {
 				user.save(function(err) {
 					if (err) {
 						next(err);
+						return;
 					}
 				});
 
@@ -95,6 +99,7 @@ exports.completed = function(req, res, next) {
 						user.update({$inc: {"meta.completedTotal": 1, "meta.points": reward, "meta.completedPrio.One": 1}}, function(err) {
 							if (err) {
 								next(err);
+								return;
 							}
 
 							badges.check(req, res, next, function(badge) {
@@ -116,6 +121,7 @@ exports.completed = function(req, res, next) {
 						user.update({$inc: {"meta.completedTotal": 1, "meta.points": reward, "meta.completedPrio.Two": 1}}, function(err) {
 							if (err) {
 								next(err);
+								return;
 							}
 
 							badges.check(req, res, next, function(badge) {
@@ -137,6 +143,7 @@ exports.completed = function(req, res, next) {
 						user.update({$inc: {"meta.completedTotal": 1, "meta.points": reward, "meta.completedPrio.Three": 1}}, function(err) {
 							if (err) {
 								next(err);
+								return;
 							}
 
 							badges.check(req, res, next, function(badge) {
@@ -160,6 +167,7 @@ exports.completed = function(req, res, next) {
 						user.update({$inc: {"meta.completedTotal": 1, "meta.points": reward, "meta.completedPrio.For": 1}}, function(err) {
 							if (err) {
 								next(err);
+								return;
 							}
 
 							badges.check(req, res, next, function(badge) {
@@ -181,6 +189,7 @@ exports.completed = function(req, res, next) {
 						user.update({$inc: {"meta.completedTotal": 1, "meta.points": reward, "meta.completedPrio.Five": 1}}, function(err) {
 							if (err) {
 								next(err);
+								return;
 							}
 
 							badges.check(req, res, next, function(badge) {
@@ -208,6 +217,7 @@ exports.completed = function(req, res, next) {
 			chore.save(function(err) {
 				if (err) {
 					next(err);
+					return;
 				}
 
 				db.User.findByIdAndUpdate(userId, {$inc: {"meta.failedTotal": 1}}, function(err, user) {

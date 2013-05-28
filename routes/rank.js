@@ -4,6 +4,7 @@ module.exports = function(req, res, next) {
 	db.User.findById(req.user._id, function(err, user) {
 		if (err) {
 			next(err);
+			return;
 		}
 
 		switch (true) {

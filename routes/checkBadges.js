@@ -8,6 +8,7 @@ module.exports.check = function(req, res, next, callback) {
 		db.User.findById(userId, function(err, user) {
 			if (err) {
 				next(err);
+				return;
 			}
 
 			var awardExists = function(id) {

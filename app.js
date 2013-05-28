@@ -88,18 +88,13 @@ app.configure(function(){
       username = req.session.user.username;
     }
 
-    // Set session for bugreport.
-    req.session.bugReport = {
-      stack: err.stack,
-      subject: "Error report"
-    };
-
     console.log(err.stack);
 
     res.status(500).render('500', {
       title: '500',
       user: username
     });
+
   });
 });
 
