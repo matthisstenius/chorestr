@@ -33,7 +33,7 @@ exports.all = function(req, res, next) {
 			next(err);
 			return;
 		}
-		console.log(chores[0].due);
+
 		db.User.findById(req.user._id, function(err, userDetails) {
 			if (err) {
 				next(err);
