@@ -28,6 +28,7 @@ var express = require('express'),
     login = require('./routes/login'),
     docs = require('./routes/docs'),
     contact = require('./routes/contact'),
+    errorReport = require('./routes/errorReport'),
     http = require('http'),
     expressValidator = require('express-validator');
 
@@ -92,6 +93,8 @@ app.configure(function(){
           title: '500',
           user: username
         });
+
+        errorReport.send(err.stack);
     });
 });
 
