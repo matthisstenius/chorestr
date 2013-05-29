@@ -1,5 +1,6 @@
 var db = require('../models/model'),
 	rank = require('../routes/rank'),
+	date = require('../routes/date'),
 	badges = require('../routes/checkBadges');
 
 exports.showCompleted = function(req, res, next) {
@@ -35,6 +36,11 @@ exports.showCompleted = function(req, res, next) {
 		if (err) {
 			next(err);
 			return;
+		}
+
+		// Format date and add timezone
+		for (var i = 0; i < chores.length; i += 1) {
+			chores[i].localDate = date(chores[i].completedDate, req.session.tz);
 		}
 
 		db.User.findById(req.user._id, function(err, userDetails) {
@@ -230,7 +236,6 @@ exports.completed = function(req, res, next) {
 						date: new Date()
 					};
 
-					console.log(user);
 					user.meta.activity.push(activity);
 
 					user.save(function(err) {

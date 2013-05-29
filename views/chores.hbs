@@ -45,7 +45,7 @@
 
 					<p class="reward"><span class="icon-coin"></span>Reward: <span>{{ reward }}</span></p>
 					<p class="risk"><span class="icon-fire"></span>Priority: {{prio}}</p>
-					<p class="due"></span>Complete this chore before:</br> <span class="date-stamp">{{ date.format }}</span></br> to recieve reward.</p>
+					<p class="due"></span>Complete this chore before:</br> <span class="date-stamp">{{localDate}}</span></br> to recieve reward.</p>
 
 					<form class="complete-chore" action="/{{../user}}/chores/completed/{{_id}}" method="POST">
 						<button class="btn task-done"><span class="icon-checkmark"></span>Mark Finished</button>

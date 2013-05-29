@@ -45,6 +45,7 @@ exports.login = function(req, res, next) {
 				}
 
 				if (result) {
+					req.session.tz = body.timeZone;
 					req.session.user = user;
 					res.redirect('/' + user.username + '/chores');
 

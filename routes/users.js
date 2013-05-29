@@ -79,15 +79,15 @@ exports.details = function(req, res, next) {
 
 		if (docs.meta.completedTotal > 50 && docs.meta.completedTotal < 100) {
 			todo.nextCompletedBadge.push({
-				required: 50 - docs.meta.completedTotal,
-				name: 'Completed 50 chores'
+				required: 100 - docs.meta.completedTotal,
+				name: 'Completed 100 chores'
 			});
 		}
 
 		if (docs.meta.completedTotal > 100 && docs.meta.completedTotal < 500) {
 			todo.nextCompletedBadge.push({
-				required: 50 - docs.meta.completedTotal,
-				name: 'Completed 50 chores'
+				required: 500 - docs.meta.completedTotal,
+				name: 'Completed 500 chores'
 			});
 		}
 

@@ -37,7 +37,7 @@ module.exports.check = function(req, res, next, callback) {
 
 				var activity = {
 					title: 'Awarded badge Completed first chore',
-					date: new Date()
+					date: now
 				};
 
 				user.meta.activity.push(activity);
@@ -57,7 +57,7 @@ module.exports.check = function(req, res, next, callback) {
 
 				var activity = {
 					title: 'Awarded badge Completed 10 chores',
-					date: new Date()
+					date: now
 				};
 
 				user.meta.activity.push(activity);
@@ -78,7 +78,7 @@ module.exports.check = function(req, res, next, callback) {
 
 				var activity = {
 					title: 'Awarded badge Completed 50 chores',
-					date: new Date()
+					date: now
 				};
 
 				user.meta.activity.push(activity);
@@ -96,7 +96,7 @@ module.exports.check = function(req, res, next, callback) {
 
 				var activity = {
 					title: 'Awarded badge Completed 100 chores',
-					date: new Date()
+					date: now
 				};
 
 				user.meta.activity.push(activity);
@@ -116,7 +116,7 @@ module.exports.check = function(req, res, next, callback) {
 
 				var activity = {
 					title: 'Awarded badge Completed 500 chores',
-					date: new Date()
+					date: now
 				};
 
 				user.meta.activity.push(activity);
@@ -137,7 +137,7 @@ module.exports.check = function(req, res, next, callback) {
 
 				var activity = {
 					title: 'Awarded badge Earned 1000 points',
-					date: new Date()
+					date: now
 				};
 
 				user.meta.activity.push(activity);
@@ -157,7 +157,7 @@ module.exports.check = function(req, res, next, callback) {
 
 				var activity = {
 					title: 'Awarded badge Earned 7000 points',
-					date: new Date()
+					date: now
 				};
 
 				user.meta.activity.push(activity);
@@ -178,7 +178,7 @@ module.exports.check = function(req, res, next, callback) {
 
 				var activity = {
 					title: 'Awarded badge Completed 15 prio-one chores',
-					date: new Date()
+					date: now
 				};
 
 				user.meta.activity.push(activity);
@@ -198,7 +198,7 @@ module.exports.check = function(req, res, next, callback) {
 
 				var activity = {
 					title: 'Awarded badge Completed 15 prio-two chores',
-					date: new Date()
+					date: now
 				};
 
 				user.meta.activity.push(activity);
@@ -219,7 +219,7 @@ module.exports.check = function(req, res, next, callback) {
 
 				var activity = {
 					title: 'Awarded badge Completed 15 prio-three chores',
-					date: new Date()
+					date: now
 				};
 
 				user.meta.activity.push(activity);
@@ -239,7 +239,7 @@ module.exports.check = function(req, res, next, callback) {
 
 				var activity = {
 					title: 'Awarded badge Completed 15 prio-four chores',
-					date: new Date()
+					date: now
 				};
 
 				user.meta.activity.push(activity);
@@ -260,7 +260,7 @@ module.exports.check = function(req, res, next, callback) {
 
 				var activity = {
 					title: 'Awarded badge Completed 15 prio-five chores',
-					date: new Date()
+					date: now
 				};
 
 				user.meta.activity.push(activity);

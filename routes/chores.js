@@ -1,4 +1,5 @@
-var db = require('../models/model');
+var db = require('../models/model'),
+	date = require('../routes/date');
 
 exports.all = function(req, res, next) {
 	// Take querystring and put it into an object
@@ -39,6 +40,11 @@ exports.all = function(req, res, next) {
 				next(err);
 			}
 
+			// Format date and add timezone
+			for (var i = 0; i < chores.length; i += 1) {
+				chores[i].localDate = date(chores[i].due, req.session.tz);
+			}
+
 			res.render('chores', {
 				title: 'Current chores',
 				user: userDetails.username,
@@ -56,7 +62,7 @@ exports.all = function(req, res, next) {
 
 };
 
-exports.new = function(req, res, next) {
+exports.new = function(req, res) {
 
 	res.render('new', {
 		title: 'New chore',
@@ -65,7 +71,8 @@ exports.new = function(req, res, next) {
 	});
 
 	req.session.messages = null;
-}
+};
+
 exports.add = function(req, res, next) {
 	var body = req.body;
 
@@ -80,23 +87,22 @@ exports.add = function(req, res, next) {
 		return;
 	}
 
-	var data = riskCalc(body.prio);
+	riskCalc(body.prio, function(data) {
+		new db.Chores({
+			name: body.title,
+			reward: data.reward,
+			due: data.dueDate,
+			prio: body.prio,
+			user: req.user._id
+		}).save(function(err) {
+			if (err) {
+				next(err);
+				return;
+			}
 
-	new db.Chores({
-		name: body.title,
-		reward: data.reward,
-		due: data.dueDate,
-		prio: body.prio,
-		user: req.user._id
-	}).save(function(err) {
-		if (err) {
-			next(err);
-			return;
-		}
-
-		res.redirect('/' + req.user.username + '/chores');
+			res.redirect('/' + req.user.username + '/chores');
+		});
 	});
-
 };
 
 exports.edit = function(req, res, next) {
@@ -137,22 +143,21 @@ exports.update = function(req, res, next) {
 		return;
 	}
 
-	var data = riskCalc(body.prio);
+	riskCalc(body.prio, function(data) {
+		db.Chores.findByIdAndUpdate(id, {
+			name: body.title,
+			reward: data.reward,
+			due: data.dueDate,
+			prio: body.prio
+		}, function(err) {
+			if (err) {
+				next(err);
+				return;
+			}
 
-	db.Chores.findByIdAndUpdate(id, {
-		name: body.title,
-		reward: data.reward,
-		due: data.dueDate,
-		prio: body.prio
-	}, function(err) {
-		if (err) {
-			next(err);
-			return;
-		}
-
-		res.redirect('/' + req.user.username + '/chores');
+			res.redirect('/' + req.user.username + '/chores');
+		});
 	});
-
 };
 
 exports.remove = function(req, res, next) {
@@ -168,35 +173,37 @@ exports.remove = function(req, res, next) {
 
 };
 
-function riskCalc(prio) {
-	var reward, dueDate, today;
-	var riskCalc = {};
+function riskCalc(prio, callback) {
+	var dueDate, today;
+	var riskCalcData = {};
 
 	today = new Date();
 	dueDate = new Date();
 
 	switch (prio) {
 		case '1':
-			riskCalc.reward = 50;
-			riskCalc.dueDate = dueDate.setDate(today.getDate() + 10);
+			riskCalcData.reward = 50;
+			dueDate.setDate(today.getDate() + 10);
 			break;
 		case '2':
-			riskCalc.reward = 75;
-			riskCalc.dueDate = dueDate.setDate(today.getDate() + 7);
+			riskCalcData.reward = 75;
+			dueDate.setDate(today.getDate() + 7);
 			break;
 		case '3':
-			riskCalc.reward = 100;
-			riskCalc.dueDate = dueDate.setDate(today.getDate() + 5);
+			riskCalcData.reward = 100;
+			dueDate.setDate(today.getDate() + 5);
 			break;
 		case '4':
-			riskCalc.reward = 150;
-			riskCalc.dueDate = dueDate.setDate(today.getDate() + 2);
+			riskCalcData.reward = 150;
+			dueDate.setDate(today.getDate() + 2);
 			break;
 		case '5':
-			riskCalc.reward = 250;
-			riskCalc.dueDate = dueDate.setDate(today.getDate() + 1);
+			riskCalcData.reward = 250;
+			dueDate.setDate(today.getDate() + 1);
 			break;
 	}
 
-	return riskCalc;
-};
+
+	riskCalcData.dueDate = dueDate;
+	callback(riskCalcData);
+}

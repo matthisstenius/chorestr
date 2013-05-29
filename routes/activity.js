@@ -5,6 +5,7 @@ exports.showActivity = function(req, res, next) {
 	db.User.findOne({username: req.user.username}, {meta: 1}, function(err, docs) {
 		if (err) {
 			next();
+			return;
 		}
 
 		res.send(docs.meta.activity.reverse());
@@ -14,6 +15,7 @@ exports.showActivity = function(req, res, next) {
 		docs.save(function(err) {
 			if (err) {
 				next(err);
+				return;
 			}
 		})
 

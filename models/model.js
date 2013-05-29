@@ -14,13 +14,6 @@ var ChoresSchema = new mongoose.Schema({
 	user: {type: mongoose.Schema.ObjectId, index: true}
 });
 
-ChoresSchema.virtual('date.format').get(function() {
-	return this.due.toDateString() + ' ' + this.due.getHours() + ':' + this.due.getMinutes();
-});
-
-ChoresSchema.virtual('complete.date').get(function() {
-	return this.completedDate.toDateString() + ' ' + this.completedDate.getHours() + ':' + this.completedDate.getMinutes();
-});
 
 var ChoresModel = mongoose.model('Chores', ChoresSchema);
 

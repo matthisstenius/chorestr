@@ -9,6 +9,7 @@ CHORESTR.init = function() {
 		alertMessageClose = document.querySelector('.close-message'),
 		validateInput = document.querySelectorAll('.validate'),
 		userMenu = document.querySelector('.username'),
+		timeZone = document.getElementById('tz'),
 		showActivityLog = document.querySelector('.show-activity-log '),
 		newChoreBtn = document.querySelector('.new-chore'),
 		badgeModuleAlertBox = document.querySelector('.badge-module-alert'),
@@ -27,6 +28,9 @@ CHORESTR.init = function() {
 		}
 	}
 
+	if (typeof(timeZone) !== 'undefined' && timeZone !== null) {
+		timeZone.setAttribute('value', jstz.determine().name());
+	}
 
 	if (typeof(userMenu) !== 'undefined' && userMenu !== null) {
 		var userSubMenu = document.querySelector('.user-subnav');
@@ -263,6 +267,7 @@ CHORESTR.showActivityLog = function(user) {
 
 				span.setAttribute('class', 'activity-date');
 				li.textContent = data[i].title;
+				console.log(new Date(data[i].date));
 				var dateFormat = new Date(data[i].date);
 				span.textContent = dateFormat.toDateString() + ' ' + dateFormat.getHours() + ':' + dateFormat.getMinutes();
 

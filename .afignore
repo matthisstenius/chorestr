@@ -1,2 +1,3 @@
 sass/
-chorestr.js
+public/js/chorestr.js
+public/js/jstz-1.0.4.min.js
