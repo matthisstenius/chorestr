@@ -3,11 +3,11 @@ var db = require('../models/model'),
 	nodemailer = require('nodemailer'),
 	crypto = require('crypto');
 
-var smtpTransport = nodemailer.createTransport("SMTP", {
-	service: "Hotmail",
+var smtpTransport = nodemailer.createTransport('SMTP', {
+	service: 'Hotmail',
 	auth: {
-		user: "support@chorestr.com",
-		pass: "Ed?{FD3XW]7C2EoG"
+		user: 'support@chorestr.com',
+		pass: 'Ed?{FD3XW]7C2EoG'
 	}
 });
 
@@ -52,14 +52,14 @@ exports.login = function(req, res, next) {
 				}
 
 				else {
-					req.session.loginError = "Username or password incorrect";
+					req.session.loginError = 'Username or password incorrect';
 					res.redirect('/login');
 				}
-			})
+			});
 		}
 
 		else {
-			req.session.loginError = "Username or password incorrect";
+			req.session.loginError = 'Username or password incorrect';
 			res.redirect('/login');
 		}
 	});
@@ -120,13 +120,13 @@ exports.forgot = function(req, res, next) {
 
 				});
 
-				var text = "Chorestr received a request to reset the password for your Chorestr account. To reset your password click on the link below."
+				var text = 'Chorestr received a request to reset the password for your Chorestr account. To reset your password click on the link below.';
 				var resetUrl = req.headers.host + '/reset/' + user._id + '/' + buf.toString('hex');
 
 				var mailOptions = {
-					from: "Chorestr support <support@chorestr.com>",
+					from: 'Chorestr support <support@chorestr.com>',
 					to: user.email,
-					subject: "Reset password",
+					subject: 'Reset password',
 					html: "<html><p>" + text + "</p><a href='" + resetUrl + "'>" + resetUrl + "</a><p> If you didn't request a password reset your can disregard this message.</p></html>"
 				};
 
@@ -136,7 +136,7 @@ exports.forgot = function(req, res, next) {
 						return;
 					}
 
-					req.session.messages = {success: "An email has been sent to you."}
+					req.session.messages = {success: 'An email has been sent to you.'};
 					res.redirect('/forgot');
 
 				});
@@ -154,8 +154,6 @@ exports.forgot = function(req, res, next) {
 };
 
 exports.showReset = function(req, res, next) {
-	var body = req.body;
-
 	db.User.findOne({_id: req.params.userId}, function(err, user) {
 		if (err) {
 			next(err);
@@ -183,7 +181,7 @@ exports.showReset = function(req, res, next) {
 					req.session.messages = {expired: 'This reset token has expired. You can request a new one below'};
 					res.redirect('/forgot');
 				}
-			})
+			});
 		}
 
 		else {
@@ -203,7 +201,7 @@ exports.reset = function(req, res, next) {
 	var errors = req.validationErrors(true);
 
 	if (body.password !== body.passwordAgain) {
-		errors.equals = "Passwords does not match";
+		errors.equals = 'Passwords does not match';
 	}
 
 	if (errors) {
@@ -231,12 +229,12 @@ exports.reset = function(req, res, next) {
 
 			req.session.username = user.username;
 			res.redirect('/login');
-		})
+		});
 	});
 
 };
 
-exports.logout = function(req, res, next) {
-	req.session.destroy()
+exports.logout = function(req, res) {
+	req.session.destroy();
 	res.redirect('/');
 };

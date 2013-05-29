@@ -13,8 +13,7 @@ CHORESTR.init = function() {
 		showActivityLog = document.querySelector('.show-activity-log '),
 		newChoreBtn = document.querySelector('.new-chore'),
 		badgeModuleAlertBox = document.querySelector('.badge-module-alert'),
-		removeChore = document.querySelectorAll('.remove'),
-		loginBox = document.querySelector('.login-box');
+		removeChore = document.querySelectorAll('.remove');
 
 	if (typeof(newChoreInput) !== 'undefined' && newChoreInput !== null) {
 		newChoreInput.focus();
@@ -95,8 +94,10 @@ CHORESTR.init = function() {
 };
 
 CHORESTR.validate = function(type, value) {
+	var error;
+
 	if (type === 'username') {
-		var error = document.querySelector('.username-error');
+		error = document.querySelector('.username-error');
 
 		if (value === '') {
 			error.textContent = 'Enter a username';
@@ -114,7 +115,7 @@ CHORESTR.validate = function(type, value) {
 	}
 
 	if (type === 'email') {
-		var error = document.querySelector('.email-error');
+		error = document.querySelector('.email-error');
 		if (!value.match(/^(?!\.)(\w|-|\.){1,64}(?!\.)@(?!\.)[-.a-zåäö0-9]{4,253}$/)) {
 			error.textContent = 'Invalid email';
 			return;
@@ -126,7 +127,7 @@ CHORESTR.validate = function(type, value) {
 	}
 
 	if (type === 'password') {
-		var error = document.querySelector('.password-error');
+		error = document.querySelector('.password-error');
 
 		if (value === '') {
 			error.textContent = 'Enter a password';
@@ -143,18 +144,18 @@ CHORESTR.validate = function(type, value) {
 		}
 	}
 
-	if (type === "subject") {
-		var error = document.querySelector('.subject-error');
+	if (type === 'subject') {
+		error = document.querySelector('.subject-error');
 		if (value === "") {
-			error.textContent = "Enter a subject";
+			error.textContent = 'Enter a subject';
 			return;
 		}
 	}
 
-	if (type === "message") {
-		var error = document.querySelector('.message-error');
+	if (type === 'message') {
+		error = document.querySelector('.message-error');
 		if (value === "") {
-			error.textContent = "Enter a message";
+			error.textContent = 'Enter a message';
 		}
 	}
 };
@@ -227,8 +228,7 @@ CHORESTR.alertBox = function(el, closeButton) {
 };
 
 CHORESTR.loginBox = function() {
-	var input = document.getElementById('username'),
-		loginBox = document.querySelector('.login-box'),
+	var loginBox = document.querySelector('.login-box'),
 		closeButton = document.querySelector('.close');
 
 	CHORESTR.alertBox(loginBox, closeButton);

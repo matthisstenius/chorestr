@@ -1,6 +1,5 @@
 var mongoose = require('mongoose'),
 	connectionEnv = require('../dbConfig');
-var env = process.env.VCAP_SERVICE || 'development';
 
 mongoose.connect(connectionEnv.dbConnection);
 

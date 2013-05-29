@@ -1,6 +1,8 @@
 var db = require('../models/model');
 
 module.exports = function(req, res, next) {
+	var activity, activity2;
+
 	db.User.findById(req.user._id, function(err, user) {
 		if (err) {
 			next(err);
@@ -9,9 +11,9 @@ module.exports = function(req, res, next) {
 
 		switch (true) {
 			case (user.meta.completedTotal === 10):
-				user.meta.rank = "Amateur";
+				user.meta.rank = 'Amateur';
 
-				var activity = {
+				activity = {
 					title: 'Earned rank Amateur',
 					date: new Date()
 				};
@@ -22,15 +24,15 @@ module.exports = function(req, res, next) {
 			break;
 
 			case (user.meta.completedTotal === 50):
-				user.meta.rank = "Pro";
+				user.meta.rank = 'Pro';
 				user.meta.multiplier = 2;
 
-				var activity = {
+				activity = {
 					title: 'Earned rank Pro',
 					date: new Date()
 				};
 
-				var activity2 = {
+				activity2 = {
 					title: 'Earned 2x multiplier',
 					date: new Date()
 				};
@@ -41,15 +43,15 @@ module.exports = function(req, res, next) {
 			break;
 
 			case (user.meta.completedTotal === 100):
-				user.meta.rank = "King of Chores";
+				user.meta.rank = 'King of Chores';
 				user.meta.multiplier = 3;
 
-				var activity = {
+				activity = {
 					title: 'Earned rank King of Chores',
 					date: new Date()
 				};
 
-				var activity2 = {
+				activity2 = {
 					title: 'Earned 3x multiplier',
 					date: new Date()
 				};

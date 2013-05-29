@@ -157,7 +157,7 @@ exports.edit = function(req, res, next) {
 exports.save = function(req, res, next) {
 	var body = req.body;
 
-	req.assert('email', "Enter a valid email addres").notEmpty().isEmail();
+	req.assert('email', 'Enter a valid email addres').notEmpty().isEmail();
 
 	if (body.password || body.passwordAgain) {
 		req.assert('passwordAgain', 'Password do not match.').equals(body.password);
@@ -189,7 +189,7 @@ exports.save = function(req, res, next) {
 						next(err);
 					}
 
-					req.session.messages = "Your account details have been saved";
+					req.session.messages = 'Your account details have been saved';
 					res.redirect('/account/' + user.username);
 				});
 			});
@@ -204,7 +204,7 @@ exports.save = function(req, res, next) {
 				return;
 			}
 
-			req.session.messages = "Your account details have been saved";
+			req.session.messages = 'Your account details have been saved';
 			res.redirect('/account/' + user.username);
 		});
 	}

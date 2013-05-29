@@ -879,7 +879,14 @@ $orange: #D24D33;
 
 		.profile-pic {
 			float: left;
-			border-radius: 3px;
+
+			img {
+				border-radius: 50%;
+			}
+		}
+
+		.user-info {
+			margin-top: 30px;
 		}
 	}
 
@@ -916,6 +923,10 @@ $orange: #D24D33;
 
 	.account-buttons {
 		margin-top: 20px;
+
+		form {
+			margin-bottom: 0;
+		}
 	}
 
 	.stats-item {

@@ -100,7 +100,7 @@ exports.add = function(req, res, next) {
 								email: docs.email
 							};
 
-							req.session.tz = body.tz;
+							req.session.tz = body.timezone;
 							res.redirect('/' + docs.username + '/chores');
 
 						});

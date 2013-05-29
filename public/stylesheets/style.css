@@ -1469,7 +1469,12 @@ textarea {
 }
 .userbox-inner .profile-pic {
   float: left;
-  border-radius: 3px;
+}
+.userbox-inner .profile-pic img {
+  border-radius: 50%;
+}
+.userbox-inner .user-info {
+  margin-top: 30px;
 }
 
 .todo li {
@@ -1499,6 +1504,9 @@ textarea {
 
 .account-buttons {
   margin-top: 20px;
+}
+.account-buttons form {
+  margin-bottom: 0;
 }
 
 .stats-item {

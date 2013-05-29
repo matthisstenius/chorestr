@@ -2,10 +2,10 @@ var nodemailer = require('nodemailer');
 
 
 var smtpTransport = nodemailer.createTransport("SMTP", {
-	service: "Hotmail",
+	service: 'Hotmail',
 	auth: {
-		user: "hello@chorestr.com",
-		pass: "!)94,2`4962122E"
+		user: 'hello@chorestr.com',
+		pass: '!)94,2`4962122E'
 	}
 });
 
@@ -41,13 +41,13 @@ exports.send = function(req, res, next) {
 
 	if (error) {
 		req.session.errors = error;
-		res.redirect("/contact");
+		res.redirect('/contact');
 		return;
 	}
 
 	var mailOptions = {
 		from: body.email,
-		to: "hello@chorestr.com",
+		to: 'hello@chorestr.com',
 		subject: body.subject,
 		html: "<html><p>" + body.message + "</p><p>"+ body.email + "</p></html>"
 	};
