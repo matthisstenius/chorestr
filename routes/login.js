@@ -46,7 +46,13 @@ exports.login = function(req, res, next) {
 
 				if (result) {
 					req.session.tz = body.timeZone;
-					req.session.user = user;
+
+					req.session.user = {
+						_id: user._id,
+						username: user.username,
+						email: user.email
+					};
+
 					res.redirect('/' + user.username + '/chores');
 
 				}
@@ -120,14 +126,14 @@ exports.forgot = function(req, res, next) {
 
 				});
 
-				var text = 'Chorestr received a request to reset the password for your Chorestr account. To reset your password click on the link below.';
+				var text = 'Chorestr received a request to reset the password for your Chorestr account. To reset your password click on the link below (or copy and paste it in your browser).';
 				var resetUrl = req.headers.host + '/reset/' + user._id + '/' + buf.toString('hex');
 
 				var mailOptions = {
 					from: 'Chorestr support <support@chorestr.com>',
 					to: user.email,
 					subject: 'Reset password',
-					html: "<html><p>" + text + "</p><a href='" + resetUrl + "'>" + resetUrl + "</a><p> If you didn't request a password reset your can disregard this message.</p></html>"
+					html: "<html><p>" + text + "</p><a href='http://" + resetUrl + "'>" + resetUrl + "</a><p> If you didn't request a password reset your can disregard this message.</p></html>"
 				};
 
 				smtpTransport.sendMail(mailOptions, function(err, response) {

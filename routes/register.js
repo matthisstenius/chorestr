@@ -78,7 +78,6 @@ exports.add = function(req, res, next) {
 
 				else {
 					bcrypt.hash(body.password, null, null, function(err, hash) {
-
 						if (err) {
 							next(err);
 							return;
@@ -100,7 +99,8 @@ exports.add = function(req, res, next) {
 								email: docs.email
 							};
 
-							req.session.tz = body.timezone;
+							req.session.tz = body.timeZone;
+
 							res.redirect('/' + docs.username + '/chores');
 
 						});

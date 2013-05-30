@@ -49,8 +49,7 @@ app.configure(function(){
 
     app.use(express.session({
         secret: '_:2a.c/BpD?!=C7AQzZzC+Mx1Rj)l%4$SG<)I<ven~aqX`>#S>Zs]o0qj|6mj7-|',
-        expires: new Date(Date.now() + 5 * 86400 * 1000), // 5 days
-
+        cookie: { maxAge: new Date(Date.now() +  5 * 86400 * 1000)},
         store: new MongoStore({
             url: connectionEnv.dbConnection
         })

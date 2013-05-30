@@ -6,7 +6,7 @@
 		<span class="info-message">{{userExists}}<a class="close-message" href="#"><span class="icon-close"></span></a></span>
 	{{/if}}
 	<form action="/register" method="POST">
-		<input id="tz" type="hidden" name="timeZone">
+		<input class="tz" type="hidden" name="timeZone">
 		<label for="username">Choose your username</label>
 		<span class="username-error error">{{errors.username.msg}}</span>
 		<input type="text" class="validate" id="username" name="username" placeholder="required" value="{{userInput.username}}">

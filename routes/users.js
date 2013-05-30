@@ -11,25 +11,25 @@ exports.details = function(req, res, next) {
 			return;
 		}
 
-		var todo = achievmentCountdown(docs);
-
 		var gravatar = baseUri + crypto.createHash('md5').update(docs.email.toLowerCase().trim()).digest('hex') + '?d=mm';
 
-		res.render('userProfile', {
-			title: docs.username + "'s profile",
-			userDetails: docs,
-			user: docs.username,
-			messages: req.session.messages,
-			awardsCount: docs.meta.awards.length,
-			awards: docs.meta.awards,
-			profilePic: gravatar,
-			nextStats: todo
+		achievmentCountdown(docs, function(todo) {
+			res.render('userProfile', {
+				title: docs.username + "'s profile",
+				userDetails: docs,
+				user: docs.username,
+				messages: req.session.messages,
+				awardsCount: docs.meta.awards.length,
+				awards: docs.meta.awards,
+				profilePic: gravatar,
+				nextStats: todo
+			});
 		});
 
 		req.session.messages = null;
 	});
 
-	function achievmentCountdown(docs) {
+	function achievmentCountdown(docs, callback) {
 		var todo = {
 			nextPointBadge: [],
 			nextCompletedBadge: [],
@@ -131,7 +131,8 @@ exports.details = function(req, res, next) {
 			});
 		}
 
-		return todo;
+		callback(todo);
+		//return todo;
 	}
 };
 
@@ -167,7 +168,6 @@ exports.save = function(req, res, next) {
 	var errors = req.validationErrors(true);
 
 	if (errors) {
-		console.log(errors);
 		req.session.messages = errors;
 		res.redirect(req.path);
 		return;

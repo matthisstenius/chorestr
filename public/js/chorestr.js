@@ -9,7 +9,7 @@ CHORESTR.init = function() {
 		alertMessageClose = document.querySelector('.close-message'),
 		validateInput = document.querySelectorAll('.validate'),
 		userMenu = document.querySelector('.username'),
-		timeZone = document.getElementById('tz'),
+		timeZone = document.querySelectorAll('.tz'),
 		showActivityLog = document.querySelector('.show-activity-log '),
 		newChoreBtn = document.querySelector('.new-chore'),
 		badgeModuleAlertBox = document.querySelector('.badge-module-alert'),
@@ -28,7 +28,9 @@ CHORESTR.init = function() {
 	}
 
 	if (typeof(timeZone) !== 'undefined' && timeZone !== null) {
-		timeZone.setAttribute('value', jstz.determine().name());
+		for (var i = 0; i < timeZone.length; i += 1) {
+			timeZone[i].setAttribute('value', jstz.determine().name());
+		}
 	}
 
 	if (typeof(userMenu) !== 'undefined' && userMenu !== null) {

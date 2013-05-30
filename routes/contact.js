@@ -21,13 +21,11 @@ exports.showContact = function(req, res, next) {
 		user: username,
 		email: email,
 		messages: req.session.messages,
-		errors: req.session.errors,
-		bugReport: req.session.bugReport
+		errors: req.session.errors
 	});
 
 	req.session.messages = null;
 	req.session.errors = null;
-	req.session.bugReport = null;
 };
 
 exports.send = function(req, res, next) {
