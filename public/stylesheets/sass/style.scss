@@ -93,8 +93,14 @@ $orange: #D24D33;
 		display: block;
 	}
 
-	.clearfix {
-		overflow: hidden; // Add better clearfix
+	.clearfix:before,
+	.clearfix:after {
+	    content: " "; /* 1 */
+	    display: table; /* 2 */
+	}
+
+	.clearfix:after {
+	    clear: both;
 	}
 
 	.header, .footer {
@@ -749,8 +755,8 @@ $orange: #D24D33;
 		top: 100px;
 
 		.module-alert-main {
-			overflow: scroll;
-			height: 100%;
+			overflow-y: scroll;
+			height: 351px;
 			margin: 0;
 		}
 

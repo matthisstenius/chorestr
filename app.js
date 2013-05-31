@@ -41,7 +41,7 @@ app.configure(function(){
     app.set('view engine', 'hbs');
     app.set('views', __dirname + '/views');
     app.use(expressValidator);
-    app.use(express.favicon());
+    app.use(express.favicon(__dirname + '/public/img/favicon.ico'));
     app.use(express.logger('dev'));
     app.use(express.bodyParser());
     app.use(express.methodOverride());
@@ -62,7 +62,16 @@ app.configure(function(){
     });
 
     app.use(app.router);
-    app.use(express.static(__dirname + '/public'));
+
+    // Cache only on prod server
+    if (process.env.NODE_ENV === 'production') {
+        var oneYear = 31557600000;
+        app.use(express.static(__dirname + '/public', {maxAge: oneYear}));
+    }
+
+    else {
+        app.use(express.static(__dirname + '/public'));
+    }
 
     // 404
     app.use(function(req, res) {
@@ -104,8 +113,7 @@ app.configure('development', function(){
 
 app.configure('production', function() {
   console.log("production");
-    //var oneYear = 31557600000;
-    //app.use(express.static(__dirname + '/public', {maxAge: oneYear}));
+
 });
 
 app.get('/', function(req, res, next) {
@@ -125,7 +133,7 @@ app.param('user', function(req, res, next, id) {
     if (session) {
       if (session.username === id) {
           req.user = session;
-          res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+          res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, Pragma, max-age=0');
           next();
       }
 
