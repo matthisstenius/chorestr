@@ -632,12 +632,15 @@ $orange: #D24D33;
 	  display: inline-block;
 	  background: white;
 	  padding: 4px;
-	  font-size: 1.1em;
 	  border-radius: 3px;
 	  border: 1px solid #ccc;
 	  color: $red;
 	  float: right;
 	  margin-right: 10px;
+
+	  span {
+	  	font-family: $bodyBold;
+	  }
 	}
 
 	.toolbar-menu {

@@ -22,9 +22,9 @@ body {
 	padding-right: 20px;
 }
 
-// [class*='col-']:last-of-type {
-// 	padding-right: 0px;
-// }
+.last {
+	padding-right: 0;
+}
 
 .grid {
 	//width: 100%;

@@ -24,7 +24,7 @@ Instead of a list of all class selectors,
 you can use the generic selector below, but it's slower:
 [class*="icon-"] {
 */
-.icon-checkmark, .icon-coin, .icon-calendar, .icon-remove, .icon-plus, .icon-numbered-list, .icon-star, .icon-signup, .icon-pencil, .icon-close, .icon-cancel-circle, .icon-stopwatch, .icon-notification, .icon-clock, .icon-award-fill, .icon-pushpin, .icon-calendar-2, .icon-fire, .icon-meter, .icon-warning, .icon-forward, .icon-support, .icon-award-stroke, .icon-spin, .icon-switch, .icon-user, .icon-settings, .icon-cog, .icon-spades, .icon-menu, .icon-menu-2 {
+.icon-checkmark, .icon-coin, .icon-calendar, .icon-remove, .icon-plus, .icon-numbered-list, .icon-star, .icon-pencil, .icon-close, .icon-pushpin, .icon-fire, .icon-meter, .icon-warning, .icon-forward, .icon-support, .icon-spin, .icon-switch, .icon-cog, .icon-spades, .icon-user {
   font-family: 'icomoon';
   speak: none;
   font-style: normal;
@@ -63,10 +63,6 @@ you can use the generic selector below, but it's slower:
   content: "\e005";
 }
 
-.icon-signup:before {
-  content: "\e006";
-}
-
 .icon-pencil:before {
   content: "\e007";
 }
@@ -75,32 +71,8 @@ you can use the generic selector below, but it's slower:
   content: "\e008";
 }
 
-.icon-cancel-circle:before {
-  content: "\e009";
-}
-
-.icon-stopwatch:before {
-  content: "\e00b";
-}
-
-.icon-notification:before {
-  content: "\e00c";
-}
-
-.icon-clock:before {
-  content: "\e00d";
-}
-
-.icon-award-fill:before {
-  content: "\e00e";
-}
-
 .icon-pushpin:before {
   content: "\e00f";
-}
-
-.icon-calendar-2:before {
-  content: "\e010";
 }
 
 .icon-fire:before {
@@ -123,24 +95,12 @@ you can use the generic selector below, but it's slower:
   content: "\e015";
 }
 
-.icon-award-stroke:before {
-  content: "\e016";
-}
-
 .icon-spin:before {
   content: "\e017";
 }
 
 .icon-switch:before {
   content: "\e018";
-}
-
-.icon-user:before {
-  content: "\e019";
-}
-
-.icon-settings:before {
-  content: "\e01a";
 }
 
 .icon-cog:before {
@@ -151,12 +111,8 @@ you can use the generic selector below, but it's slower:
   content: "\e01c";
 }
 
-.icon-menu:before {
-  content: "\e01d";
-}
-
-.icon-menu-2:before {
-  content: "\e01e";
+.icon-user:before {
+  content: "\e006";
 }
 
 /* normalize.css v2.0.1 | MIT License | git.io/normalize */
@@ -528,6 +484,10 @@ body {
 [class*='col-'] {
   float: left;
   padding-right: 20px;
+}
+
+.last {
+  padding-right: 0;
 }
 
 .grid {
@@ -1225,12 +1185,14 @@ textarea {
   display: inline-block;
   background: white;
   padding: 4px;
-  font-size: 1.1em;
   border-radius: 3px;
   border: 1px solid #ccc;
   color: #b72d16;
   float: right;
   margin-right: 10px;
+}
+.points span {
+  font-family: "FuturaPTMedium-Reg", helvetica, sans-serif;
 }
 
 .toolbar-menu {
