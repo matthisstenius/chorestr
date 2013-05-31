@@ -18,8 +18,11 @@ $orange: #D24D33;
  *  ￼ General
  * ----------------------------------------------------------------
 */
+	html, body {
+		height: 100%;
+	}
+
 	html {
-		min-height: 100%;
 		position: relative;
 	}
 
@@ -34,8 +37,14 @@ $orange: #D24D33;
 	}
 
 	.wrapper {
-		margin: 20px 0;
+		min-height: 100%;
+		height: auto !important;
+		margin: 20px  auto -60px;
 		padding: 0 10px;
+	}
+
+	.push {
+		height: 60px;
 	}
 
 	.main {
@@ -1057,12 +1066,10 @@ $orange: #D24D33;
  * ----------------------------------------------------------------
 */
 	.footer {
-		position: absolute;
-		bottom: 0;
-		left: 0;
+		margin-top: 20px;
 		border-top: 1px solid #ccc;
 		width: 100%;
-		//height: 100px; // Ta bort senare
+		height: 60px;
 	}
 
 	.footer-inner {
