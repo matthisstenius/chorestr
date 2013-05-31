@@ -49,7 +49,7 @@
 
 					<p class="reward"><span class="icon-coin"></span>Reward: <span class=" reward-failed">{{ reward }}</span></p>
 					<p class="risk"><span class="icon-fire"></span>Priority: {{prio}}</p>
-					<p class="due"></span>This chore was failed on:</br> <span class="date-stamp">{{ complete.date }}</span></p>
+					<p class="due"></span>This chore was failed on:</br> <span class="date-stamp">{{ localDate }}</span></p>
 
 					<form class="complete-chore" action="/{{../user}}/chores/{{_id}}" method="POST">
 						<input type="hidden" name="_method" value="DELETE">
@@ -62,5 +62,26 @@
 			<p class="no-chore-message">You have no failed chores. Good job!</p>
 		{{/if}}
 
+
+		<div class="module-alert hidden">
+			<div class="module-alert-inner">
+				<div class="module-alert-header module clearfix">
+					<h3>Remove chore</h3>
+					<a class="close" href="#"><span class="icon-close"></span></a>
+				</div>
+
+				<div class="module-alert-main module">
+					<p>Are you sure you want to remove this chore? This action can not be undone.</p>
+
+				</div>
+
+				<div class="module-alert-footer module">
+					<form action="#" method="POST">
+						<input type="hidden" name="_method" value="DELETE">
+						<button class="btn btn-cancel btn-remove"><span class="icon-remove"></span>Remove</button>
+					</form>
+				</div>
+			</div>
+		</div>
 	</div> {{! end .module }}
 </div> {{! end .grid }}

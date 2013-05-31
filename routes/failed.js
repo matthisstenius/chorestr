@@ -1,4 +1,5 @@
-var db = require('../models/model');
+var db = require('../models/model'),
+	date = require('../routes/date');
 
 exports.showFailed = function(req, res, next) {
 	var userID = req.user._id;
@@ -35,6 +36,11 @@ exports.showFailed = function(req, res, next) {
 		if (err) {
 			next(err);
 			return;
+		}
+
+		// Format date and add timezone
+		for (var i = 0; i < chores.length; i += 1) {
+			chores[i].localDate = date(chores[i].completedDate, req.session.tz);
 		}
 
 		db.User.findById(req.user._id, function(err, userDetails) {

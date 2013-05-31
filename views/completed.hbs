@@ -55,8 +55,6 @@
 						<input type="hidden" name="_method" value="DELETE">
 						<button class="btn task-done remove"><span class="icon-remove"></span>Remove for good</button>
 					</form>
-
-
 				</div>
 			</div>
 			{{/each}}
@@ -65,24 +63,24 @@
 		{{/if}}
 
 		<div class="module-alert hidden">
-				<div class="module-alert-inner">
-					<div class="module-alert-header module clearfix">
-						<h3>Remove chore</h3>
-						<a class="close" href="#"><span class="icon-close"></span></a>
-					</div>
+			<div class="module-alert-inner">
+				<div class="module-alert-header module clearfix">
+					<h3>Remove chore</h3>
+					<a class="close" href="#"><span class="icon-close"></span></a>
+				</div>
 
-					<div class="module-alert-main module">
-						<p>Are you sure you want to remove this chore? This action can not be undone.</p>
+				<div class="module-alert-main module">
+					<p>Are you sure you want to remove this chore? This action can not be undone.</p>
 
-					</div>
+				</div>
 
-					<div class="module-alert-footer module">
-						<form action="#" method="POST">
-							<input type="hidden" name="_method" value="DELETE">
-							<button class="btn btn-cancel btn-remove"><span class="icon-remove"></span>Remove</button>
-						</form>
-					</div>
+				<div class="module-alert-footer module">
+					<form action="#" method="POST">
+						<input type="hidden" name="_method" value="DELETE">
+						<button class="btn btn-cancel btn-remove"><span class="icon-remove"></span>Remove</button>
+					</form>
 				</div>
 			</div>
+		</div>
 	</div> {{! end .module }}
 </div> {{! end .grid }}
