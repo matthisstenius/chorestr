@@ -15,7 +15,7 @@ exports.details = function(req, res, next) {
 
 		achievmentCountdown(docs, function(todo) {
 			res.render('userProfile', {
-				title: docs.username + "'s profile",
+				title: docs.username + "'s profile - chorestr.com",
 				userDetails: docs,
 				user: docs.username,
 				messages: req.session.messages,
@@ -23,10 +23,11 @@ exports.details = function(req, res, next) {
 				awards: docs.meta.awards,
 				profilePic: gravatar,
 				nextStats: todo
+			}, function(err, html) {
+				req.session.messages = null;
+				res.send(html);
 			});
 		});
-
-		req.session.messages = null;
 	});
 
 	function achievmentCountdown(docs, callback) {
@@ -132,7 +133,6 @@ exports.details = function(req, res, next) {
 		}
 
 		callback(todo);
-		//return todo;
 	}
 };
 
@@ -144,13 +144,14 @@ exports.edit = function(req, res, next) {
 		}
 
 		res.render('editProfile', {
-			title: 'Edit profile',
+			title: 'Edit profile - chorestr.com',
 			userProfile: docs,
 			user: docs.username,
 			messages: req.session.messages
+		}, function(err, html) {
+			req.session.messages = null;
+			res.send(html);
 		});
-
-		req.session.messages = null;
 	});
 
 };

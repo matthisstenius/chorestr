@@ -18,14 +18,17 @@ exports.showContact = function(req, res, next) {
 	}
 
 	res.render('contact', {
+		title: 'Contact - chorestr.com',
 		user: username,
 		email: email,
 		messages: req.session.messages,
 		errors: req.session.errors
+	}, function(err, html) {
+		req.session.messages = null;
+		req.session.errors = null;
+		res.send(html);
 	});
 
-	req.session.messages = null;
-	req.session.errors = null;
 };
 
 exports.send = function(req, res, next) {

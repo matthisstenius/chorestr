@@ -20,14 +20,15 @@ exports.show = function(req, res, next) {
 	}
 
 	res.render('login', {
-		title: 'Log in',
+		title: 'Log in - chorestr.com',
 		error: req.session.loginError,
 		user: username,
 		username: req.session.username
+	}, function(err, html) {
+		req.session.loginError = null;
+		req.session.username = null;
+		res.send(html);
 	});
-
-	req.session.loginError = null;
-	req.session.username = null;
 };
 
 exports.login = function(req, res, next) {
@@ -80,13 +81,13 @@ exports.showForgot = function(req, res, next) {
 	}
 
 	res.render('forgot', {
-		title: 'Forgot password',
+		title: 'Forgot password - chorestr.com',
 		messages: req.session.messages,
 		user: username
-
+	}, function(err, html) {
+		req.session.messages = null;
+		res.send(html);
 	});
-
-	req.session.messages = null;
 };
 
 exports.forgot = function(req, res, next) {
@@ -174,13 +175,14 @@ exports.showReset = function(req, res, next) {
 
 				if (result && new Date(Date.now()) <= user.resetDue) {
 					res.render('reset', {
-						title: 'Reset password',
+						title: 'Reset password - chorestr.com',
 						userID: user._id,
 						resetToken: req.params.token,
 						messages: req.session.messages
+					}, function(err, html) {
+						req.session.messages = null;
+						res.send(html);
 					});
-
-					req.session.messages = null;
 				}
 
 				else {

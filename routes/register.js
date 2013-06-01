@@ -10,16 +10,18 @@ exports.register = function(req, res) {
 	}
 
 	res.render('register', {
-		title: 'Register',
+		title: 'Join Chorestr today - chorestr.com',
 		errors: req.session.regErrors,
 		userExists: req.session.userExists,
 		userInput: req.session.userInput,
 		user: username
-	});
+	}, function(err, html) {
+		req.session.regErrors = null;
+		req.session.userExists = null;
+		req.session.userInput = null;
 
-	req.session.regErrors = null;
-	req.session.userExists = null;
-	req.session.userInput = null;
+		res.send(html);
+	});
 };
 
 exports.add = function(req, res, next) {

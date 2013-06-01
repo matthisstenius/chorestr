@@ -45,7 +45,7 @@ exports.showFailed = function(req, res, next) {
 
 		db.User.findById(req.user._id, function(err, userDetails) {
 			res.render('failed', {
-				title: 'Failed chores',
+				title: 'Failed chores - chorestr.com',
 				user: userDetails.username,
 				chores: chores,
 				meta: userDetails.meta,

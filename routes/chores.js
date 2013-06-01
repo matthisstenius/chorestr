@@ -46,16 +46,18 @@ exports.all = function(req, res, next) {
 			}
 
 			res.render('chores', {
-				title: 'Current chores',
+				title: 'Current chores - chorestr.com',
 				user: userDetails.username,
 				chores: chores,
 				meta: userDetails.meta,
 				sortId: sortId,
 				sortPrio: sortPrio,
 				alertBadge: req.session.alertBadge
+			}, function(err, html) {
+				req.session.alertBadge = null;
+				res.send(html);
 			});
 
-			req.session.alertBadge = null;
 		});
 
 	});
@@ -65,7 +67,7 @@ exports.all = function(req, res, next) {
 exports.new = function(req, res) {
 
 	res.render('new', {
-		title: 'New chore',
+		title: 'Add new chore - chorestr.com',
 		user: req.user.username,
 		messages: req.session.messages
 	});
@@ -117,13 +119,14 @@ exports.edit = function(req, res, next) {
 		}
 
 		res.render('edit', {
-			title: chore.name,
+			title: 'Edit ' + chore.name + ' chorestr.com',
 			user: req.user.username,
 			chore: chore,
 			messages: req.session.messages
+		}, function(err, html) {
+			req.session.messages = null;
+			res.send(html);
 		});
-
-		req.session.messages = null;
 	});
 
 };

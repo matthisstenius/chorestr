@@ -66,6 +66,7 @@ app.configure(function(){
     // Cache only on prod server
     if (process.env.NODE_ENV === 'production') {
         var oneYear = 31557600000;
+        app.use(express.staticCache());
         app.use(express.static(__dirname + '/public', {maxAge: oneYear}));
     }
 
