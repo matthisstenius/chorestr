@@ -4,10 +4,10 @@ var db = require('../models/model'),
 	crypto = require('crypto');
 
 var smtpTransport = nodemailer.createTransport('SMTP', {
-	service: 'Hotmail',
+	service: 'Mailjet',
 	auth: {
-		user: 'support@chorestr.com',
-		pass: 'Ed?{FD3XW]7C2EoG'
+		user: 'b43b0ea84d8cfa6118195b382fd1d62d',
+		pass: 'e11cff82764a0fe87d94fc3f1ae448b1'
 	}
 });
 
