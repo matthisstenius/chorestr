@@ -1,4 +1,5 @@
 var bcrypt = require('bcrypt-nodejs'),
+	Mailjet = require('mailjet'),
 	db = require('../models/model');
 
 exports.register = function(req, res) {
@@ -101,7 +102,17 @@ exports.add = function(req, res, next) {
 
 							req.session.tz = body.timeZone;
 
-							res.redirect('/' + docs.username + '/chores');
+							// Add contact to MailJet
+							var instance = new Mailjet('b43b0ea84d8cfa6118195b382fd1d62d', 'e11cff82764a0fe87d94fc3f1ae448b1');
+
+							instance.sendRequest('listsAddcontact', {contact: docs.email, id: 280181}, 'POST', function(err, status) {
+								if (err) {
+									next(err);
+									return;
+								}
+
+								res.redirect('/' + docs.username + '/chores');
+							});
 
 						});
 					});
